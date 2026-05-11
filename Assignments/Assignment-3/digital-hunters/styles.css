@@ -1,0 +1,277 @@
+/* ---------- Tokens ---------- */
+:root{
+  --bg:#06141a;
+  --bg-2:#0a1f27;
+  --ink:#eaf6f4;
+  --muted:#8aa3a8;
+  --accent:#2ee6c4;
+  --accent-2:#4cc9f0;
+  --line: rgba(255,255,255,.08);
+  --display: 'Russo One', system-ui, sans-serif;
+  --body: 'Inter', system-ui, sans-serif;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--ink);font-family:var(--body);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.eyebrow{display:inline-block;font-size:12px;letter-spacing:.18em;color:var(--accent);text-transform:uppercase;margin-bottom:14px}
+.hl{color:var(--accent)}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:999px;font-weight:600;font-size:14px;letter-spacing:.02em;transition:transform .2s ease, box-shadow .2s ease, background .2s ease}
+.btn--primary{background:var(--accent);color:#062018;box-shadow:0 10px 30px -8px rgba(46,230,196,.55)}
+.btn--primary:hover{transform:translateY(-2px)}
+.btn--ghost{border:1px solid rgba(255,255,255,.18);color:var(--ink)}
+.btn--ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ---------- Nav ---------- */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:color-mix(in oklab, var(--bg) 70%, transparent);border-bottom:1px solid var(--line)}
+.nav__inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:16px 24px;gap:24px}
+.nav__logo{display:flex;align-items:center;gap:12px}
+.logo-mark{display:grid;place-items:center;width:42px;height:42px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#06181a;font-family:var(--display);font-size:18px}
+.logo-text{font-family:var(--display);font-size:11px;line-height:1.05;letter-spacing:.18em}
+.nav__links{display:flex;gap:28px;font-size:14px;color:var(--muted)}
+.nav__links a:hover{color:var(--ink)}
+
+/* ===========================================================
+   HERO — Layered 3D scene with z-index stacking
+   =========================================================== */
+.hero{
+  position:relative;
+  min-height:760px;
+  overflow:hidden;
+  perspective: 1600px;
+  perspective-origin: 50% 40%;
+}
+
+.scene{
+  position:absolute; inset:0;
+  transform-style: preserve-3d;
+}
+
+/* every layer absolutely positioned and ordered via z-index */
+.layer{ position:absolute; inset:0; pointer-events:none; }
+
+/* L1 — Background gradient (deepest) */
+.layer--bg{
+  z-index:1;
+  background:
+    radial-gradient(1200px 700px at 70% 20%, rgba(76,201,240,.18), transparent 60%),
+    radial-gradient(900px 600px at 20% 80%, rgba(46,230,196,.12), transparent 60%),
+    linear-gradient(180deg,#04101a 0%, #06141a 60%, #03090d 100%);
+  transform: translateZ(-400px) scale(1.25);
+}
+
+/* L2 — Perspective grid floor */
+.layer--grid{
+  z-index:2;
+  top:auto; bottom:-10%; height:60%;
+  background-image:
+    linear-gradient(rgba(46,230,196,.18) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(46,230,196,.18) 1px, transparent 1px);
+  background-size: 60px 60px;
+  transform: rotateX(70deg) translateZ(-200px);
+  transform-origin: 50% 100%;
+  mask-image: linear-gradient(to top, black 10%, transparent 90%);
+  -webkit-mask-image: linear-gradient(to top, black 10%, transparent 90%);
+  opacity:.55;
+}
+
+/* L3 — Glow halo behind hero */
+.layer--halo{
+  z-index:3;
+  background: radial-gradient(460px 520px at 75% 55%, rgba(76,201,240,.6), rgba(46,230,196,.2) 40%, transparent 70%);
+  filter: blur(8px);
+  transform: translateZ(-150px) scale(1.05);
+}
+
+/* L4 — Stars */
+.layer--stars{ z-index:4; }
+.layer--stars span{
+  position:absolute;
+  left:var(--x); top:var(--y);
+  width:calc(6px * var(--s)); height:calc(6px * var(--s));
+  background:#fff; border-radius:50%;
+  box-shadow:0 0 12px #fff, 0 0 24px var(--accent-2);
+  opacity:.85;
+  animation: twinkle 3s ease-in-out infinite;
+}
+.layer--stars span:nth-child(odd){ animation-delay:.8s }
+@keyframes twinkle{50%{opacity:.25; transform:scale(.7)}}
+
+/* L5 — Far chrome star ornament */
+.layer--star-far{
+  z-index:5;
+  width:140px; height:140px;
+  inset:auto; top:14%; right:8%;
+  position:absolute;
+  filter: drop-shadow(0 0 30px rgba(76,201,240,.45));
+  transform: translateZ(-60px) rotate(-12deg);
+  opacity:.85;
+  animation: floatY 7s ease-in-out infinite;
+}
+
+/* L6 — Big translucent display type behind character */
+.layer--type{
+  z-index:6;
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--display);
+  font-size: clamp(120px, 22vw, 320px);
+  letter-spacing:.04em;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255,255,255,.10);
+  text-shadow: 0 0 80px rgba(46,230,196,.15);
+  transform: translateZ(-40px);
+  user-select:none;
+}
+
+/* L7 — Orbiting ring */
+.layer--ring{
+  z-index:7;
+  width:520px; height:520px;
+  inset:auto; left:75%; top:60%;
+  position:absolute;
+  margin:-260px 0 0 -260px;
+  border-radius:50%;
+  border:1px dashed rgba(46,230,196,.35);
+  box-shadow: inset 0 0 80px rgba(46,230,196,.15), 0 0 60px rgba(76,201,240,.15);
+  transform: rotateX(72deg) translateZ(-20px);
+  animation: spin 18s linear infinite;
+}
+@keyframes spin{to{transform:rotateX(72deg) rotateZ(360deg) translateZ(-20px)}}
+
+/* L8 — HERO CHARACTER (the star of the show) */
+.layer--char{
+  z-index:8;
+  position:absolute;
+  inset:auto; right: 2%; bottom:-60px;
+  width: min(620px, 48vw);
+  height:auto;
+  transform: translateZ(120px);
+  filter:
+    drop-shadow(0 30px 40px rgba(0,0,0,.65))
+    drop-shadow(0 0 60px rgba(76,201,240,.35));
+  animation: floatChar 6s ease-in-out infinite;
+}
+@keyframes floatChar{
+  0%,100%{ transform: translateZ(120px) translateY(0) }
+  50%   { transform: translateZ(120px) translateY(-14px) }
+}
+
+/* L9 — Foreground chrome star (closer to viewer) */
+.layer--star-near{
+  z-index:9;
+  width:90px; height:90px;
+  inset:auto; bottom:12%; left:6%;
+  position:absolute;
+  filter: drop-shadow(0 10px 30px rgba(0,0,0,.6)) drop-shadow(0 0 20px var(--accent));
+  transform: translateZ(220px) rotate(18deg);
+  animation: floatY 5s ease-in-out -2s infinite;
+}
+
+/* L10 — Scanlines overlay */
+.layer--scan{
+  z-index:10;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255,255,255,.03) 0 1px,
+    transparent 1px 3px
+  );
+  mix-blend-mode: overlay;
+  opacity:.5;
+}
+
+/* L11 — Vignette */
+.layer--vignette{
+  z-index:11;
+  background: radial-gradient(120% 80% at 50% 40%, transparent 55%, rgba(0,0,0,.6) 100%);
+}
+
+/* float keyframes */
+@keyframes floatY{
+  0%,100%{ transform: translateX(-50%) translateZ(120px) translateY(0) }
+  50%   { transform: translateX(-50%) translateZ(120px) translateY(-14px) }
+}
+.layer--star-far{ animation-name: floatStar }
+.layer--star-near{ animation-name: floatStarNear }
+@keyframes floatStar{
+  0%,100%{ transform: translateZ(-60px) rotate(-12deg) translateY(0) }
+  50%   { transform: translateZ(-60px) rotate(-8deg) translateY(-18px) }
+}
+@keyframes floatStarNear{
+  0%,100%{ transform: translateZ(220px) rotate(18deg) translateY(0) }
+  50%   { transform: translateZ(220px) rotate(22deg) translateY(-22px) }
+}
+
+/* HERO content above scene */
+.hero__content{
+  position:relative;
+  z-index:20;                 /* sits on top of all scene layers */
+  max-width:1200px; margin:0 auto;
+  padding: 110px 24px 80px;
+}
+.hero__title{
+  font-family:var(--display);
+  font-size: clamp(36px, 4.6vw, 64px);
+  line-height:1.05; letter-spacing:.01em;
+  max-width: 560px;
+  text-shadow: 0 4px 30px rgba(0,0,0,.45);
+}
+.hero__sub{
+  margin-top:22px; max-width:520px;
+  color:var(--muted); font-size:17px; line-height:1.6;
+}
+.hero__cta{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap}
+.hero__meta{
+  display:flex; gap:48px; margin-top:64px; list-style:none; flex-wrap:wrap;
+}
+.hero__meta li{display:flex;flex-direction:column}
+.hero__meta b{font-family:var(--display);font-size:32px;color:var(--accent)}
+.hero__meta span{color:var(--muted);font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+
+/* ---------- Sections ---------- */
+.section{padding:120px 0;position:relative}
+.section--alt{background:var(--bg-2);border-block:1px solid var(--line)}
+.sec-head{margin-bottom:56px;max-width:680px}
+.sec-head h2{font-family:var(--display);font-size:clamp(30px,3.5vw,48px);line-height:1.1}
+
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:var(--bg-2);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .25s ease,border-color .25s ease}
+.card:hover{transform:translateY(-6px);border-color:rgba(46,230,196,.4)}
+.card__media{aspect-ratio:4/3;overflow:hidden}
+.card__media img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.card:hover .card__media img{transform:scale(1.06)}
+.card__body{padding:22px}
+.card__body h3{font-family:var(--display);font-size:22px;margin-bottom:8px}
+.card__body p{color:var(--muted);font-size:14px;line-height:1.55}
+.tag{display:inline-block;margin-top:14px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(46,230,196,.4);padding:6px 10px;border-radius:999px}
+
+.steps{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.steps li{padding:28px;background:var(--bg);border:1px solid var(--line);border-radius:18px}
+.steps b{font-family:var(--display);color:var(--accent);font-size:14px;letter-spacing:.16em}
+.steps h3{font-family:var(--display);font-size:20px;margin:14px 0 8px}
+.steps p{color:var(--muted);font-size:14px;line-height:1.55}
+
+.cta{padding:120px 0;text-align:center;background:radial-gradient(800px 400px at 50% 0%, rgba(46,230,196,.18), transparent 70%)}
+.cta h2{font-family:var(--display);font-size:clamp(30px,4vw,52px);line-height:1.1;max-width:780px;margin:0 auto}
+.cta p{margin:18px auto 30px;max-width:520px;color:var(--muted)}
+
+.footer{border-top:1px solid var(--line);padding:24px 0;color:var(--muted);font-size:13px}
+.footer__inner{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px){
+  .nav__links{display:none}
+  .grid,.steps{grid-template-columns:1fr 1fr}
+  .layer--char{ width: 80vw }
+  .layer--star-far{ width:90px; height:90px }
+  .hero{ min-height: 640px }
+}
+@media (max-width: 560px){
+  .grid,.steps{grid-template-columns:1fr}
+  .hero__meta{gap:24px}
+  .hero__content{padding-top:60px}
+}

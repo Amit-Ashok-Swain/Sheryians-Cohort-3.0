@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sheryians Cohort 3.0</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      font-family:'Poppins',sans-serif;
+      background:#040816;
+      color:white;
+      overflow-x:hidden;
+      min-height:100vh;
+      position:relative;
+    }
+
+    /* ===== Animated Background ===== */
+
+    .bg{
+      position:fixed;
+      inset:0;
+      overflow:hidden;
+      z-index:-10;
+    }
+
+    .orb{
+      position:absolute;
+      border-radius:50%;
+      filter:blur(120px);
+      opacity:0.35;
+      animation:float 10s infinite alternate ease-in-out;
+    }
+
+    .orb1{
+      width:500px;
+      height:500px;
+      background:#00d9ff;
+      top:-120px;
+      left:-100px;
+    }
+
+    .orb2{
+      width:450px;
+      height:450px;
+      background:#7b2fff;
+      bottom:-100px;
+      right:-100px;
+      animation-delay:2s;
+    }
+
+    .orb3{
+      width:350px;
+      height:350px;
+      background:#ff0077;
+      top:40%;
+      left:40%;
+      animation-delay:4s;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0px) translateX(0px);
+      }
+
+      100%{
+        transform:translateY(60px) translateX(40px);
+      }
+    }
+
+    /* ===== Main Container ===== */
+
+    .container{
+      width:100%;
+      padding:70px 8%;
+      position:relative;
+      z-index:2;
+    }
+
+    /* ===== Hero ===== */
+
+    .hero{
+      text-align:center;
+      margin-bottom:100px;
+      position:relative;
+      z-index:5;
+    }
+
+    .hero::before{
+      content:'';
+      position:absolute;
+      width:350px;
+      height:350px;
+      background:linear-gradient(45deg,#00d9ff,#7b2fff);
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      filter:blur(120px);
+      opacity:0.2;
+      z-index:-1;
+    }
+
+    .hero h1{
+      font-size:clamp(3.4rem,8vw,7rem);
+      font-weight:500;
+      line-height:1;
+      margin-bottom:25px;
+
+      background:linear-gradient(
+        to right,
+        #ffffff,
+        #7edfff,
+        #9d7bff
+      );
+
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+
+      text-shadow:
+      0 0 30px rgba(255,255,255,0.1);
+    }
+
+    .hero p{
+      max-width:850px;
+      margin:auto;
+      font-size:1.1rem;
+      color:#c8d1ff;
+      line-height:1.8;
+    }
+
+    /* ===== Folder Sections ===== */
+
+    .folder-section{
+      margin-bottom:100px;
+      position:relative;
+      z-index:5;
+    }
+
+    .folder-title{
+      font-size:2rem;
+      margin-bottom:40px;
+      display:flex;
+      align-items:center;
+      gap:15px;
+      position:relative;
+      z-index:3;
+    }
+
+    .folder-title span{
+      font-size:2.5rem;
+    }
+
+    .folder-title::after{
+      content:'';
+      flex:1;
+      height:2px;
+      background:linear-gradient(to right,#00d9ff,transparent);
+      margin-top:5px;
+    }
+
+    /* ===== Cards Grid ===== */
+
+    .projects{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:35px;
+      perspective:1400px;
+    }
+
+    /* ===== Glassmorphism 3D Cards ===== */
+
+    .card{
+      position:relative;
+      text-decoration:none;
+      color:white;
+      padding:35px;
+      min-height:260px;
+
+      border-radius:30px;
+
+      background:
+      linear-gradient(
+        145deg,
+        rgba(255,255,255,0.12),
+        rgba(255,255,255,0.04)
+      );
+
+      border:1px solid rgba(255,255,255,0.08);
+
+      backdrop-filter:blur(20px);
+
+      overflow:hidden;
+
+      transform-style:preserve-3d;
+
+      transition:
+      transform 0.6s ease,
+      box-shadow 0.6s ease;
+
+      z-index:1;
+
+      box-shadow:
+      0 10px 40px rgba(0,0,0,0.35);
+    }
+
+    .card::before{
+      content:'';
+      position:absolute;
+      inset:0;
+
+      background:
+      linear-gradient(
+        135deg,
+        rgba(255,255,255,0.2),
+        transparent,
+        rgba(255,255,255,0.05)
+      );
+
+      opacity:0;
+      transition:0.5s;
+      z-index:1;
+    }
+
+    .card:hover::before{
+      opacity:1;
+    }
+
+    .card::after{
+      content:'';
+      position:absolute;
+      width:200px;
+      height:200px;
+      background:rgba(255,255,255,0.08);
+      border-radius:50%;
+      top:-70px;
+      right:-70px;
+      filter:blur(10px);
+      z-index:0;
+    }
+
+    .card:hover{
+      transform:
+      rotateX(12deg)
+      rotateY(-12deg)
+      translateY(-15px)
+      scale(1.03);
+
+      z-index:10;
+
+      box-shadow:
+      0 30px 60px rgba(0,0,0,0.5),
+      0 0 40px rgba(0,217,255,0.18);
+    }
+
+    /* ===== Card Content ===== */
+
+    .number{
+      position:absolute;
+      top:20px;
+      right:25px;
+
+      font-size:5rem;
+      font-weight:800;
+
+      opacity:0.08;
+
+      z-index:0;
+    }
+
+    .card h2{
+      position:relative;
+      z-index:2;
+
+      font-size:1.7rem;
+      margin-bottom:15px;
+    }
+
+    .card p{
+      position:relative;
+      z-index:2;
+
+      color:#d2d8ff;
+      line-height:1.8;
+      font-size:0.96rem;
+    }
+
+    .tag{
+      display:inline-block;
+      margin-top:25px;
+      padding:10px 18px;
+
+      border-radius:999px;
+
+      background:rgba(255,255,255,0.08);
+
+      color:#8cecff;
+
+      font-size:0.85rem;
+
+      position:relative;
+      z-index:2;
+    }
+
+    /* ===== Footer ===== */
+
+    footer{
+      text-align:center;
+      padding:40px 0;
+      color:#9ba3d1;
+      font-size:0.95rem;
+      position:relative;
+      z-index:5;
+    }
+
+    /* ===== Responsive ===== */
+
+    @media(max-width:768px){
+
+      .container{
+        padding:50px 6%;
+      }
+
+      .projects{
+        grid-template-columns:1fr;
+      }
+
+      .folder-title{
+        font-size:1.6rem;
+      }
+
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Background -->
+
+  <div class="bg">
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+    <div class="orb orb3"></div>
+  </div>
+
+  <!-- Main -->
+
+  <div class="container">
+
+    <!-- Hero -->
+
+    <div class="hero">
+
+      <h1>Sheryians Cohort 3.0</h1>
+
+      <p>
+        A premium showcase of immersive frontend projects crafted using
+        pure HTML & CSS featuring advanced UI design, animations,
+        glassmorphism, layered composition and futuristic web experiences.
+      </p>
+
+    </div>
+
+    <!-- Assignment 0 -->
+
+    <section class="folder-section">
+
+      <div class="folder-title">
+        <span>📁</span>
+        Assignment 0
+      </div>
+
+      <div class="projects">
+
+        <a class="card" href="./Assignment-0/Microsoft-landing-page/">
+
+          <div class="number">01</div>
+
+          <h2>Microsoft Landing Page</h2>
+
+          <p>
+            Modern Microsoft-inspired landing page recreated using
+            responsive layouts, clean sections and polished UI composition.
+          </p>
+
+          <div class="tag">HTML • CSS</div>
+
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- Assignment 1 -->
+
+    <section class="folder-section">
+
+      <div class="folder-title">
+        <span>📁</span>
+        Assignment 1
+      </div>
+
+      <div class="projects">
+
+        <a class="card" href="./Assignment-1/Pikachu-UI/">
+
+          <div class="number">02</div>
+
+          <h2>Pikachu UI</h2>
+
+          <p>
+            Interactive playful UI with animated character design,
+            responsive composition and creative frontend styling.
+          </p>
+
+          <div class="tag">Creative UI</div>
+
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- Assignment 2 -->
+
+    <section class="folder-section">
+
+      <div class="folder-title">
+        <span>📁</span>
+        Assignment 2
+      </div>
+
+      <div class="projects">
+
+        <a class="card" href="./Assignment-2/Astro/">
+
+          <div class="number">03</div>
+
+          <h2>Astro</h2>
+
+          <p>
+            Futuristic dark-themed landing experience featuring immersive
+            gradients and layered design aesthetics.
+          </p>
+
+          <div class="tag">Futuristic</div>
+
+        </a>
+
+        <a class="card" href="./Assignment-2/Gunaforycter/">
+
+          <div class="number">04</div>
+
+          <h2>Gunaforycter</h2>
+
+          <p>
+            Experimental typography-focused web experience with bold
+            spacing, composition and modern interface aesthetics.
+          </p>
+
+          <div class="tag">Typography</div>
+
+        </a>
+
+        <a class="card" href="./Assignment-2/Scalex/">
+
+          <div class="number">05</div>
+
+          <h2>Scalex</h2>
+
+          <p>
+            Startup inspired scalable product showcase with minimal UI,
+            polished layouts and smooth visual hierarchy.
+          </p>
+
+          <div class="tag">Startup UI</div>
+
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- Assignment 3 -->
+
+    <section class="folder-section">
+
+      <div class="folder-title">
+        <span>📁</span>
+        Assignment 3
+      </div>
+
+      <div class="projects">
+
+        <a class="card" href="./Assignment-3/digital-hunters/">
+
+          <div class="number">06</div>
+
+          <h2>Digital Hunters</h2>
+
+          <p>
+            High-energy digital agency inspired experience with immersive
+            motion and premium visual storytelling.
+          </p>
+
+          <div class="tag">Agency Design</div>
+
+        </a>
+
+        <a class="card" href="./Assignment-3/shinsei-village/">
+
+          <div class="number">07</div>
+
+          <h2>Shinsei Village</h2>
+
+          <p>
+            Japanese aesthetic inspired layered visual experience with
+            storytelling-focused composition and modern design.
+          </p>
+
+          <div class="tag">Immersive UI</div>
+
+        </a>
+
+        <a class="card" href="./Assignment-3/squid-game/">
+
+          <div class="number">08</div>
+
+          <h2>Squid Game</h2>
+
+          <p>
+            Cinematic entertainment inspired web experience featuring
+            bold contrast and immersive dramatic visuals.
+          </p>
+
+          <div class="tag">Entertainment UI</div>
+
+        </a>
+
+      </div>
+
+    </section>
+
+    <!-- Footer -->
+
+    <footer>
+      Designed & Developed by Amit Ashok Swain
+    </footer>
+
+  </div>
+
+</body>
+</html>

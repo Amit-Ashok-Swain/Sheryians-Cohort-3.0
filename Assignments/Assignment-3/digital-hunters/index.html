@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Digital Hunters — Студия игр и XR</title>
+<meta name="description" content="Студия Digital Hunters создаёт мобильные игры и XR-проекты с кинематографичной атмосферой." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="nav__inner">
+    <a href="#" class="nav__logo">
+      <span class="logo-mark">DH</span>
+      <span class="logo-text">DIGITAL<br/>HUNTERS</span>
+    </a>
+    <nav class="nav__links">
+      <a href="#projects">Проекты</a>
+      <a href="#process">Процесс</a>
+      <a href="#about">О студии</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+    <a href="#contact" class="btn btn--ghost">Связаться</a>
+  </div>
+</header>
+
+<!-- HERO with layered 3D scene -->
+<section class="hero">
+  <!-- Layered 3D scene: each .layer has its own z-index/transform -->
+  <div class="scene" aria-hidden="true">
+    <!-- L1: deep gradient backdrop -->
+    <div class="layer layer--bg"></div>
+
+    <!-- L2: grid floor / horizon -->
+    <div class="layer layer--grid"></div>
+
+    <!-- L3: glow halo behind character -->
+    <div class="layer layer--halo"></div>
+
+    <!-- L4: distant stars -->
+    <div class="layer layer--stars">
+      <span style="--x:8%;--y:18%;--s:.6"></span>
+      <span style="--x:18%;--y:62%;--s:.4"></span>
+      <span style="--x:30%;--y:30%;--s:.8"></span>
+      <span style="--x:72%;--y:22%;--s:.5"></span>
+      <span style="--x:88%;--y:48%;--s:.7"></span>
+      <span style="--x:62%;--y:74%;--s:.45"></span>
+      <span style="--x:46%;--y:12%;--s:.55"></span>
+      <span style="--x:94%;--y:80%;--s:.65"></span>
+    </div>
+
+    <!-- L5: chrome star ornament far -->
+    <img class="layer layer--star-far" src="assets/star.png" alt="" />
+
+    <!-- L6: big translucent type behind hero -->
+    <div class="layer layer--type">HUNTERS</div>
+
+    <!-- L7: ring orbit -->
+    <div class="layer layer--ring"></div>
+
+    <!-- L8: HERO CHARACTER -->
+    <img class="layer layer--char" src="assets/hero-character.png" alt="Главный герой Digital Hunters" />
+
+    <!-- L9: foreground star ornament -->
+    <img class="layer layer--star-near" src="assets/star.png" alt="" />
+
+    <!-- L10: scanline overlay -->
+    <div class="layer layer--scan"></div>
+
+    <!-- L11: vignette -->
+    <div class="layer layer--vignette"></div>
+  </div>
+
+  <!-- Foreground content sits on top of the scene -->
+  <div class="hero__content">
+    <span class="eyebrow">// Independent game studio</span>
+    <h1 class="hero__title">
+      Создаём миры,<br/>
+      <span class="hl">в которых хочется жить.</span>
+    </h1>
+    <p class="hero__sub">
+      Мобильные игры и XR-опыты с кинематографичной атмосферой,
+      продуманным геймплеем и фирменным визуальным языком.
+    </p>
+    <div class="hero__cta">
+      <a href="#projects" class="btn btn--primary">Смотреть проекты</a>
+      <a href="#contact" class="btn btn--ghost">Обсудить идею →</a>
+    </div>
+
+    <ul class="hero__meta">
+      <li><b>12+</b><span>выпущенных игр</span></li>
+      <li><b>4M</b><span>игроков по миру</span></li>
+      <li><b>2017</b><span>год основания</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="container">
+    <header class="sec-head">
+      <span class="eyebrow">// Проекты</span>
+      <h2>Что мы выпустили</h2>
+    </header>
+    <div class="grid">
+      <article class="card">
+        <div class="card__media"><img src="assets/sled-hockey.jpg" alt="Sled Hockey" /></div>
+        <div class="card__body">
+          <h3>Sled Hockey</h3>
+          <p>Аркадный симулятор хоккея с роботом-вратарём.</p>
+          <span class="tag">iOS · Android</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__media"><img src="assets/genesis.jpg" alt="Genesis" /></div>
+        <div class="card__body">
+          <h3>Genesis</h3>
+          <p>Фэнтезийная XR-RPG с открытым миром.</p>
+          <span class="tag">Quest · PCVR</span>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__media"><img src="assets/mechanic-park.jpg" alt="Mechanic Park" /></div>
+        <div class="card__body">
+          <h3>Mechanic Park</h3>
+          <p>Симулятор парка аттракционов с физикой и кастомизацией.</p>
+          <span class="tag">Mobile</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section section--alt" id="process">
+  <div class="container">
+    <header class="sec-head">
+      <span class="eyebrow">// Процесс</span>
+      <h2>Как мы работаем</h2>
+    </header>
+    <ol class="steps">
+      <li><b>01</b><h3>Идея</h3><p>Концепт, мудборд, эталоны атмосферы.</p></li>
+      <li><b>02</b><h3>Прототип</h3><p>Играбельный билд за 2–4 недели.</p></li>
+      <li><b>03</b><h3>Продакшн</h3><p>Контент, арт, систематизация механик.</p></li>
+      <li><b>04</b><h3>Релиз</h3><p>Публикация и поддержка лайв-версии.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="contact">
+  <div class="container cta__inner">
+    <h2>Готовы создать что-то <span class="hl">незабываемое?</span></h2>
+    <p>Расскажите о своей идее — мы соберём команду и сделаем её реальностью.</p>
+    <a href="mailto:hello@digitalhunters.studio" class="btn btn--primary">hello@digitalhunters.studio</a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <span>© 2026 Digital Hunters</span>
+    <span>Сделано с ❤ командой DH</span>
+  </div>
+</footer>
+
+</body>
+</html>

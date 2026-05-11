@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gunaforycter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="brand">
+      <h1>Gunaforycter</h1>
+      <div class="divider">
+        <span class="line"></span>
+        <svg viewBox="0 0 24 16" class="ornament" aria-hidden="true">
+          <path d="M2 4 L10 4 L12 10 L14 4 L22 4 M10 4 L12 14 L14 4" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="line"></span>
+      </div>
+    </header>
+
+    <section class="cards" aria-label="Drinks menu">
+      <article class="card card--featured">
+        <span class="badge"><span class="star">★</span> Signature</span>
+        <div class="card__img"><img src="img/sunset-flame.png" alt="Sunset Flame cocktail" /></div>
+        <h2>Sunset Flame</h2>
+        <p class="subtitle">Tropical &amp; Refreshing</p>
+        <span class="hr"></span>
+        <p class="price">$12.94</p>
+      </article>
+
+      <article class="card">
+        <div class="card__img"><img src="img/tropical-passion.png" alt="Tropical Passion cocktail" /></div>
+        <h2>Tropical Passion</h2>
+        <p class="subtitle">Fruity &amp; Exotic</p>
+        <span class="hr"></span>
+        <p class="price">$11.04</p>
+      </article>
+
+      <article class="card">
+        <div class="card__img"><img src="img/citrus-dawn.png" alt="Citrus Dawn cocktail" /></div>
+        <h2>Citrus Dawn</h2>
+        <p class="subtitle">Citrusy &amp; Energizing</p>
+        <span class="hr"></span>
+        <p class="price">$10.13</p>
+      </article>
+
+      <article class="card">
+        <span class="badge badge--new"><span class="dot"></span> New</span>
+        <div class="card__img"><img src="img/berry-breeze.png" alt="Berry Breeze cocktail" /></div>
+        <h2>Berry Breeze</h2>
+        <p class="subtitle">Sweet &amp; Cool</p>
+        <span class="hr"></span>
+        <p class="price">$9.48</p>
+      </article>
+    </section>
+
+    <section class="special">
+      <div class="special__img">
+        <img src="img/chef-special.png" alt="Chef's special steak dish" />
+      </div>
+      <div class="special__body">
+        <p class="eyebrow">Chef's Special</p>
+        <h2>Bouliauts for laguancns</h2>
+        <p class="lede">Experience our signature culinary creations.</p>
+        <p class="copy">Meticulously crafted with premium ingredients to deliver exceptional flavors and an unforgettable dining experience. Perfect for sharing or savoring on your own.</p>
+        <a href="#" class="btn">Explore Menu <span aria-hidden="true">→</span></a>
+      </div>
+      <svg class="leaf" viewBox="0 0 200 260" aria-hidden="true">
+        <g fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round">
+          <path d="M100 250 C100 180 100 100 100 20"/>
+          <path d="M100 200 C70 195 50 175 45 145"/>
+          <path d="M100 170 C130 165 150 145 155 115"/>
+          <path d="M100 140 C70 135 50 115 45 85"/>
+          <path d="M100 110 C130 105 150 85 155 55"/>
+          <path d="M100 80 C75 75 60 60 55 40"/>
+        </g>
+      </svg>
+    </section>
+
+    <footer class="footer">
+      <p class="copyright">© Gunaforycter 2025</p>
+      <nav class="nav">
+        <a href="#">Explore</a><span>•</span>
+        <a href="#">Food Menu</a><span>•</span>
+        <a href="#">Drinks</a><span>•</span>
+        <a href="#">Reservations</a>
+      </nav>
+      <div class="social">
+        <span>Follow Us</span>
+        <a href="#" aria-label="Instagram" class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+        </a>
+        <a href="#" aria-label="Facebook" class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M13.5 8.5h2V6h-2.2c-1.5 0-2.5 1-2.5 2.5V10h-2v2.5h2V18h2.5v-5.5h2L15.7 10h-2.2V9c0-.3.2-.5.5-.5z" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="#" aria-label="Twitter" class="ico">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M7 9.5c1 .5 2 .7 3 .5-.7-.2-1.3-.8-1.5-1.5.3.2.7.3 1 .3-1-.5-1.4-1.6-1-2.5.9 1.2 2.3 2 4 2.1-.2-1 .3-2 1.2-2.3 1-.4 2-.1 2.5.7.6-.1 1.2-.3 1.7-.6-.2.6-.6 1.1-1.2 1.4.5-.1 1-.2 1.5-.4-.3.5-.8 1-1.3 1.3.2 3-2.2 6-5.7 6C9 14.5 7.7 14 6.5 13c.2 0 .4.1.6.1.9 0 1.7-.3 2.4-.8-.9 0-1.6-.6-1.9-1.4.3.1.6.1.9 0-.9-.2-1.5-1-1.5-1.9z" fill="currentColor" stroke="none"/></svg>
+        </a>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>

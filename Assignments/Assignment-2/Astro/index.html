@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASTRO — Winter Armor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="page">
+
+  <!-- NAV -->
+  <header class="nav">
+    <div class="logo">ASTRO<span>.</span></div>
+    <nav class="menu">
+      <a href="#">PRODUCTS</a>
+      <a href="#">CATEGORY</a>
+      <a href="#">ABOUT US</a>
+      <a href="#">CONTACT</a>
+    </nav>
+    <div class="nav-icons">
+      <button aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </button>
+      <button aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h12L22 7H6"/></svg>
+      </button>
+      <button aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-7 8-7s8 3 8 7"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- PRODUCT SECTION -->
+  <section class="product">
+    <!-- Left -->
+    <div class="left">
+      <p class="tag">NEW</p>
+      <h1 class="title">ASTRO<br>WINTER<br>ARMOR <span class="orange-bars">II</span></h1>
+      <p class="price">$560</p>
+      <div class="divider"></div>
+      <h3 class="section-title">DESCRIPTION</h3>
+      <p class="desc">A next-gen cold war jacket. The essence of retro style and the resilience you need for extreme winter conditions. Engineered to provide versatile function for your winter wardrobe, accented with strategic utility details.</p>
+      <a href="#" class="read-more">READ MORE <span>›</span></a>
+
+      <div class="accordion">
+        <button class="acc-row">MATERIAL & CARE <span class="chev">⌄</span></button>
+        <button class="acc-row">SHIPPING & RETURNS <span class="chev">⌄</span></button>
+      </div>
+    </div>
+
+    <!-- Center -->
+    <div class="center">
+      <img src="images/jacket-main.png" alt="Astro Winter Armor jacket" class="jacket">
+      <div class="features-row">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v20M2 12h20M5 5l14 14M19 5 5 19M12 5l-2 2 2 2 2-2-2-2zM12 15l-2 2 2 2 2-2-2-2zM5 12l2-2 2 2-2 2-2-2zM15 12l2-2 2 2-2 2-2-2z"/></svg> EXTREME WARMTH</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4z"/></svg> WIND RESISTANT</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 4c-8 0-14 6-14 14 0 1 0 2 1 2 8 0 14-6 14-14 0-1 0-2-1-2zM6 18 3 21"/></svg> LIGHTWEIGHT</span>
+      </div>
+    </div>
+
+    <!-- Right -->
+    <div class="right">
+      <h3 class="opt-title">SIZE</h3>
+      <div class="sizes">
+        <button class="size">S</button>
+        <button class="size active">M</button>
+        <button class="size">L</button>
+        <button class="size">XL</button>
+      </div>
+      <a href="#" class="size-guide">SIZE GUIDE <span>›</span></a>
+      <div class="divider"></div>
+
+      <h3 class="opt-title">COLOR</h3>
+      <div class="colors">
+        <div class="color-card selected">
+          <img src="images/color-beige.png" alt="Beige">
+          <p>BEIGE</p>
+        </div>
+        <div class="color-card">
+          <img src="images/color-red.png" alt="Red">
+          <p>RED</p>
+        </div>
+        <div class="color-card">
+          <img src="images/color-black.png" alt="Black">
+          <p>BLACK</p>
+        </div>
+        <div class="color-card">
+          <img src="images/color-white.png" alt="White">
+          <p>WHITE</p>
+        </div>
+      </div>
+
+      <button class="wishlist">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        ADD TO WISHLIST
+      </button>
+      <button class="add-bag">
+        ADD TO BAG
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 7h12l-1 13H7L6 7zM9 7V5a3 3 0 0 1 6 0v2"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- FEATURE CARDS -->
+  <section class="feature-cards">
+    <div class="fc"><img src="images/feat1.png" alt=""><div><h4>3X<br>WATER-REPELLENT</h4><p>The fabric repels rain, snow and moisture while keeping you dry and comfortable.</p></div></div>
+    <div class="fc"><img src="images/feat2.png" alt=""><div><h4>3D AREAS<br>PUFFERED</h4><p>Strategically padded zones trap heat and maximize insulation without the bulk.</p></div></div>
+    <div class="fc"><img src="images/feat3.png" alt=""><div><h4>INSULATION</h4><p>Advanced thermal filling locks in warmth up to -30°C for extreme conditions.</p></div></div>
+    <div class="fc"><img src="images/feat4.png" alt=""><div><h4>UTILITY<br>POCKETS</h4><p>Multi-functional pockets for secure storage on the go.</p></div></div>
+  </section>
+
+  <!-- BOTTOM ICON ROW -->
+  <section class="icon-row">
+    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6a1f" stroke-width="1.8"><path d="M3 12h18M12 3v18M5 5l14 14M19 5 5 19"/></svg><div><h5>PREMIUM FABRICS</h5><p>Durable, high-performance materials.</p></div></div>
+    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6a1f" stroke-width="1.8"><path d="M12 2 4 6v6c0 5 3.5 8.5 8 10 4.5-1.5 8-5 8-10V6l-8-4zM9 12h6M12 9v6"/></svg><div><h5>THERMAL PROTECTION</h5><p>Built for extreme winter climates.</p></div></div>
+    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6a1f" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg><div><h5>DESIGNED FOR FUNCTION</h5><p>Every detail serves a purpose.</p></div></div>
+    <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#ff6a1f" stroke-width="1.8"><path d="m12 3 2.6 5.7 6.4.6-4.8 4.3 1.4 6.2L12 16.9 6.4 19.8l1.4-6.2L3 9.3l6.4-.6L12 3z"/></svg><div><h5>LIMITED EDITION</h5><p>Exclusive drops, limited quantities.</p></div></div>
+  </section>
+
+</div>
+</body>
+</html>
