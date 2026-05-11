@@ -1,0 +1,185 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  background: #ededed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+
+/* Card with two halves */
+.card {
+  position: relative;
+  width: 1100px;
+  max-width: 100%;
+  height: 680px;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.08);
+  background: #fff;
+}
+
+/* LEFT YELLOW PANEL */
+.left {
+  position: relative;
+  width: 60%;
+  background: #f8c91c;
+  padding: 50px 60px;
+  overflow: hidden;
+}
+
+.logo {
+  width: 130px;
+  height: auto;
+}
+
+.content {
+  position: absolute;
+  top: 220px;
+  left: 60px;
+  right: 60px;
+  max-width: 480px;
+}
+
+.eyebrow {
+  font-size: 13px;
+  letter-spacing: 6px;
+  color: #1a1a1a;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+
+.title {
+  font-size: 96px;
+  font-weight: 800;
+  color: #111;
+  line-height: 1;
+  margin-bottom: 30px;
+  letter-spacing: -2px;
+}
+
+.desc {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #1a1a1a;
+  max-width: 380px;
+  margin-bottom: 40px;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.counter .line {
+  display: inline-block;
+  width: 60px;
+  height: 2px;
+  background: #111;
+}
+
+.counter .count {
+  font-size: 16px;
+  color: #111;
+}
+
+.counter strong {
+  font-weight: 700;
+}
+
+/* Faded pokeball */
+.pokeball {
+  position: absolute;
+  bottom: -91px;
+  left: -2px;
+  width: 230px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+/* RIGHT CREAM PANEL */
+.right {
+  position: relative;
+  width: 40%;
+  background: #f8e9b6;
+}
+
+.menu {
+  position: absolute;
+  top: 40px;
+  right: 50px;
+  width: 42px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.menu span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #111;
+  border-radius: 2px;
+}
+
+.menu span:nth-child(1) { width: 70%; align-self: flex-end; }
+.menu span:nth-child(2) { width: 70%; align-self: flex-end; }
+.menu span:nth-child(3) { width: 70%; align-self: flex-end;}
+
+/* Pagination dots */
+.dots {
+  position: absolute;
+  top: 50%;
+  right: 28px;
+  transform: translateY(-50%);
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.dots li {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f8c91c;
+}
+
+.dots li.active {
+  background: #111;
+}
+
+/* Pikachu — overlaps both panels */
+.pikachu {
+  position: absolute;
+  top: 55%;
+  left: 61%;
+  transform: translate(-42%, -50%);
+  width: 480px;
+  height: auto;
+  z-index: 5;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.15));
+}
+
+@media (max-width: 768px) {
+  .card { height: auto; flex-direction: column; }
+  .left, .right { width: 100%; }
+  .left { padding: 30px; }
+  .content { position: static; margin-top: 30px; }
+  .title { font-size: 60px; }
+  .pikachu { position: relative; transform: none; width: 80%; margin: -40px auto 0; display: block; }
+  .right { height: 200px; }
+}
