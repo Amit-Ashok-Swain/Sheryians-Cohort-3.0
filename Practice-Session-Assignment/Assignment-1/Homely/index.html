@@ -1,117 +1,298 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css" rel="stylesheet"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
     <title>Homely</title>
-</head>
-<body>
+  </head>
+  <body>
+
     <main>
-        <header>
-            <nav class="nav-bar">
-                <div class="logo">
-                    <img class="logo-image" src="./assets/logo.png" alt="logo-image">
-                    <h1 class="logo-name">homely</h1>
+      <header>
+        <nav class="nav-bar">
+          <div class="logo">
+            <img class="logo-image" src="./assets/logo.png" alt="logo-image" />
+            <h1 class="logo-name">homely</h1>
+          </div>
+          <div class="menu-items">
+            <a href="#">Homepage</a>
+            <a href="#">Mega Menu</a>
+            <a href="#">About</a>
+            <a href="#">Rooms</a>
+            <a href="#">Services</a>
+            <div class="pages-dropdown">
+              <a href="#">Pages</a>
+              <i class="ri-arrow-drop-down-line"></i>
+            </div>
+          </div>
+          <div class="nav-head-button">
+            <button type="button" class="btn">Login</button>
+            <button type="button" class="btn">Contact</button>
+          </div>
+        </nav>
+      </header>
+      <section>
+        <div class="hero">
+          <div class="hero-left">
+            <div class="hero-rating-block">
+              <div class="hero-rating-icon">
+                <i class="ri-star-fill"></i>
+              </div>
+              <div class="hero-rating-content">
+                <h3>4.5 Rating</h3>
+                <h5>By New York Times</h5>
+              </div>
+            </div>
+            <div class="hero-content">
+              <h1>Find out the Best stay.</h1>
+              <p>
+                From luxury escapes to cozy retreats, find
+                <strong> handpicked stays designed </strong> for comfort, style,
+                and unforgettable <strong>experiences</strong> that match your
+                vibe.
+              </p>
+            </div>
+            <div class="hero-button">
+              <button class="btn" type="button">Log in</button>
+              <button class="btn" type="button">
+                <i class="ri-arrow-right-circle-fill"></i> Get Started
+              </button>
+            </div>
+            <div class="hero-clients">
+              <h5>Trusted by</h5>
+              <div class="client-logo">
+                <img
+                  class="client-1"
+                  src="./assets/client-1.png"
+                  alt="Samsonite-logo"
+                />
+                <img
+                  class="client-2"
+                  src="./assets/client-2.png"
+                  alt="Airbnb-logo"
+                />
+                <img
+                  class="client-3"
+                  src="./assets/clinet-3.png"
+                  alt="Emirates-logo"
+                />
+                <img
+                  class="client-4"
+                  src="./assets/client-4.png"
+                  alt="United-logo"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="hero-right">
+            <img
+              class="hero-image"
+              src="https://homily.co.in/cdn/shop/articles/3_8a4c46b0-3b78-4e38-848f-5f801f7dbe21.png?v=1769089235&width=2400"
+              alt="hero-image"
+            />
+          </div>
+        </div>
+        <div class="cards">
+          <div class="cards-left">
+            <div class="card-1">
+              <div class="card-image">
+                <img
+                  src="https://i.pinimg.com/564x/f3/36/6e/f3366eae478fcc7aee26db202c89e9ce.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="card-featured">
+                <div class="circle"></div>
+                <i class="ri-star-s-fill"></i>
+              </div>
+              <div class="card-desc">
+                <h4>3BHK Flat</h4>
+                <span>4.5 Street, New York</span>
+              </div>
+            </div>
+            <div class="card-1">
+              <div class="card-image">
+                <img
+                  src="https://cdn.amishcollective.com/wp-content/uploads/2026/02/Amanda-Arch-Bed-Collection-Room-Setting-Rustic-Hickory-FC-Sandstone-Final-Cropped.jpg"
+                  alt=""
+                />
+              </div>
+              <div class="card-featured">
+                <div class="circle"></div>
+                <i class="ri-star-s-fill"></i>
+              </div>
+              <div class="card-desc">
+                <h4>3BHK Flat</h4>
+                <span>4.5 Street, New York</span>
+              </div>
+            </div>
+          </div>
+          <div class="cards-right">
+            <div class="card-2">
+              <div class="card-2-left">
+                <div class="card-2-desc">
+                  <h5>Dive Pixel Layout Pack</h5>
+                  <h3>Best option to stay here for your summer vacations</h3>
                 </div>
-                <div class="menu-items">
-                    <a href="#">Homepage</a>
-                    <a href="#">Mega Menu</a>
-                    <a href="#">About</a>
-                    <a href="#">Rooms</a>
-                    <a href="#">Services</a>
-                    <a href="#">Pages</a>
-                    <i class="ri-arrow-drop-down-line"></i>
+                <div class="card-2-btn">
+                  <span>Explore More <i class="ri-arrow-right-up-fill"></i></span>
                 </div>
-                <div class="nav-head-button">
-                        <button type="button" class="btn">Login</button>
-                        <button type="button" class="btn">Contact</button>
-                </div>
-            </nav>
-        </header>
-        <section>
-            <div class="hero">
-                <div class="hero-left">
-                    <div class="hero-rating-block">
-                        <div class="hero-rating-icon">
-                            <i class="ri-star-fill"></i>              
-                        </div>
-                        <div class="hero-rating-content">
-                            <h3>4.5 Rating</h3>
-                            <h5>By New York Times</h5>
-                        </div>
+              </div>
+              <div class="card-image">
+                <img
+                  src="https://cdn.amishcollective.com/wp-content/uploads/2026/02/Urban-Barnwood-Lenape-Collection-Room-Setting-Rustic-Walnut-FC-Belair-Final-Cropped-600x500.jpg"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <footer>
+        <div class="pack-desc">
+            <h5>Accommodation Layout Pack</h5>
+            <h1>accommodation</h1>
+        </div>
+        <div class="selective-block">
+            <h5>Villa</h5>
+            <h5>Apartments</h5>
+            <h5>Mansion</h5>
+            <h5>Cottage</h5>
+        </div>
+        <div class="booking-block">
+            <div class="card-left-1">
+            <div class="card-image">
+                <img
+                  src="https://cdn.amishcollective.com/wp-content/uploads/2026/02/Urban-Barnwood-Lenape-Collection-Room-Setting-Rustic-Walnut-FC-Belair-Final-Cropped-600x500.jpg"
+                  alt=""
+                />
+            </div>
+            <div class="card-rating">
+                <span><i class="ri-star-s-fill"></i> 4.5</span>
+              </div>
+            </div>
+            <div class="card-left-2">
+                <div class="card-content">
+                <div class="card-desc">
+                    <h5>Dive Pixel Layout Pack</h5>
+                    <h3>Best option to stay here for your summer vacations</h3>
                     </div>
-                    <div class="hero-content">
-                        <h1>Find out the Best stay.</h1>
-                        <p>From luxury escapes to cozy retreats, find <strong> handpicked stays designed </strong>  for comfort, style, and unforgettable <strong>experiences</strong> that match your vibe.</p>
+                    <div class="card-btn">
+                    <span>Meet the Host <i class="ri-arrow-right-up-fill"></i></span>
                     </div>
-                    <div class="hero-button">
-                        <button class="btn" type="button">Log in</button>
-                        <button class="btn" type="button"> <i class="ri-arrow-right-circle-fill"></i> Get Started</button>
-                    </div>
-                    <div class="hero-clients">
-                        <h5>Trusted by</h5>
-                        <div class="client-logo">
-                            <img class="client-1" src="./assets/client-1.png" alt="Samsonite-logo"/>
-                            <img class="client-2" src="./assets/client-2.png" alt="Airbnb-logo">
-                            <img class="client-3" src="./assets/clinet-3.png" alt="Emirates-logo">
-                            <img class="client-4" src="./assets/client-4.png" alt="United-logo">
-                        </div>
-                    </div>
-                </div>
-                <div class="hero-right">
-                    <img class="hero-image" src="https://homily.co.in/cdn/shop/articles/3_8a4c46b0-3b78-4e38-848f-5f801f7dbe21.png?v=1769089235&width=2400" alt="hero-image">
                 </div>
             </div>
-            <div class="cards">
-                <div class="cards-left">
-                    <div class="card-1">
-                        <div class="card-image">
-                            <img src="https://i.pinimg.com/564x/f3/36/6e/f3366eae478fcc7aee26db202c89e9ce.jpg" alt="">
-                        </div>
-                        <div class="card-featured">
-                            <div class="circle"></div>
-                            <i class="ri-star-s-fill"></i>
-                        </div>
-                        <div class="card-desc">
-                            <h4>3BHK Flat</h4>
-                            <span>4.5 Street, New York</span>
-                        </div>
-                    </div>
-                    <div class="card-1">
-                        <div class="card-image">
-                            <img src="https://cdn.amishcollective.com/wp-content/uploads/2026/02/Amanda-Arch-Bed-Collection-Room-Setting-Rustic-Hickory-FC-Sandstone-Final-Cropped.jpg" alt="">
-                        </div>
-                        <div class="card-featured">
-                            <div class="circle"></div>
-                            <i class="ri-star-s-fill"></i>
-                        </div>
-                        <div class="card-desc">
-                            <h4>3BHK Flat</h4>
-                            <span>4.5 Street, New York</span>
-                        </div>
-                    </div>
+            <div class="card-right-1">
+                <div class="card-price">
+                    <h1>$140/night</h1>
+                    <p>Including all travel</p>
+                </div>
+                <div class="basic-info">
+                    <h4>Basic Information</h4>
+                    <div class="info-sec">
+                        <div class="outer">
+                        <p id="outer">Total Rooms</p>
+                        <p id="outer">Bathrooms</p>
+                        <p id="outer">Internet</p>
+                        <p id="outer">Covered Parking</p> 
+                    </div> 
+                    <div class="inner">
+                        <p id="inner">1 King + 2</p>
+                        <p id="inner">3 Attached</p>
+                        <p id="inner">100 Mbps</p>
+                        <p id="inner">Yes Two</p> 
+                    </div> 
+                    </div>                
+                </div>
             </div>
-            <div class="cards-right">
-                <div class="card-2">
-                    <div class="card-2-left">
-                    <div class="card-2-desc">
-                        <h5>Dive Pixel Layout Pack</h5>
-                        <h3>Best option to stay here for your summer vacations</h3>
+            <div class="card-right-2">
+                <div class="room-feature-1">
+                    <i class="ri-sofa-line"></i>
+                    <div class="room-feature-1-content">
+                    <h3> Cleanliness</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid, tempore.</p>
                     </div>
-                    <div class="card-2-btn">
-                        <span>Explore More</span>
-                        <i class="ri-arrow-right-up-fill"></i>
+                </div>
+                <div class="room-feature-2">
+                    <i class="ri-restaurant-line"></i>
+                    <div class="room-feature-2-content">
+                    <h3> Amenities</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid, tempore.</p>
                     </div>
+                </div>
+                <button type="button">Book Now!</button>
+            </div>  
+        </div>
+                <div class="booking-block">
+            <div class="card-left-1">
+            <div class="card-image">
+                <img
+                  src="https://cdn.amishcollective.com/wp-content/uploads/2026/02/Urban-Barnwood-Lenape-Collection-Room-Setting-Rustic-Walnut-FC-Belair-Final-Cropped-600x500.jpg"
+                  alt=""
+                />
+            </div>
+            <div class="card-rating">
+                <span><i class="ri-star-s-fill"></i> 4.5</span>
+              </div>
+            </div>
+            <div class="card-left-2">
+                <div class="card-content">
+                <div class="card-desc">
+                    <h5>Dive Pixel Layout Pack</h5>
+                    <h3>Best option to stay here for your summer vacations</h3>
                     </div>
-                    <div class="card-image">
-                        <img src="https://cdn.amishcollective.com/wp-content/uploads/2026/02/Urban-Barnwood-Lenape-Collection-Room-Setting-Rustic-Walnut-FC-Belair-Final-Cropped-600x500.jpg" alt="">
+                    <div class="card-btn">
+                    <span>Meet the Host <i class="ri-arrow-right-up-fill"></i></span>
                     </div>
                 </div>
             </div>
+            <div class="card-right-1">
+                <div class="card-price">
+                    <h1>$140/night</h1>
+                    <p>Including all travel</p>
+                </div>
+                <div class="basic-info">
+                    <h4>Basic Information</h4>
+                    <div class="info-sec">
+                        <div class="outer">
+                        <p id="outer">Total Rooms</p>
+                        <p id="outer">Bathrooms</p>
+                        <p id="outer">Internet</p>
+                        <p id="outer">Covered Parking</p> 
+                    </div> 
+                    <div class="inner">
+                        <p id="inner">1 King + 2</p>
+                        <p id="inner">3 Attached</p>
+                        <p id="inner">100 Mbps</p>
+                        <p id="inner">Yes Two</p> 
+                    </div> 
+                    </div>                
+                </div>
             </div>
-        </section>
+            <div class="card-right-2">
+                <div class="room-feature-1">
+                    <i class="ri-sofa-line"></i>
+                    <div class="room-feature-1-content">
+                    <h3> Cleanliness</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid, tempore.</p>
+                    </div>
+                </div>
+                <div class="room-feature-2">
+                    <i class="ri-restaurant-line"></i>
+                    <div class="room-feature-2-content">
+                    <h3> Amenities</h3>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquid, tempore.</p>
+                    </div>
+                </div>
+                <button type="button">Book Now!</button>
+            </div>  
+        </div>
+      </footer>
     </main>
-</body>
+  </body>
 </html>

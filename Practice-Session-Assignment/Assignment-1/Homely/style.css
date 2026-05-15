@@ -61,6 +61,13 @@ nav{
     text-decoration: underline solid black;
 }
 
+.pages-dropdown{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    gap: 2px;
+}
+
 .menu-items i{
     font-size: larger;
     cursor: pointer;
@@ -317,6 +324,7 @@ section{
     background-color: white;
     border-radius: 20px;
     transform: translate(980%,-960%);
+    cursor: pointer;
 }
 
 .cards-left .card-featured i{
@@ -324,12 +332,31 @@ section{
     border-radius: 20px;
     display: flex;
     justify-content: center;
-    transform: translate(1555%,-1472%);
+    transform: translate(1560%,-1475%);
+    cursor: pointer;
+}
+
+.cards-left .card-1 .card-desc{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.cards-left .card-1 .card-desc h4{
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.01px;
+}   
+
+.cards-left .card-1 .card-desc span{
+    font-size: 12px;
+    color: gray;
 }
 
 .cards .cards-right{
     width: 50%;
-    height: 300px;
+    height: 320px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -337,8 +364,8 @@ section{
 }
 
 .cards-right .card-2{
-    margin-top: 70px;
-    height: 85%;
+    margin-top: 90px;
+    height: 90%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -351,7 +378,7 @@ section{
 .cards-right .card-2 .card-image{
     width: 95%;
     transform: translate(10%);
-    height: 235px;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -374,6 +401,7 @@ section{
 
 .cards-right .card-2 .card-2-left .card-2-desc{
     display: flex;
+    margin-top: 10px;
     flex-direction: column;
     gap: 10px;
 }
@@ -392,13 +420,321 @@ section{
 }
 
 .card-2-btn span{
-    font-weight: 400;
-    font-size: 14px;
+    font-weight: 450;
+    font-size: 14.5px;
 }
+
+.card-2-btn span:hover{
+    transform: scale(1.12);
+}
+
+
 
 .cards-right .card-2 .card-2-left .card-2-btn{
     margin-top: 120px;
     display: flex;
     gap: 3px;
     cursor: pointer;
+}
+
+
+footer{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(246, 246, 246);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 10px;
+    padding: 20px 10px;
+}
+
+.pack-desc h5{
+    text-transform: uppercase;
+    color: gray;
+    letter-spacing: 2px;
+    font-size: smaller;
+    font-weight: 550;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+}
+
+.pack-desc h1{
+    font-size: 70px;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    font-weight: 450;
+}
+
+
+.selective-block{
+    display: flex;
+    width: 95%;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: rgb(241, 241, 241);
+    padding: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.selective-block h5{
+    font-size: 15px;
+    font-weight: 450;
+    padding: 18px 90px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.selective-block h5:hover{
+    background-color: white;
+    transform: scale(1.12);
+    cursor: pointer;
+}
+
+.booking-block{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 95%;
+    display: flex;
+    gap: 15px;
+    padding: 10px 10px;
+    background-color: rgb(241, 241, 241);
+    border-radius: 10px;
+
+}
+
+
+.booking-block .card-left-1{
+    width: 70%;
+    height: 320px;
+    display: flex;
+    cursor: pointer;
+    background-color: rgb(241, 241, 241);
+    position: relative;
+    height: 80%;
+    gap: 20px;
+    padding-top: 20px;
+    border-radius: 20px;
+}
+
+
+.booking-block .card-left-1 .card-image{
+    width: 100%;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.booking-block .card-left-1 .card-image img{
+    position: relative;
+    width: 60%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+.booking-block .card-left-2 .card-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    transform: translateX(-40%);
+    gap: 100px;
+}
+
+.booking-block .card-left-2 .card-content .card-desc{
+    display: flex;
+    flex-direction: column;
+    justify-self: flex-start;
+    align-self: flex-start;
+    gap: 10px;
+}
+
+.card-left-2 .card-content .card-desc h5{
+    font-weight: 500;
+    text-transform: uppercase;
+    color: gray;
+    font-size: x-small;
+    letter-spacing: 2px;
+}
+
+.card-left-2 .card-content .card-desc h3{
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 0.01px;
+}
+
+.card-left-2 .card-content .card-content.card-btn span{
+    font-weight: 450;
+    font-size: 14.5px;
+    cursor: pointer;
+}
+
+.card-left-2 .card-content .card-content .card-btn span:hover{
+    transform: scale(1.12);
+}
+
+.booking-block .card-left-2 .card-content .card-btn{
+    margin-top: 100px;
+    display: flex;
+    gap: 3px;
+    cursor: pointer;
+}
+
+.booking-block .card-left-2 .card-content .card-btn span:hover{
+    transform: scale(1.12);
+    cursor: pointer;
+}
+
+.card-left-1 .card-rating{
+    display: flex;
+    padding: 5px;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 60px;
+    height: 25px;
+    background-color: white;
+    border-radius: 20px;
+    transform: translate(400%,52%);
+    cursor: pointer;
+}
+
+.booking-block .card-right-1{
+    width: 40%;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    gap:80px;
+    cursor: pointer;
+    padding: 10px 10px;
+    background-color: rgba(255, 255, 255, 0.319);
+    border-radius: 20px;
+}
+
+.booking-block .card-right-1 .card-price{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.booking-block .card-right-1 .card-price h1{
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.booking-block .card-right-1 .card-price p{
+    font-size: 12px;
+    color: gray;
+    letter-spacing: 0.01px;
+}
+
+.booking-block .card-right-1{
+    display: flex;
+    flex-direction: column;
+    gap:110px;
+
+}
+
+.booking-block .card-right-1 .basic-info .info-sec{
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+} 
+
+.booking-block .card-right-1 .basic-info{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.booking-block .card-right-1 .basic-info .info-sec .outer{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 14px;
+} 
+
+.booking-block .card-right-1 .basic-info .info-sec .inner{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: end;
+    font-size: 12px;
+    color: gray;
+} 
+
+.booking-block .card-right-2{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    gap: 60px;
+    padding: 10px 10px;
+    background-color: rgba(255, 255, 255, 0.319);
+    border-radius: 20px;
+
+}
+
+.booking-block .card-right-2 .room-feature-1{
+    display: flex;
+    gap: 10px;
+}
+
+.booking-block .card-right-2 .room-feature-1 i{
+    font-size: 30px;
+}
+
+.booking-block .card-right-2 .room-feature-1 .room-feature-1-content{
+    display: flex;
+    flex-direction: column;
+    line-height: 20px;
+}
+
+.booking-block .card-right-2 .room-feature-1 .room-feature-1-content p{
+    color: gray;
+    font-size: small;
+}
+
+.booking-block .card-right-2 .room-feature-2{
+    display: flex;
+    gap: 10px;
+}
+
+.booking-block .card-right-2 .room-feature-2 i{
+    font-size: 30px;
+}
+
+.booking-block .card-right-2 .room-feature-2 .room-feature-2-content{
+    display: flex;
+    flex-direction: column;
+    line-height: 20px;
+}
+
+.booking-block .card-right-2 .room-feature-2 .room-feature-2-content p{
+    color: gray;
+    font-size: small;
+}
+
+.booking-block .card-right-2 button{
+    color: white;
+    background-color: black;
+    padding: 14px 30px;
+    border-radius: 25px;
+    border: none;
+}
+
+.booking-block .card-right-2 button:hover{
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    transition: cubic-bezier(0.215, 0.610, 0.355, 1);
 }
