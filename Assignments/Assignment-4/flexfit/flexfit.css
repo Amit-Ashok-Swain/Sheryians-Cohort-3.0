@@ -51,54 +51,81 @@ body{
   grid-column:1;
   grid-row:1;
   background-image:url('./Images/tile_c1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .t2{
   grid-column:2;
   grid-row:1;
   background-image:url('./Images/tile_c2.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .t3{
   grid-column:3;
   grid-row:1;
   background-image:url('./Images/tile_c3.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .t4{
   grid-column:4;
   grid-row:1 / span 2;
   background-image:url('./Images/tile_c4.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .t5{
   grid-column:1;
   grid-row:2;
   background-image:url('./Images/tile_c5.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .t6{
   grid-column:2 / span 2;
   grid-row:2;
   background-image:url('./Images/tile_c6.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .t7{
   grid-column:1 / span 2;
   grid-row:3;
   background-image:url('./Images/tile_c7.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .t8{
   grid-column:3;
   grid-row:3;
   background-image:url('./Images/tile_c8.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .t9{
   grid-column:4;
   grid-row:3;
   background-image:url('./Images/tile_c9.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 /* Small laptops */
