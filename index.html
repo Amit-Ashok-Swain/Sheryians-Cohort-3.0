@@ -6,6 +6,7 @@
     <title>Sheryians Cohort 3.0</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
+
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -27,7 +28,7 @@
         position: relative;
       }
 
-      /* ===== Animated Background ===== */
+      /* ================= BACKGROUND ================= */
 
       .bg {
         position: fixed;
@@ -80,7 +81,7 @@
         }
       }
 
-      /* ===== Main Container ===== */
+      /* ================= CONTAINER ================= */
 
       .container {
         width: 100%;
@@ -89,13 +90,12 @@
         z-index: 2;
       }
 
-      /* ===== Hero ===== */
+      /* ================= HERO ================= */
 
       .hero {
         text-align: center;
         margin-bottom: 100px;
         position: relative;
-        z-index: 5;
       }
 
       .hero::before {
@@ -114,7 +114,7 @@
 
       .hero h1 {
         font-size: clamp(3.4rem, 8vw, 7rem);
-        font-weight: 500;
+        font-weight: 700;
         line-height: 1;
         margin-bottom: 25px;
 
@@ -134,12 +134,10 @@
         line-height: 1.8;
       }
 
-      /* ===== Folder Sections ===== */
+      /* ================= SECTION ================= */
 
       .folder-section {
         margin-bottom: 100px;
-        position: relative;
-        z-index: 5;
       }
 
       .folder-title {
@@ -148,8 +146,6 @@
         display: flex;
         align-items: center;
         gap: 15px;
-        position: relative;
-        z-index: 3;
       }
 
       .folder-title span {
@@ -164,7 +160,7 @@
         margin-top: 5px;
       }
 
-      /* ===== Cards Grid ===== */
+      /* ================= GRID ================= */
 
       .projects {
         display: grid;
@@ -173,12 +169,13 @@
         perspective: 1400px;
       }
 
-      /* ===== Glassmorphism 3D Cards ===== */
+      /* ================= CARD ================= */
 
       .card {
         position: relative;
         text-decoration: none;
         color: white;
+
         padding: 35px;
         min-height: 260px;
 
@@ -202,13 +199,12 @@
           transform 0.6s ease,
           box-shadow 0.6s ease;
 
-        z-index: 1;
-
         box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
       }
 
       .card::before {
         content: "";
+
         position: absolute;
         inset: 0;
 
@@ -221,7 +217,6 @@
 
         opacity: 0;
         transition: 0.5s;
-        z-index: 1;
       }
 
       .card:hover::before {
@@ -230,28 +225,32 @@
 
       .card::after {
         content: "";
+
         position: absolute;
+
         width: 200px;
         height: 200px;
+
         background: rgba(255, 255, 255, 0.08);
+
         border-radius: 50%;
+
         top: -70px;
         right: -70px;
+
         filter: blur(10px);
-        z-index: 0;
       }
 
       .card:hover {
-        transform: rotateX(12deg) rotateY(-12deg) translateY(-15px) scale(1.03);
-
-        z-index: 10;
+        transform: rotateX(12deg) rotateY(-12deg) translateY(-15px)
+          scale(1.03);
 
         box-shadow:
           0 30px 60px rgba(0, 0, 0, 0.5),
           0 0 40px rgba(0, 217, 255, 0.18);
       }
 
-      /* ===== Card Content ===== */
+      /* ================= CONTENT ================= */
 
       .number {
         position: absolute;
@@ -262,8 +261,6 @@
         font-weight: 800;
 
         opacity: 0.08;
-
-        z-index: 0;
       }
 
       .card h2 {
@@ -285,6 +282,7 @@
 
       .tag {
         display: inline-block;
+
         margin-top: 25px;
         padding: 10px 18px;
 
@@ -300,18 +298,16 @@
         z-index: 2;
       }
 
-      /* ===== Footer ===== */
+      /* ================= FOOTER ================= */
 
       footer {
         text-align: center;
         padding: 40px 0;
         color: #9ba3d1;
         font-size: 0.95rem;
-        position: relative;
-        z-index: 5;
       }
 
-      /* ===== Responsive ===== */
+      /* ================= RESPONSIVE ================= */
 
       @media (max-width: 768px) {
         .container {
@@ -328,6 +324,7 @@
       }
     </style>
   </head>
+
   <body>
     <!-- Background -->
 
@@ -346,9 +343,9 @@
         <h1>Sheryians Cohort 3.0</h1>
 
         <p>
-          A premium showcase of immersive projects crafted and featuring
-          advanced UI design, animations, glassmorphism, layered composition and
-          futuristic web experiences.
+          A premium showcase of immersive projects crafted with advanced UI
+          design, animations, glassmorphism, layered composition and futuristic
+          web experiences.
         </p>
       </div>
 
@@ -500,110 +497,89 @@
 
             <div class="tag">Entertainment UI</div>
           </a>
-          <a class="card" href="./Practice-Session-Assignment/Assignment-1/Homely/">
-            <div class="number">09</div>
-      </section> 
-      
-      
+        </div>
+      </section>
+
       <!-- Assignment 4 -->
 
-<section class="folder-section">
+      <section class="folder-section">
+        <div class="folder-title">
+          <span>🚀</span>
+          Assignment 4
+        </div>
 
-  <div class="folder-title">
-    <span>🚀</span>
-    Assignment 4
-  </div>
+        <div class="projects">
+          <a
+            class="card"
+            href="./Assignments/Assignment-4/cubo-dashboard/"
+          >
+            <div class="number">09</div>
 
-  <div class="projects">
+            <h2>Cubo Dashboard</h2>
 
-    <!-- Cubo Dashboard -->
+            <p>
+              Modern analytics dashboard UI featuring neumorphism inspired
+              layouts, premium statistics cards, elegant typography and
+              futuristic digital product aesthetics.
+            </p>
 
-    <a class="card" href="./Assignments/Assignment-4/cubo-dashboard/">
+            <div class="tag">Dashboard UI</div>
+          </a>
 
-      <div class="number">10</div>
+          <a class="card" href="./Assignments/Assignment-4/deepstyle/">
+            <div class="number">10</div>
 
-      <h2>Cubo Dashboard</h2>
+            <h2>Deepstyle</h2>
 
-      <p>
-        Modern analytics dashboard UI featuring neumorphism inspired
-        layouts, premium statistics cards, elegant typography and
-        futuristic digital product aesthetics.
-      </p>
+            <p>
+              Fashion-forward immersive landing page inspired by modern
+              editorial layouts, layered compositions and high-end visual
+              storytelling experiences.
+            </p>
 
-      <div class="tag">Dashboard UI</div>
+            <div class="tag">Fashion UI</div>
+          </a>
 
-    </a>
+          <a class="card" href="./Assignments/Assignment-4/flexfit/">
+            <div class="number">11</div>
 
-    <!-- Deepstyle -->
+            <h2>FlexFit</h2>
 
-    <a class="card" href="./Assignments/Assignment-4/deepstyle/">
+            <p>
+              Dynamic fitness brand interface featuring bold typography,
+              energetic visual hierarchy and futuristic wellness focused design
+              composition.
+            </p>
 
-      <div class="number">11</div>
+            <div class="tag">Fitness UI</div>
+          </a>
+        </div>
+      </section>
 
-      <h2>Deepstyle</h2>
+      <!-- Practice Session Assignment -->
 
-      <p>
-        Fashion-forward immersive landing page inspired by modern
-        editorial layouts, layered compositions and high-end
-        visual storytelling experiences.
-      </p>
+      <section class="folder-section">
+        <div class="folder-title">
+          <span>🧪</span>
+          Practice Session Assignment
+        </div>
 
-      <div class="tag">Fashion UI</div>
+        <div class="projects">
+          <a class="card" href="./Practice-Session-Assignment/">
+            <div class="number">12</div>
 
-    </a>
+            <h2>Practice Session Project</h2>
 
-    <!-- FlexFit -->
+            <p>
+              Interactive frontend practice assignment focused on responsive
+              layouts, clean UI structuring, reusable styling and modern visual
+              composition techniques.
+            </p>
 
-    <a class="card" href="./Assignments/Assignment-4/flexfit/">
-
-      <div class="number">12</div>
-
-      <h2>FlexFit</h2>
-
-      <p>
-        Dynamic fitness brand interface featuring bold typography,
-        energetic visual hierarchy and futuristic wellness focused
-        design composition.
-      </p>
-
-      <div class="tag">Fitness UI</div>
-
-    </a>
-
-  </div>
-
-</section>
-
-<!-- Practice Session Assignment -->
-
-<section class="folder-section">
-
-  <div class="folder-title">
-    <span>🧪</span>
-    Practice Session Assignment
-  </div>
-
-  <div class="projects">
-
-    <a class="card" href="./Practice-Session-Assignment/">
-
-      <div class="number">09</div>
-
-      <h2>Practice Session Project</h2>
-
-      <p>
-        Interactive frontend practice assignment focused on responsive
-        layouts, clean UI structuring, reusable styling and modern
-        visual composition techniques.
-      </p>
-
-      <div class="tag">Practice Project</div>
-
-    </a>
-
-  </div>
-
-</section>
+            <div class="tag">Practice Project</div>
+          </a>
+        </div>
+      </section>
 
       <!-- Footer -->
 
