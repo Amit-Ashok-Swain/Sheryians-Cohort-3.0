@@ -1356,8 +1356,18 @@ body{
 
 
 .site-footer {
-    background-color: #C0DBFF; 
-    padding: 0 40px 40px 40px;
+    position:relative;
+    width:100%;
+    overflow:hidden;
+
+    background:#dce8fb;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-end;
+
+    padding:80px 20px 40px;
 }
 
 .footer-main-container {
@@ -1414,12 +1424,23 @@ body{
 }
 
 .footer-image-wrapper {
-    margin: 40px -40px -40px -40px; 
+    margin: 20px -40px -40px -35px; 
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     background-color: #C0DBFF;
+    width:100%;
+    max-width:1400px;
+    display:block;
+    object-fit:contain;
+}
+
+.footer-image-wrapper .footer-bg{
+    background-size:contain;
+    background-position:bottom center;
+    background-repeat:no-repeat;
 }
 
 .footer-large-logo {
