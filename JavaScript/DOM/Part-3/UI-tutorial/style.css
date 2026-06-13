@@ -1,0 +1,50 @@
+*{
+    padding:0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+html,body{
+    height: 100%;
+    width: 100%;
+    background-color: black;
+}
+
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-div{
+    height: 500px;
+    width: 900px;
+    border: 2px solid darkorchid;
+    background-color: darkgray;
+    border-radius: 15px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.box{
+    height: 180px;
+    width: 220px;
+    background-color: darkkhaki;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box2{
+    background-color: darkorange;
+}
+
+.box3{
+    background-color: darkturquoise;
+}
+
+.box4{
+    background-color: darkslategrey;
+}

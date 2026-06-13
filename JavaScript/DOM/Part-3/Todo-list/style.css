@@ -1,0 +1,317 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body{
+    width: 100%;
+    min-height: 100vh;
+    font-family: system-ui, sans-serif;
+    background: #1e1e1e;
+}
+
+body{
+    padding: 25px 20px;
+}
+
+main{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.div-top{
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.heading{
+    font-size: clamp(2rem, 5vw, 4rem);
+    color: white;
+}
+
+.search-box{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.input-box{
+    width: min(500px, 70%);
+    height: 45px;
+
+    border: none;
+    outline: none;
+
+    border-radius: 12px;
+    padding: 0 15px;
+
+    font-size: 1rem;
+}
+
+.btn{
+    height: 45px;
+    padding: 0 20px;
+
+    border: none;
+    border-radius: 12px;
+
+    cursor: pointer;
+    font-weight: 600;
+
+    transition: all 0.2s ease;
+}
+
+.btn:hover{
+    background: black;
+    color: white;
+}
+
+.btn:active{
+    transform: scale(1.05);
+}
+
+.div-bottom{
+    display: flex;
+    gap: 15px;
+    min-height: 70vh;
+}
+
+.div-left,
+.div-center,
+.div-right{
+    flex: 1;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 15px;
+    border-radius: 12px;
+
+    overflow: hidden;
+}
+
+.div-left{
+    background: #ff7675;
+}
+
+.div-center{
+    background: #fdcb6e;
+}
+
+.div-right{
+    background: #74b9ff;
+}
+
+.sub-heading{
+    color: white;
+    font-size: 1.5rem;
+
+    background: rgba(0,0,0,0.25);
+
+    padding: 10px 20px;
+    border-radius: 10px;
+
+    margin-bottom: 15px;
+}
+
+.todo-task,
+.in-progress-task,
+.completed-task{
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    overflow-y: auto;
+}
+
+.task{
+    width: 100%;
+
+    background: white;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+
+    transition: all 0.25s ease;
+}
+
+.task:hover{
+    transform: translateY(-2px);
+}
+
+.task-name{
+    flex: 1;
+    word-break: break-word;
+    font-size: 1rem;
+}
+
+.task-actions{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit-delete{
+    display: flex;
+    gap: 8px;
+}
+
+.btn-edit,
+.btn-delete{
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    color: white;
+
+    transition: all 0.2s ease;
+}
+
+.btn-edit{
+    background-color: #3498db;
+}
+
+.btn-edit:hover{
+    background-color: #2980b9;
+    transform: scale(1.1);
+}
+
+.btn-delete{
+    background-color: #e74c3c;
+}
+
+.btn-delete:hover{
+    background-color: #c0392b;
+    transform: scale(1.1);
+}
+
+.move-btn{
+    border: none;
+    outline: none;
+
+    padding: 8px 14px;
+
+    border-radius: 8px;
+
+    color: white;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+.move-btn:hover{
+    transform: translateY(-2px);
+}
+
+.move-btn:active{
+    transform: scale(0.95);
+}
+
+.move-btn:disabled{
+    cursor: not-allowed;
+}
+
+
+.start-btn{
+    background-color: #3498db;
+}
+
+.start-btn:hover{
+    background-color: #2980b9;
+}
+
+.complete-btn{
+    background-color: #f39c12;
+}
+
+.complete-btn:hover{
+    background-color: #d68910;
+}
+
+.done-btn{
+    background-color: #27ae60;
+}
+
+.completed{
+    opacity: 0.7;
+}
+
+.completed .task-name{
+    text-decoration: line-through;
+}
+
+
+::-webkit-scrollbar{
+    width: 8px;
+}
+
+::-webkit-scrollbar-track{
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+    background: rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover{
+    background: rgba(0,0,0,0.5);
+}
+
+
+@media (max-width: 768px){
+
+    .search-box{
+        flex-direction: column;
+    }
+
+    .input-box{
+        width: 90%;
+    }
+
+    .div-bottom{
+        flex-direction: column;
+    }
+
+    .div-left,
+    .div-center,
+    .div-right{
+        width: 100%;
+        min-height: 300px;
+    }
+
+    .task{
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .task-actions{
+        justify-content: space-between;
+    }
+}
