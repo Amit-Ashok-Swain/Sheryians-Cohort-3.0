@@ -1870,3 +1870,943 @@ const generateBill1 = (items) => {
 };
 
 console.log(generateBill1(items));
+
+// Part 4: Arrays + Objects + Functions (20 Questions)
+
+/*
+This section is the most important.
+In real-world applications:
+Data is usually stored in arrays
+Each item is usually an object
+Logic is usually written inside functions
+So almost every frontend/backend interview problem looks like this:
+
+[
+{
+name:"Ritik",
+age:21
+},
+{
+name:"Aman",
+age:20
+}
+]
+and you're asked to write functions to manipulate that data.
+*/
+
+// 🟢 Easy Level (Q1 - Q7)
+// Question 1 — Find Adult Users
+/*
+let users= [
+{ name:"Ritik", age:20 },
+{ name:"Aman", age:16 },
+{ name:"Priya", age:25 }
+];
+Create:
+getAdults(users)
+Return only users whose age is 18 or above.
+Scenario
+A website only allows adults to register.
+What is this question asking?
+You need to:
+1. Loop through users.
+2. Check age.
+3. Return qualifying users.
+
+Expected Output:
+[
+{ name:"Ritik", age:20 },
+{ name:"Priya", age:25 }
+]
+
+Concepts Tested
+
+Array of Objects
+Functions
+filter()
+*/
+
+let users2= [
+{ name:"Ritik", age:20 },
+{ name:"Aman", age:16 },
+{ name:"Priya", age:25 }
+];
+
+
+function getAdults(users){
+  return users.filter((user)=>{return user.age>=18});
+}
+
+console.log(getAdults(users2));
+
+// Question 2 — Product Names Extractor
+/*
+let products= [
+{ name:"Laptop", price:50000 },
+{ name:"Mouse", price:500 }
+];
+Create:
+getProductNames(products)
+Return:
+["Laptop","Mouse"]
+
+Scenario
+A dropdown only needs product names.
+
+What is this question asking?
+Extract a single property from every object.
+
+Concepts Tested
+Arrays
+Objects
+Functions
+map()
+*/
+
+let products2= [
+{ name:"Laptop", price:50000 },
+{ name:"Mouse", price:500 }
+];
+
+function getProductNames(products){
+  return products.map((product)=>product.name);
+}
+
+console.log(getProductNames(products2));
+
+// Question 3 — Find User By Name
+/*
+let users= [
+{ name:"Ritik" },
+{ name:"Aman" },
+{ name:"Priya" }
+];
+
+Create:
+findUser(users,username)
+
+Scenario
+Search bar functionality.
+What is this question asking?
+Find a specific object based on a property value.
+
+Concepts Tested
+find()
+Functions
+*/
+
+let users3 = [
+{ name:"Ritik" },
+{ name:"Aman" },
+{ name:"Priya" }
+];
+
+function findUser(users,username){
+  let checkUser = users.find((user)=>user.name === username);
+  if(checkUser) return ("User Exists");
+  else return ("User doesn't Exists");
+}
+
+console.log(findUser(users3,"Aman"));
+
+// Question 4 — Total Marks
+/*
+let students= [
+{ name:"Ritik", marks:80 },
+{ name:"Aman", marks:90 },
+{ name:"Priya", marks:70 }
+];
+Create:
+getTotalMarks(students)
+Return:
+240
+
+Concepts Tested
+reduce()
+Functions
+*/
+let students1= [
+{ name:"Ritik", marks:80 },
+{ name:"Aman", marks:90 },
+{ name:"Priya", marks:70 }
+];
+
+function getTotalMarks(students){
+  return students.reduce((sum,student)=>sum+student.marks,0);
+}
+
+console.log((getTotalMarks(students1)));
+
+// Question 5 — Available Products
+/*
+Question 5 — Available Products
+let products= [
+{ name:"Mouse", stock:10 },
+{ name:"Keyboard", stock:0 },
+{ name:"Monitor", stock:5 }
+];
+Return only products whose stock is greater than zero.
+
+Scenario
+Show only available products.
+
+Concepts Tested
+filter()
+Array of Objects
+*/
+
+let products3= [
+{ name:"Mouse", stock:10 },
+{ name:"Keyboard", stock:0 },
+{ name:"Monitor", stock:5 }
+];
+
+function availableProducts(products){
+  return products.filter((product)=>product.stock>0)
+}
+
+console.log(availableProducts(products3));
+
+// Question 6 — Add New Student
+/*
+Create:
+addStudent(students,student)
+which adds a student to the array.
+
+Scenario
+Student admission system.
+
+What is this question asking?
+
+Create a reusable function that updates data.
+
+Concepts Tested
+Arrays
+Objects
+push()
+*/
+
+let students2 = [
+{ name:"Ritik", marks:80 },
+{ name:"Aman", marks:90 },
+{ name:"Priya", marks:70 }
+]
+
+function addStudent(students,student){
+  return students.push(student);
+}
+
+console.log(addStudent(students2,{name:"Amit",marks:99}));
+console.log(students2);
+
+// Question 7 — Count Premium Products
+/*
+let products= [
+{ name:"Laptop", price:50000 },
+{ name:"Phone", price:30000 },
+{ name:"Mouse", price:500 }
+];
+
+Count products costing more than ₹10,000.
+
+Scenario
+Analytics dashboard.
+
+Concepts Tested
+filter()
+length
+*/
+
+let products4= [
+{ name:"Laptop", price:50000 },
+{ name:"Phone", price:30000 },
+{ name:"Mouse", price:500 }
+];
+
+function premiumProductsCount(products){
+  let premiumProducts =  products.filter((product)=>(product.price>10000));
+  return premiumProducts.length;
+}
+
+console.log(premiumProductsCount(products4));
+
+// 🟡 Moderate Level (Q8 - Q14)
+// Question 8 — Shopping Cart Total
+/*
+let cart= [
+{ name:"Mouse", price:500, qty:2 },
+{ name:"Keyboard", price:1000, qty:1 },
+{ name:"Monitor", price:10000, qty:1 }
+];
+
+Create:
+getCartTotal(cart)
+
+Scenario
+Checkout page.
+
+What is this question asking?
+
+For each item:
+price*qty
+Add everything.
+
+Expected:
+12000
+
+Concepts Tested
+Arrays
+Objects
+Functions
+reduce()
+*/
+
+let cart1= [
+{ name:"Mouse", price:500, qty:2 },
+{ name:"Keyboard", price:1000, qty:1 },
+{ name:"Monitor", price:10000, qty:1 }
+];
+
+function getCartTotal(cart){
+  return cart.reduce((total,product)=>total+(product.price * product.qty),0)
+}
+
+console.log(getCartTotal(cart1));
+
+// Question 9 — Student Average Generator
+/*
+let students= [
+{ name:"Ritik", marks: [80,90,85] },
+{ name:"Aman", marks: [70,75,80] }
+];
+
+Create:
+getAverageMarks(students)
+Return average for each student.
+
+Scenario
+School Report Card.
+
+Concepts Tested
+Nested Arrays
+Objects
+map()
+reduce()
+*/
+
+let students3= [
+{ name:"Ritik", marks: [80,90,85] },
+{ name:"Aman", marks: [70,75,80] }
+];
+
+function getAverageMarks(students){
+  return students.map((student)=>({
+    name : student.name,
+    average : student.marks.reduce((total,mark)=>(total+mark)) / student.marks.length,
+  }));
+}
+
+console.log(getAverageMarks(students3));
+
+// Question 10 — Inventory Search
+/*
+let
+inventory= [
+{ id:1, name:"Laptop" },
+{ id:2, name:"Mouse" },
+{ id:3, name:"Monitor" }
+];
+
+Create:
+findProductById(id)
+
+Scenario
+Product detail page.
+
+Concepts Tested
+find()
+Functions
+*/
+
+let inventory1= [
+{ id:1, name:"Laptop" },
+{ id:2, name:"Mouse" },
+{ id:3, name:"Monitor" }
+];
+
+function findProductById(id){
+  return inventory1.find(product=>product.id === id) ||`Product not found`;
+}
+console.log(findProductById(2));
+console.log(findProductById(4));
+
+// Question 11 — Usernames Generator
+/*
+let users= [
+{ name:"Ritik Rajput" },
+{ name:"Aman Gupta" }
+];
+
+Return:
+[
+"ritik_rajput",
+"aman_gupta"
+]
+
+Scenario
+Registration system.
+
+Concepts Tested
+map()
+String Methods
+Functions
+*/
+
+let users4 = [
+{ name:"Ritik Rajput" },
+{ name:"Aman Gupta" }
+];
+
+function usernameGenerator(users){
+  return users.map(user=> user.name.toLowerCase().replaceAll(" ","_"));
+}
+
+console.log(usernameGenerator(users4));
+
+// Question 12 — Highest Scoring Student
+/*
+let students= [
+{ name:"Ritik", marks:85 },
+{ name:"Aman", marks:95 },
+{ name:"Priya", marks:75 }
+];
+
+Find the highest scorer.
+Scenario
+School Topper List.
+
+Concepts Tested
+Comparisons
+Loops
+Objects
+*/
+
+let students4= [
+{ name:"Ritik", marks:85 },
+{ name:"Aman", marks:95 },
+{ name:"Priya", marks:75 }
+];
+
+
+function highestScoringStudent(students){
+    let highestScorer = students[0];
+    students.forEach(student => {
+    if(student.marks>highestScorer){
+      highestScorer = student;
+    }           
+  });
+  return highestScorer;
+}
+
+console.log(highestScoringStudent(students4));
+
+// Question 13 — Update Product Stock
+/*
+Create:
+updateStock(id,quantity)
+that updates stock of a specific product.
+
+Scenario
+Warehouse management.
+What is this question asking?
+Locate the object.
+Update one property.
+
+Concepts Tested
+find()
+Object Updates
+*/
+
+let products5= [
+{ id:1, name:"Mouse", stock:10 },
+{ id:2, name:"Keyboard", stock:0 },
+{ id:3, name:"Monitor", stock:5 }
+];
+
+function updateStock(id,stock){
+  let product = products5.find((product)=>product.id === id);
+  if(product){
+    product.stock = stock;
+  }
+  return product;
+}
+
+console.log(updateStock(2,20));
+
+// Question 14 — Sort Students by Marks
+/*
+Sort:
+[
+{name:"A", marks:70},
+{name:"B", marks:95},
+{name:"C", marks:80}
+]
+from highest to lowest.
+Scenario
+Leaderboard.
+
+Concepts Tested
+sort()
+Array of Objects
+*/
+
+let students5 = [
+{name:"A", marks:70},
+{name:"B", marks:95},
+{name:"C", marks:80}
+]
+
+function studentsSortedByMarks(students){
+  return students.sort((a,b)=>b.marks-a.marks);
+}
+
+console.log(studentsSortedByMarks(students5));
+
+// 🔴 Hard Level (Q15 - Q20)
+// These are close to actual frontend interview questions.
+
+// Question 15 — Student Grade Report
+/*
+let students= [
+{
+name:"Ritik",
+marks: [80,90,85]
+},
+{
+name:"Aman",
+marks: [50,40,60]
+}
+];
+
+Create:
+generateReport(students)
+Return:
+[
+{
+name:"Ritik",
+average:85,
+grade:"A"
+},
+{
+name:"Aman",
+average:50,
+grade:"C"
+}
+]
+
+Scenario
+School Report System.
+
+What is this question asking?
+For every student:
+1. Calculate average.
+2. Decide grade.
+3. Create a new object.
+4. Return a new array.
+
+Concepts Tested
+Arrays
+Nested Arrays
+Objects
+Functions
+map()
+reduce()
+*/
+
+let students6= [
+{
+name:"Ritik",
+marks: [80,90,85]
+},
+{
+name:"Aman",
+marks: [50,40,60]
+}
+];
+
+
+function generateReport(students){
+  return students.map(student=>{
+    const average = student.marks.reduce((total,mark)=>(total+mark),0)/student.marks.length;
+    return {
+    name : student.name,
+    average : average,
+    grade : average>=95 ? "A+" : 
+            average >=85 ? "A" : 
+            average >=75 ? "B+" : 
+            average >=65 ? "B" :
+            average >=55 ? "C+" :
+            average >=45 ? "C" :
+            average >= 35 ? "D" : "F",
+    }
+  });
+}
+
+console.log(generateReport(students6));
+
+// Question 16 — Product Revenue Analyzer
+/*
+let products= [
+{
+name:"Mouse",
+price:500,
+sold:20
+},
+{
+name:"Keyboard",
+price:1000,
+sold:10
+}
+];
+
+Find:
+1. Revenue per product
+2. Total Revenue
+3. Best Selling Product
+
+Scenario
+Business Analytics Dashboard.
+Concepts Tested
+
+Arrays
+Objects
+reduce()
+Comparisons
+*/
+
+let products6= [
+{
+name:"Mouse",
+price:500,
+sold:20
+},
+{
+name:"Keyboard",
+price:1000,
+sold:15
+}
+];
+
+
+function productAnalyzer(products){
+  const revenuePerProduct = products.map((product)=>product.price * product.sold);
+  const totalRevenue = products.reduce((total,product)=>total + (product.price * product.sold),0);
+  const bestSellingProduct = products.reduce((best,product)=>best.sold<product.sold ? product : best);
+
+  return {
+    revenue_per_product : revenuePerProduct,
+    total_revenue : totalRevenue,
+    best_selling_product : bestSellingProduct,
+  }
+}
+
+console.log(productAnalyzer(products6));
+
+// Question 17 — Attendance System
+/*
+let
+students= [
+{ name:"Ritik", present:true },
+{ name:"Aman", present:false },
+{ name:"Priya", present:true }
+];
+
+Create functions:
+countPresent()
+countAbsent()
+getPresentStudents()
+
+Scenario
+School Attendance Portal.
+
+Concepts Tested
+Arrays
+Objects
+Functions
+filter()
+*/
+
+let
+students7= [
+{ name:"Ritik", present:true },
+{ name:"Aman", present:false },
+{ name:"Priya", present:true }
+]
+function countPresent(students){
+  return students.filter((student)=>student.present).length
+}
+
+function countAbsent(students){
+  return students.filter((student)=>!student.present).length
+}
+
+function getPresentStudents(students){
+  return students.filter((student)=>student.present).map(student=>student.name);
+}
+
+
+console.log(countPresent(students7));
+console.log(countAbsent(students7));
+console.log(getPresentStudents(students7));
+
+// Question 18 — Library Management System
+/*
+Question 18 — Library Management System
+Store books like:
+{
+id:1,
+title:"Atomic Habits",
+borrowed:false
+}
+
+Create:
+addBook()
+borrowBook()
+returnBook()
+showAvailableBooks()
+
+Scenario
+Library Software.
+What is this question asking?
+Manage a collection of books using functions.
+
+Concepts Tested
+Arrays
+Objects
+Functions
+find()
+filter()
+*/
+
+
+
+
+  let books = [];
+  function addBook(title){
+    books.push({id:books.length+1,title,isBorrowed:false});
+    return `${title} added successfully`;
+  }
+
+  function borrowBook(id){
+    let book = books.find((b)=>b.id === id);
+    if(!book){
+      return `Book not found`;
+    }
+    if(book.isBorrowed){
+      return `${book.title} is already borrowed`;
+}
+    book.isBorrowed = true;
+    return `${book.title} is borrowed successfully`;
+  }
+
+  function returnBook(id){
+    let book = books.find((b)=>b.id===id);
+    if(!book){
+      return `Book not found`;
+    }
+    book.isBorrowed = false;
+    return `${book.title} has been returned successfully`;
+  }
+
+  function showAvailableBooks(){
+    return books.filter((book)=>!book.isBorrowed);
+  }
+  function showAllBooks(){
+    books.forEach((book)=>{
+      console.log(`${book.id} - ${book.title}`);
+    });
+  }
+
+console.log(addBook("Atomic Habits"));
+console.log(addBook("Deep Work"));
+console.log(addBook("The Psychology of Money"));
+
+console.log(showAvailableBooks());
+
+console.log(borrowBook(2));
+
+console.log(showAvailableBooks());
+
+console.log(returnBook(2));
+
+console.log(showAvailableBooks());
+
+showAllBooks();
+
+// Question 19 — Order Management System
+/*
+Store orders like:
+{
+id:1,
+customer:"Ritik",
+amount:5000,
+status:"Pending"
+}
+Create:
+createOrder()
+updateStatus()
+getPendingOrders()
+getCompletedOrders()
+
+Scenario
+E-commerce Backend.
+
+Concepts Tested
+Arrays
+Objects
+Functions
+Business Logic
+*/
+
+let orders = [];
+function createOrder(customerName,amount){
+  const order = {id:orders.length+1,customer:customerName,amount:amount,status:"pending"};
+  orders.push(order);
+  return `${customerName}'s order of worth ₹${amount} added successfully with Order ID as ${order.id}.`
+}
+
+function updateStatus(id){
+  let order = orders.find((order)=>order.id===id);
+  if(!order){
+    return `Order not found`;
+  }
+  order.status = "completed";
+  return `Order ID ${id} of worth ₹${order.amount} has been completed successfully.`
+}
+
+function getPendingOrders(){
+  return orders.filter((order)=>order.status === "pending");
+}
+
+function getCompletedOrders(){
+  return orders.filter((order)=>order.status === "completed");  
+}
+
+console.log(createOrder("Ritik", 5000));
+console.log(createOrder("Amit", 2500));
+console.log(createOrder("Sneha", 7800));
+console.log(createOrder("Priya", 1200));
+console.log(createOrder("Rahul", 999));
+
+console.log("All Orders:", orders);
+
+console.log(updateStatus(2));
+console.log(updateStatus(4));
+
+console.log("Pending Orders:", getPendingOrders());
+console.log("Completed Orders:", getCompletedOrders());
+
+console.log(updateStatus(10)); // Order not found
+
+// Question 20 — Mini E-Commerce System (Interview Level)
+/*
+addProduct()
+removeProduct()
+updateStock()
+purchaseProduct()
+getInventoryValue()
+Store products like:
+{
+id:1,
+name:"Laptop",
+price:50000,
+stock:10
+}
+
+Scenario
+You are building the backend logic of Amazon/Flipkart inventory.
+What is this question asking?
+This is not one function.
+This is an entire mini project.
+
+You need to:
+1. Store products.
+2. Add products.
+3. Remove products.
+4. Update stock.
+5. Handle purchases.
+6. Calculate inventory value.
+*/
+
+let inventoryProducts = [];
+let nextId = 1;
+function addProduct(productName,productPrice,productStock){
+  const product = {
+    id: nextId++,
+    name: productName,
+    price: productPrice,
+    stock : productStock
+  }
+    inventoryProducts.push(product);
+    return `Product ID #${product.id} as ${productName} with amount of  ₹${productPrice} has been added successfully.`;
+}
+
+function removeProduct(id){
+  let product = inventoryProducts.find((p)=>p.id===id);
+  if(!product) return `Product not found`;
+  inventoryProducts = inventoryProducts.filter((p)=>p.id!==product.id);
+  return `Product ID #${product.id} as ${product.name} with amount of ₹${product.price} has been removed successfully.`;
+}
+
+function updateStocks(id,updatedStock){
+  let product = inventoryProducts.find((p)=>p.id===id);
+  if(!product) return `Product not found`;
+  let oldStock = product.stock;
+  product.stock = updatedStock;
+  return `Product ID #${product.id} as ${product.name} stock has been updated from ${oldStock} to ${updatedStock}.`
+}
+
+function purchaseProduct(id,quantity){
+  if(quantity <= 0){
+  return "Invalid quantity";
+}
+  let product = inventoryProducts.find((p)=>p.id===id);
+  if(!product) return `Product not found`;
+  if(product.stock===0){
+    return `${product.name} is out of stock.`
+  }
+
+  if(product.stock<quantity){
+    return `Currently only ${product.stock} items are available in stock.`
+  }
+
+  product.stock-=quantity;
+
+  let bill = product.price * quantity;
+
+  return `Order ID #${product.id} as ${product.name} has been purchased in ${quantity} quantity with bill of ₹${bill} and currently ${product.stock} products are in stock.`
+}
+
+function getInventoryValue(){
+  let inventoryValue =  inventoryProducts.reduce((totalValue,product)=>(totalValue + (product.price * product.stock)),0);
+  return `Total Inventory Value is ₹${inventoryValue}`;
+}
+
+console.log(addProduct("Laptop", 50000, 10));
+console.log(addProduct("Mouse", 500, 20));
+console.log(addProduct("Keyboard", 1000, 15));
+
+console.log(getInventoryValue());
+console.log(purchaseProduct(1, 2));
+console.log(purchaseProduct(2, 50));
+console.log(purchaseProduct(1, 0));
+console.log(purchaseProduct(1, -5));
+console.log(purchaseProduct(99, 1));
+console.log(updateStocks(2, 100));
+console.log(removeProduct(3));
+console.log(removeProduct(99));
+purchaseProduct(1, 2);
+updateStocks(2, 100);
+removeProduct(3);
+console.log(getInventoryValue());
+console.log(inventoryProducts);
