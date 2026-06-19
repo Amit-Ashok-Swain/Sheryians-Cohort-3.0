@@ -129,6 +129,11 @@ const propertyValue =
     "#property-value"
   );
 
+  const columnCounts =
+  document.querySelectorAll(
+    ".column-count"
+  );
+
 let tasks =
   loadTasksFromStorage();
 
@@ -914,6 +919,18 @@ function updateStatistics() {
         task.status ===
         "completed"
     ).length;
+
+    columnCounts[0].textContent =
+    todo;
+
+    columnCounts[1].textContent =
+    inProgress;
+
+    columnCounts[2].textContent =
+    completed;
+
+    columnCounts[3].textContent =
+    archived;
 
   totalCount.textContent =
     total;
