@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Catalog Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+</head>
+<body>
+
+    <main>
+
+        <!-- Navbar -->
+        <nav class="navbar">
+
+            <h1>Product Catalog Management System</h1>
+
+            <div class="nav-actions">
+                <input
+                    type="text"
+                    placeholder="Search products..."
+                    id="search-input"
+                >
+
+                <button id="create-btn">
+                    <i class="ri-add-line"></i>
+                    Create Product
+                </button>
+            </div>
+
+        </nav>
+
+        <!-- Product Section -->
+
+        <section class="product-section">
+
+            <div class="products">
+
+                <!-- Product Card -->
+
+                <!-- <div class="product-card">
+
+                    <div class="product-image">
+                        <img
+                            src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9"
+                            alt=""
+                        >
+                    </div>
+
+                    <div class="product-content">
+
+                        <h3>iPhone 16 Pro</h3>
+
+                        <p>
+                            Latest Apple flagship smartphone with A18 chip.
+                        </p>
+
+                        <span class="price">
+                            ₹1,29,999
+                        </span>
+
+                        <div class="card-actions">
+
+                            <button class="edit-btn">
+                                <i class="ri-edit-line"></i>
+                                Edit
+                            </button>
+
+                            <button class="delete-btn">
+                                <i class="ri-delete-bin-line"></i>
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div> -->
+
+            </div>
+
+        </section>
+
+        <!-- Empty State -->
+
+        <!-- <div class="empty-state">
+
+            <i class="ri-shopping-bag-3-line"></i>
+
+            <h2>No Products Found</h2>
+
+            <p>
+                Start by creating your first product.
+            </p>
+
+        </div> -->
+
+        <!-- Modal -->
+
+        <div class="overlay">
+
+            <div class="modal">
+
+                <div class="modal-header">
+
+                    <h2>Create Product</h2>
+
+                    <button class="close-btn">
+                        <i class="ri-close-line"></i>
+                    </button>
+
+                </div>
+
+                <form>
+
+                    <input
+                        type="text"
+                        placeholder="Product Name"
+                    >
+
+                    <textarea
+                        placeholder="Product Description"
+                    ></textarea>
+
+                    <input
+                        type="number"
+                        placeholder="Price"
+                    >
+
+                    <input
+                        type="url"
+                        placeholder="Image URL"
+                    >
+
+                    <button type="submit" class="submit-btn">
+                        Save Product
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </main>
+    <script src="./script.js"></script>
+</body>
+</html>

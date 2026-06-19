@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>
+    DOM Explorer | Interactive Task Manager
+  </title>
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  >
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  >
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.6.0/fonts/remixicon.css"
+  >
+
+  <link
+    rel="stylesheet"
+    href="./style.css"
+  >
+
+</head>
+
+<body data-theme="dark">
+
+  <main class="app">
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+      <div class="brand">
+
+        <div class="brand-icon">
+
+          <i class="ri-checkbox-circle-fill"></i>
+
+        </div>
+
+        <div>
+
+          <h1>
+            DOM Explorer
+          </h1>
+
+          <p>
+            Interactive Task Manager
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="header-actions">
+
+        <div class="theme-switch-wrapper">
+
+          <span>
+            Light
+          </span>
+
+          <label class="theme-switch">
+
+            <input
+              type="checkbox"
+              id="theme-toggle"
+            >
+
+            <span class="switch-slider"></span>
+
+          </label>
+
+          <span>
+            Dark
+          </span>
+
+        </div>
+
+      </div>
+
+    </header>
+
+    <section class="dashboard-stats">
+
+      <article class="stat-card">
+
+        <div class="stat-icon total">
+
+          <i class="ri-list-check-3"></i>
+
+        </div>
+
+        <div>
+
+          <p>Total Tasks</p>
+
+          <h2 id="total-count">
+            0
+          </h2>
+
+        </div>
+
+      </article>
+
+      <article class="stat-card">
+
+        <div class="stat-icon pending">
+
+          <i class="ri-time-line"></i>
+
+        </div>
+
+        <div>
+
+          <p>Pending</p>
+
+          <h2 id="pending-count">
+            0
+          </h2>
+
+        </div>
+
+      </article>
+
+      <article class="stat-card">
+
+        <div class="stat-icon progress">
+
+          <i class="ri-loader-4-line"></i>
+
+        </div>
+
+        <div>
+
+          <p>In Progress</p>
+
+          <h2 id="inprogress-total">
+            0
+          </h2>
+
+        </div>
+
+      </article>
+
+      <article class="stat-card">
+
+        <div class="stat-icon completed">
+
+          <i class="ri-checkbox-circle-line"></i>
+
+        </div>
+
+        <div>
+
+          <p>Completed</p>
+
+          <h2 id="completed-count">
+            0
+          </h2>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <section class="section-card">
+
+      <div class="section-header">
+
+        <h2>
+
+          <i class="ri-add-circle-line"></i>
+
+          Create New Task
+
+        </h2>
+
+      </div>
+
+      <form id="task-form">
+
+        <div class="form-grid">
+
+          <div class="input-group">
+
+            <i class="ri-file-text-line"></i>
+
+            <input
+              type="text"
+              id="task-title"
+              placeholder="Enter task title"
+              maxlength="80"
+              required
+            >
+
+          </div>
+
+          <div class="input-group">
+
+            <select
+              id="task-category"
+              required
+            >
+
+              <option value="">
+                Select Category
+              </option>
+
+              <option value="Study">
+                Study
+              </option>
+
+              <option value="Project">
+                Project
+              </option>
+
+              <option value="Work">
+                Work
+              </option>
+
+              <option value="Feature">
+                Feature
+              </option>
+
+              <option value="Learning">
+                Learning
+              </option>
+
+              <option value="Personal">
+                Personal
+              </option>
+
+            </select>
+
+          </div>
+
+          <button
+            type="submit"
+            class="primary-btn"
+          >
+
+            <i class="ri-add-line"></i>
+
+            Add Task
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </section>
+
+    <section class="section-card">
+
+      <div class="section-header">
+
+        <div>
+
+          <h2>
+
+            <i class="ri-task-line"></i>
+
+            Task Workspace
+
+          </h2>
+
+          <p>
+            Manage and organize your tasks efficiently
+          </p>
+
+        </div>
+
+      </div>
+
+      <div class="toolbar">
+
+        <div class="search-wrapper">
+
+          <i class="ri-search-line"></i>
+
+          <input
+            type="text"
+            id="search-task"
+            placeholder="Search tasks..."
+          >
+
+        </div>
+
+        <select id="filter-category">
+
+          <option value="all">
+            All Categories
+          </option>
+
+          <option value="Study">
+            Study
+          </option>
+
+          <option value="Project">
+            Project
+          </option>
+
+          <option value="Work">
+            Work
+          </option>
+
+          <option value="Feature">
+            Feature
+          </option>
+
+          <option value="Learning">
+            Learning
+          </option>
+
+          <option value="Personal">
+            Personal
+          </option>
+
+        </select>
+
+        <button id="clear-all-btn">
+
+          <i class="ri-delete-bin-6-line"></i>
+
+          Clear All
+
+        </button>
+
+      </div>
+
+      <div class="view-switch">
+
+        <button
+          class="view-btn active"
+          data-view="kanban"
+        >
+
+          <i class="ri-layout-grid-line"></i>
+
+          Kanban
+
+        </button>
+
+        <button
+          class="view-btn"
+          data-view="list"
+        >
+
+          <i class="ri-list-check-2"></i>
+
+          List
+
+        </button>
+
+        <button
+          class="view-btn"
+          data-view="progress"
+        >
+
+          <i class="ri-bar-chart-grouped-line"></i>
+
+          Progress
+
+        </button>
+
+      </div>
+
+      <section class="summary-grid">
+
+        <article class="summary-card progress-card">
+
+          <div
+            class="progress-circle"
+            id="progress-circle"
+          >
+
+            <span
+              id="overall-progress"
+            >
+              0%
+            </span>
+
+          </div>
+
+          <div>
+
+            <h3>
+              Overall Progress
+            </h3>
+
+            <p>
+              Track project completion
+            </p>
+
+          </div>
+
+        </article>
+
+        <article class="summary-card">
+
+          <div class="summary-icon todo">
+
+            <i class="ri-time-line"></i>
+
+          </div>
+
+          <div>
+
+            <span>
+              Todo
+            </span>
+
+            <h2 id="todo-total">
+              0
+            </h2>
+
+          </div>
+
+        </article>
+
+        <article class="summary-card">
+
+          <div class="summary-icon progress">
+
+            <i class="ri-loader-4-line"></i>
+
+          </div>
+
+          <div>
+
+            <span>
+              In Progress
+            </span>
+
+            <h2 id="progress-total">
+              0
+            </h2>
+
+          </div>
+
+        </article>
+
+        <article class="summary-card">
+
+          <div class="summary-icon completed">
+
+            <i class="ri-checkbox-circle-line"></i>
+
+          </div>
+
+          <div>
+
+            <span>
+              Completed
+            </span>
+
+            <h2 id="completed-total">
+              0
+            </h2>
+
+          </div>
+
+        </article>
+
+        <article class="summary-card">
+
+          <div class="summary-icon total">
+
+            <i class="ri-list-check-3"></i>
+
+          </div>
+
+          <div>
+
+            <span>
+              Total Tasks
+            </span>
+
+            <h2 id="total-card-count">
+              0
+            </h2>
+
+          </div>
+
+        </article>
+
+      </section>
+
+      <div
+        class="empty-state hidden"
+        id="empty-state"
+      >
+
+        <i
+          class="ri-inbox-archive-line"
+        ></i>
+
+        <h3>
+          No Tasks Found
+        </h3>
+
+        <p>
+          Create a new task to get started.
+        </p>
+
+      </div>
+
+      <section
+        id="kanban-view"
+        class="
+        view-container
+        active-view
+        "
+      >
+
+        <div class="kanban-board">
+
+          <article
+            class="
+            kanban-column
+            "
+          >
+
+            <div
+              class="
+              column-header
+              todo-header
+              "
+            >
+
+              <div
+                class="
+                column-title
+                "
+              >
+
+                <span
+                  class="
+                  column-dot
+                  "
+                ></span>
+
+                <h3>
+                  Todo
+                </h3>
+
+              </div>
+
+              <span
+                class="
+                column-count
+                "
+              >
+                0
+              </span>
+
+            </div>
+
+            <div
+              id="todo-column"
+              class="
+              column-body
+              "
+            >
+            </div>
+
+          </article>
+
+          <article
+            class="
+            kanban-column
+            "
+          >
+
+            <div
+              class="
+              column-header
+              progress-header
+              "
+            >
+
+              <div
+                class="
+                column-title
+                "
+              >
+
+                <span
+                  class="
+                  column-dot
+                  "
+                ></span>
+
+                <h3>
+                  In Progress
+                </h3>
+
+              </div>
+
+              <span
+                class="
+                column-count
+                "
+              >
+                0
+              </span>
+
+            </div>
+
+            <div
+              id="progress-column"
+              class="
+              column-body
+              "
+            >
+            </div>
+
+          </article>
+
+          <article
+            class="
+            kanban-column
+            "
+          >
+
+            <div
+              class="
+              column-header
+              completed-header
+              "
+            >
+
+              <div
+                class="
+                column-title
+                "
+              >
+
+                <span
+                  class="
+                  column-dot
+                  "
+                ></span>
+
+                <h3>
+                  Completed
+                </h3>
+
+              </div>
+
+              <span
+                class="
+                column-count
+                "
+              >
+                0
+              </span>
+
+            </div>
+
+            <div
+              id="completed-column"
+              class="
+              column-body
+              "
+            >
+            </div>
+
+          </article>
+
+          <article
+            class="
+            kanban-column
+            "
+          >
+
+            <div
+              class="
+              column-header
+              archived-header
+              "
+            >
+
+              <div
+                class="
+                column-title
+                "
+              >
+
+                <span
+                  class="
+                  column-dot
+                  "
+                ></span>
+
+                <h3>
+                  Archived
+                </h3>
+
+              </div>
+
+              <span
+                class="
+                column-count
+                "
+              >
+                0
+              </span>
+
+            </div>
+
+            <div
+              id="archived-column"
+              class="
+              column-body
+              "
+            >
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+      <section
+        id="list-view"
+        class="
+        view-container
+        "
+      >
+
+        <div
+          class="
+          table-wrapper
+          "
+        >
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Task
+                </th>
+
+                <th>
+                  Category
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Progress
+                </th>
+
+                <th>
+                  Due Date
+                </th>
+
+                <th>
+                  Actions
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody
+              id="task-table-body"
+            >
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+      <section
+        id="progress-view"
+        class="
+        view-container
+        "
+      >
+
+        <div
+          class="
+          table-wrapper
+          "
+        >
+
+          <table>
+
+            <thead>
+
+              <tr>
+
+                <th>
+                  Task
+                </th>
+
+                <th>
+                  Status
+                </th>
+
+                <th>
+                  Progress
+                </th>
+
+                <th>
+                  Category
+                </th>
+
+              </tr>
+
+            </thead>
+
+            <tbody
+              id="progress-table-body"
+            >
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+    </section>
+
+    <section class="section-card event-section">
+
+      <div class="section-header">
+
+        <h2>
+
+          <i class="ri-broadcast-line"></i>
+
+          Event Propagation Demo
+
+        </h2>
+
+        <p>
+          Visualize Bubbling and Capturing
+        </p>
+
+      </div>
+
+      <div class="event-demo-grid">
+
+        <article class="event-card">
+
+          <div class="event-card-header">
+
+            <span class="event-badge bubbling">
+
+              Event Bubbling
+
+            </span>
+
+          </div>
+
+          <div class="tree-demo">
+
+            <div class="bubbling-grandparent tree-node demo-step">
+                Grandparent
+                </div>
+
+                <div class="tree-connector bubble"></div>
+
+                <div class="bubbling-parent tree-node demo-step">
+                Parent
+                </div>
+
+                <div class="tree-connector bubble"></div>
+
+                <button
+                class="
+                bubbling-child
+                tree-node
+                demo-step
+                flow-box highlight
+                "
+                >
+                Child Button
+                </button>
+          </div>
+
+          <div class="demo-info">
+
+            <h4>
+              Expected Order
+            </h4>
+
+            <p>
+
+              Child
+
+              →
+
+              Parent
+
+              →
+
+              Grandparent
+
+            </p>
+
+          </div>
+
+        </article>
+
+        <article class="event-card">
+
+          <div class="event-card-header">
+
+            <span class="event-badge capturing">
+
+              Event Capturing
+
+            </span>
+
+          </div>
+
+          <div class="tree-demo">
+
+        <div class="capture-grandparent tree-node demo-step">
+            Grandparent
+            </div>
+
+            <div class="tree-connector capture"></div>
+
+            <div class="capture-parent tree-node demo-step">
+            Parent
+            </div>
+
+            <div class="tree-connector capture"></div>
+
+            <button
+            class="
+            capture-child
+            tree-node
+            demo-step
+            flow-box highlight
+            "
+            >
+            Child Button
+            </button>
+        </div>
+
+          <div class="demo-info">
+
+            <h4>
+              Expected Order
+            </h4>
+
+            <p>
+
+              Grandparent
+
+              →
+
+              Parent
+
+              →
+
+              Child
+
+            </p>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+    <section class="section-card pipeline-section">
+
+      <div class="section-header">
+
+        <h2>
+
+          <i class="ri-git-branch-line"></i>
+
+          Browser Rendering Pipeline
+
+        </h2>
+
+        <p>
+          How browsers convert code into pixels
+        </p>
+
+      </div>
+
+      <div class="pipeline-wrapper">
+
+        <div class="pipeline-tree">
+
+          <div class="flow-box">
+            HTML
+          </div>
+
+          <div class="tree-line"></div>
+
+          <div class="flow-box">
+            Parsing
+          </div>
+
+          <div class="tree-line"></div>
+
+          <div class="flow-box">
+            Tokenization
+          </div>
+
+          <div class="tree-line"></div>
+
+          <div class="flow-box">
+            DOM Tree
+          </div>
+
+        </div>
+
+        <div class="merge-section">
+
+          <div class="css-flow">
+
+            <div class="flow-box">
+              CSS
+            </div>
+
+            <div class="flow-arrow">
+              →
+            </div>
+
+            <div class="flow-box">
+              CSSOM Tree
+            </div>
+
+          </div>
+
+          <div class="merge-arrow">
+
+            DOM Tree
+
+            +
+
+            CSSOM Tree
+
+          </div>
+
+        </div>
+
+        <div class="pipeline-tree">
+
+          <div class="flow-box highlight">
+            Render Tree
+          </div>
+
+          <div class="tree-line"></div>
+
+          <div class="flow-box">
+            Layout
+          </div>
+
+          <div class="tree-line"></div>
+
+          <div class="flow-box">
+            Paint
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="bottom-grid">
+
+      <article class="section-card">
+
+        <div class="section-header">
+
+        </div>
+
+          <input
+            type="text"
+            id="demo-input"
+            value="Initial Value"
+          >
+
+          <div class="attribute-grid">
+
+            <div class="attribute-card">
+
+              <h4>
+                Attribute Value
+              </h4>
+
+              <p>
+                HTML Source
+              </p>
+
+              <h2 id="attribute-value">
+
+                Initial Value
+
+              </h2>
+
+            </div>
+
+            <div class="attribute-card">
+
+              <h4>
+                Property Value
+              </h4>
+
+              <p>
+                Current JS Value
+              </p>
+
+              <h2 id="property-value">
+
+                Initial Value
+
+              </h2>
+
+            </div>
+
+          </div>
+
+        </div> -->
+
+        <section class="attribute-demo">
+
+        <h2>
+            <i class="ri-code-box-line"></i>
+            Attributes vs Properties
+        </h2>
+
+        <div class="attribute-grid">
+
+            <div class="code-panel">
+
+            <div class="panel-title">
+                HTML (Initial)
+            </div>
+
+            <pre class="code-block">
+                &lt;input
+                id="demoInput"
+                value="Initial Value"
+                &gt;
+            </pre>
+
+            <div class="value-card">
+
+                <span>
+                Attribute (Original HTML Value)
+                </span>
+
+                <strong
+                id="attribute-value"
+                >
+                Initial Value
+                </strong>
+
+            </div>
+
+            </div>
+
+            <div class="vs-badge">
+            VS
+            </div>
+
+            <div class="code-panel">
+
+            <div class="panel-title">
+                JavaScript (After Change)
+            </div>
+
+            <pre class="code-block">
+        input.value =
+        "Changed Value";
+            </pre>
+
+            <div class="value-card">
+
+                <span>
+                Property (Current Value)
+                </span>
+
+                <strong
+                id="property-value"
+                >
+                Changed Value
+                </strong>
+
+            </div>
+
+            </div>
+
+        </div>
+
+        <div class="attribute-note">
+
+            <i class="ri-lightbulb-line"></i>
+
+            Attribute reflects the
+            initial HTML.
+
+            Property reflects the
+            current value in the DOM.
+
+        </div>
+
+        </section>
+
+      </article>
+
+      <article class="section-card">
+
+        <div class="section-header">
+
+          <h2>
+
+            <i class="ri-lightbulb-flash-line"></i>
+
+            Concepts Demonstrated
+
+          </h2>
+
+        </div>
+
+        <div class="concept-grid">
+
+          <div class="concept-item">
+
+            <i class="ri-code-line"></i>
+
+            <span>
+              DOM Manipulation
+            </span>
+
+          </div>
+
+          <div class="concept-item">
+
+            <i class="ri-cursor-line"></i>
+
+            <span>
+              Event Handling
+            </span>
+
+          </div>
+
+          <div class="concept-item">
+
+            <i class="ri-share-forward-line"></i>
+
+            <span>
+              Event Delegation
+            </span>
+
+          </div>
+
+          <div class="concept-item">
+
+            <i class="ri-arrow-up-circle-line"></i>
+
+            <span>
+              Event Bubbling
+            </span>
+
+          </div>
+
+          <div class="concept-item">
+
+            <i class="ri-arrow-down-circle-line"></i>
+
+            <span>
+              Event Capturing
+            </span>
+
+          </div>
+
+          <div class="concept-item">
+
+            <i class="ri-price-tag-3-line"></i>
+
+            <span>
+              Dataset API
+            </span>
+
+          </div>
+
+          <div class="concept-item">
+
+            <i class="ri-database-2-line"></i>
+
+            <span>
+              Local Storage
+            </span>
+
+          </div>
+
+          <div class="concept-item">
+
+            <i class="ri-moon-clear-line"></i>
+
+            <span>
+              Theme Toggle
+            </span>
+
+          </div>
+
+          <div class="concept-item">
+
+            <i class="ri-layout-grid-line"></i>
+
+            <span>
+              Kanban Board
+            </span>
+
+          </div>
+
+          <div class="concept-item">
+
+            <i class="ri-bar-chart-box-line"></i>
+
+            <span>
+              Progress Tracking
+            </span>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+    <footer class="footer">
+
+      <div class="footer-content">
+
+        <h3>
+          DOM Explorer
+        </h3>
+
+        <p>
+          Interactive Task Manager built using HTML, CSS and Vanilla JavaScript
+        </p>
+
+        <p>
+          Demonstrates DOM Manipulation, Event Delegation, Event Propagation, Attributes vs Properties and Browser Rendering Pipeline.
+        </p>
+        <br>
+        <p>
+            Build with ❤️ by Amit Ashok Swain
+        </p>
+
+      </div>
+
+    </footer>
+
+  </main>
+
+  <script src="./js/storage.js"></script>
+
+  <script src="./js/theme.js"></script>
+
+  <script src="./js/propagation.js"></script>
+
+  <script src="./js/script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-commerce Cart</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"rel="stylesheet"/>
+</head>
+<body>
+    <main>
+        <div class="nav">
+            <h1>E-commerce Cart</h1>
+            <button id="nav-btn">Create Product</button>
+        </div>
+        <div class="products">
+        </div>
+        <div class="form">
+            <div class="close">
+                <div></div>
+                <div id="close-btn"><i class="ri-close-circle-line"></i></div>
+            </div>
+            <form>
+                <h1>Create Product</h1>
+                <input type="text" placeholder="Enter Product's Name">
+                <input type="text" placeholder="Enter Product's Description" >
+                <input type="number" placeholder="Enter Product's Price (in ₹)" >
+                <input type="url" placeholder="Enter Product's Image URL" >
+                <button id="submit-btn" type="submit">Create Product</button>
+            </form>
+        </div>
+    </main>
+    <script src="./script.js"></script>
+</body>
+</html>
