@@ -920,6 +920,12 @@ function updateStatistics() {
         "completed"
     ).length;
 
+  const archived =
+  tasks.filter(
+    task =>
+      task.status === "archived"
+  ).length;
+
     columnCounts[0].textContent =
     todo;
 
