@@ -2146,12 +2146,133 @@ testLib.removeBook("abc");
 
 testLib.showBooks()
 
+// 7. Create expense tracker logic.
+
+let expenses = [];
+let currentId = 1;
+
+function addExpense(title,amount,category){
+    expenses.push({id:(Date.now() + currentId++),title,amount,category});
+}
+
+function getTotalExpense(){
+    return expenses.reduce((total,expense)=>total+expense.amount,0);
+}
+
+function getExpenseByCategory(category){
+    return expenses.filter((expense) => expense.category === category);
+}
+
+function deleteExpense(id){
+    const index = expenses.findIndex((expense)=>expense.id === id);
+    if(index!==-1) return expenses.splice(index,1);
+}
+
+
+addExpense(
+  "Pizza",
+  500,
+  "Food"
+);
+
+addExpense(
+  "Movie",
+  300,
+  "Entertainment"
+);
+
+addExpense(
+  "Burger",
+  200,
+  "Food"
+);
+
+console.log(expenses);
+
+console.log(
+  getTotalExpense()
+);
+
+console.log(
+  getExpenseByCategory(
+    "Food"
+  )
+);
+
+const deleteExpenseFromExpenses = expenses[0].id;
+deleteExpense(deleteExpenseFromExpenses);
+console.log(deleteExpenseFromExpenses);
+
+
+// 8. Build inventory management system.
+
+let inventory = [];
+
+let nextInventoryId = 1;
+
+function addProducts(name,quantity,price){
+    inventory.push({
+        id:Date.now() + nextInventoryId++,
+        name,
+        quantity,
+        price
+    })
+}
+
+
+function getAllProducts(){
+  inventory.forEach(product => {
+        console.log(` 
+            ----------------------------------
+            Product Name:     ${product.name}
+            Product Price:    ₹${product.price}
+            Product Quantity: ${product.quantity}
+            `);
+    });
+}
+
+
+function updateQuantity(id,quantity){
+    let product = inventory.find((product)=>product.id === id);
+
+    if(!product) return `Product not found`;
+    
+    product.quantity = quantity;
+}
+
+function deleteProduct(id){
+    let productIndex = inventory.findIndex((product)=>product.id === id);
+
+    if(productIndex!==-1) return inventory.splice(productIndex,1);
+}
+
+
+function getTotalValue(){
+   return inventory.reduce((total,product)=>total + (product.price * product.quantity),0);
+}
 
 
 
+addProducts(
+  "Laptop",
+  2,
+  50000
+);
 
+addProducts(
+  "Mouse",
+  10,
+  500
+);
 
+addProducts(
+  "Keyboard",
+  5,
+  1500
+);
 
+getAllProducts();
 
-
-
+console.log(
+  getTotalValue()
+);
