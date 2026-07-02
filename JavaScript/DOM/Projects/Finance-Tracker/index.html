@@ -648,7 +648,7 @@
                 </main>
 
             </div>
-            <div class="modal-overlay">
+            <div class="modal-overlay" id="transactionModal">
 
                 <div class="modal">
 
@@ -753,6 +753,66 @@
                         </div>
 
                     </form>
+
+                </div>
+
+            </div>
+            <div class="modal-overlay" id="chartModal">
+
+                <div class="modal chart-modal">
+
+                    <div class="modal-header">
+
+                        <h2
+                            id="chartModalTitle"
+                        >
+
+                            Chart Preview
+
+                        </h2>
+
+                        <button
+                            class="close-modal"
+                            id="closeChartModal"
+                        >
+
+                            &times;
+
+                        </button>
+
+                    </div>
+
+                    <div class="chart-modal-body">
+
+                        <canvas
+                            id="expandedChart"
+                        >
+
+                        </canvas>
+
+                    </div>
+
+                    <div class="modal-actions">
+
+                        <button
+                            id="downloadChart"
+                            class="save-btn"
+                        >
+
+                            Download PNG
+
+                        </button>
+
+                        <button
+                            id="closeExpandedChart"
+                            class="cancel-btn"
+                        >
+
+                            Close
+
+                        </button>
+
+                    </div>
 
                 </div>
 

@@ -26,6 +26,7 @@ if (document.querySelector("#dashboardPage")) {
     initializeTransactions();
     initializeBudget();
     initializeChart();
+    initializeChartEvents();
     initializeAnalytics();
     initializeSettings();
     initializeExport();

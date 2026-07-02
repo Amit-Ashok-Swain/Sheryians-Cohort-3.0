@@ -2,6 +2,7 @@
 let incomeExpenseChart = null;
 let categoryChart = null;
 let monthlyChart = null;
+let expandedChart = null;
 
 const categoryColors = [
     "#3B82F6",
@@ -17,7 +18,23 @@ const categoryColors = [
 const chartElements = {
     incomeExpenseChart: document.querySelector("#incomeExpenseChart"),
     categoryChart: document.querySelector("#categoryChart"),
-    monthlyChart: document.querySelector("#monthlyChart")
+    monthlyChart: document.querySelector("#monthlyChart"),
+};
+
+const chartModalElements = {
+
+    overlay: document.querySelector("#chartModal"),
+
+    canvas: document.querySelector("#expandedChart"),
+
+    title: document.querySelector("#chartModalTitle"),
+
+    closeButton: document.querySelector("#closeChartModal"),
+
+    closeFooterButton: document.querySelector("#closeExpandedChart"),
+
+    downloadButton: document.querySelector("#downloadChart")
+
 };
 
 function initializeMonthlyChart(){
@@ -258,6 +275,205 @@ function updateMonthlyChart(){
     monthlyChart.data.datasets[0].data = labels.map(label=>monthlyData[label].income);
     monthlyChart.data.datasets[1].data = labels.map(label=>monthlyData[label].expense);
     monthlyChart.update();
+}
+
+function openChartModal(){
+
+    chartModalElements.overlay.classList.add("show");
+
+}
+
+function closeChartModal(){
+
+    chartModalElements.overlay.classList.remove("show");
+
+    if(expandedChart){
+
+        expandedChart.destroy();
+
+        expandedChart = null;
+
+    }
+
+}
+
+function renderExpandedChart(chart, type, title){
+
+    console.log("Step 1");
+
+    if(expandedChart){
+        expandedChart.destroy();
+    }
+
+    console.log("Step 2");
+
+    chartModalElements.title.textContent = title;
+
+    const context =
+        chartModalElements.canvas.getContext("2d");
+
+    console.log("Step 3");
+
+    expandedChart = new Chart(context,{
+
+        type:type,
+
+        data: JSON.parse(JSON.stringify(chart.data)),
+
+        options:{
+            responsive:true,
+            maintainAspectRatio:false
+        }
+
+    });
+
+    console.log("Step 4");
+
+    openChartModal();
+
+    console.log("Step 5");
+
+}
+
+function downloadExpandedChart(){
+
+    if(!expandedChart){
+
+        return;
+
+    }
+
+    const link = document.createElement("a");
+
+    link.download =
+        "chart.png";
+
+    link.href =
+        expandedChart.toBase64Image();
+
+    link.click();
+
+}
+
+function initializeChartEvents(){
+
+    chartElements.incomeExpenseChart
+        .addEventListener("click",function(){
+
+        renderExpandedChart(
+
+            incomeExpenseChart,
+
+            "doughnut",
+
+            "Income vs Expense"
+
+        );
+
+    });
+
+    chartElements.categoryChart
+        .addEventListener("click",function(){
+
+        renderExpandedChart(
+
+            categoryChart,
+
+            "pie",
+
+            "Expense by Category"
+
+        );
+
+    });
+
+    chartElements.monthlyChart
+        .addEventListener("click",function(){
+
+        renderExpandedChart(
+
+            monthlyChart,
+
+            "line",
+
+            "Monthly Overview"
+
+        );
+
+    });
+
+    chartModalElements.closeButton
+        .addEventListener(
+
+            "click",
+
+            closeChartModal
+
+        );
+
+    chartModalElements.closeFooterButton
+        .addEventListener(
+
+            "click",
+
+            closeChartModal
+
+        );
+
+    chartModalElements.downloadButton
+        .addEventListener(
+
+            "click",
+
+            downloadExpandedChart
+
+        );
+
+    chartModalElements.overlay
+        .addEventListener(
+
+            "click",
+
+            function(event){
+
+                if(
+
+                    event.target ===
+
+                    chartModalElements.overlay
+
+                ){
+
+                    closeChartModal();
+
+                }
+
+            }
+
+        );
+
+    document.addEventListener(
+
+        "keydown",
+
+        function(event){
+
+            if(
+
+                event.key === "Escape" &&
+
+                chartModalElements.overlay.classList.contains("show")
+
+            ){
+
+                closeChartModal();
+
+            }
+
+        }
+
+    );
+
 }
 
 
