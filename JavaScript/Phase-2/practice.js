@@ -1573,7 +1573,7 @@ function Person(name){
 
 // Two copies in memory
 
-
+/*
 // Prototype solves this
 
 function Person (name){
@@ -1592,6 +1592,8 @@ let p1 = new Person("Amit");
 let p2 = new Person("Rahul");
 
 console.log(p1.sayHello === p2.sayHello);
+
+*/
 
 /*
 
@@ -1636,6 +1638,7 @@ Person.prototype
 
 
 // Ultra Advanced Practice
+/*
 
 // 1. Build custom Array.prototype.map.
 
@@ -1735,6 +1738,8 @@ copy2.numbers[2][0] = 99;
 console.log(data.numbers[2][0]); // 3
 console.log(copy2.numbers[2][0]); // 99
 
+*/
+
 // 5. Create student management system.
 
 /*
@@ -1775,6 +1780,8 @@ B. Functional Requirements
     }
 
 */
+
+/*
 
 // Code Implementation
 
@@ -1938,6 +1945,7 @@ console.log(getTopper());
 
 console.log(getPlacementEligibleStudents());
 
+*/
 
 // 6. Create library management system.
 
@@ -1958,6 +1966,8 @@ Requirements
     - Return Book
     - View Books
 */
+
+/*
 
 class library {
     constructor(){
@@ -2276,3 +2286,899 @@ getAllProducts();
 console.log(
   getTotalValue()
 );
+
+
+// 9. Create function composition utility.
+
+function compose(...functions){
+    return function(value){
+      return functions.reduceRight((result,fn)=>fn(result),value);
+    }
+}
+
+
+function add2(num){
+    return num+2;
+}
+
+function multiplyBy3(num){
+    return num * 3;
+}
+
+function square(num){
+    return num * num;
+}
+
+const composedFunction = compose(square,multiplyBy3,add2);
+
+console.log(composedFunction(4));
+
+// 10. Build calculator using objects and methods.
+
+const calculator = {
+    result: 0,
+    add(...nums){
+        this.result += nums.reduce((sum,num)=>sum+num,0);
+        return this;
+    },
+
+    sub(...nums){
+        this.result -= nums.reduce((sub,num)=>sub + num,0);
+        return this;
+    },
+
+    multiply(...nums){
+        this.result *= nums.reduce((product,num)=>product*num,1);
+        return this;
+    },
+
+    divide(...nums){
+        const divisor = nums.reduce((product,num)=>product*num,1);
+        this.result /= divisor;
+        return this;
+    },
+
+    clear(){
+        this.result = 0;
+        return this;
+    },
+
+    getResult(){
+        return this.result;
+    }
+
+}
+
+calculator
+    .add(10)
+    .add(5,5)
+    .multiply(2)
+    .sub(10)
+    .divide(2);
+
+console.log(
+    calculator.getResult()
+);
+
+calculator.clear();
+calculator.multiply(5);
+
+console.log(
+    calculator.getResult()
+);
+*/
+
+
+// Scenario-Based Questions
+
+/*
+
+// 1. You have an array of users. Return only active users.
+
+const users = [
+  {
+    id: 1,
+    name: "Amit",
+    isActive: true,
+  },
+  {
+    id: 2,
+    name: "Rahul",
+    isActive: false,
+  },
+  {
+    id: 3,
+    name: "Priya",
+    isActive: true,
+  },
+];
+
+function activeUsers(users){
+    return users.filter((user)=>user.isActive).map((user) => user.name).forEach(user => {
+        console.log(user);
+    });
+}
+
+activeUsers(users);
+
+
+// 2. Calculate total revenue from orders array.
+
+const orders = [
+  {
+    id: 1,
+    amount: 500,
+  },
+  {
+    id: 2,
+    amount: 1200,
+  },
+  {
+    id: 3,
+    amount: 800,
+  },
+];
+
+function totalRevenue(orders){
+    return orders.reduce((total,order)=>total+order.amount,0);
+}
+
+console.log(totalRevenue(orders));
+
+
+// 3. Find second largest number in array.
+
+const numbers = [10, 25, 8, 40, 15, 35];
+
+
+function findSecondLargestNumber(numbers){
+    let largest = -Infinity;
+    let secondLargest = -Infinity;
+
+    if(numbers.length===0){
+        return `The Array is Empty`;
+    }
+    if(numbers.length === 1){
+        return `Only one numbers exists. Hence, second largest doesn't exsists`;
+    }
+
+    for(const num of numbers){
+
+        if(num>largest){
+            secondLargest = largest;
+            largest = num;
+        }else if(num>secondLargest && num!==largest){
+            secondLargest = num;
+        }
+        
+    }
+
+    if(secondLargest === -Infinity) return `No second largest number exists`
+    return secondLargest;
+}
+
+function findSecondLargestUsingSort(numbers){
+    return numbers.sort((a,b)=>(b-a))[1];
+}
+
+console.log(findSecondLargestNumber(numbers));
+console.log(findSecondLargestUsingSort(numbers));
+
+// 4. Find missing number in array.
+
+const missingNumArr = [1,2,3,5];
+
+function missingArr(arr){
+
+let n = arr.length + 1;
+
+const expectedSum = n*(n+1) / 2;
+
+const existingSum = arr.reduce((total,num)=>total+num,0);
+
+return expectedSum - existingSum;
+
+}
+
+console.log(missingArr(missingNumArr));
+
+const missingEvenNum = [2,4,8,10];
+
+function missingEvenNumber(arr){
+
+for(let i=1 ;i<=arr.length; i++){
+    if(arr[i]-arr[i-1]!==2){
+        return arr[i] - 2;
+    }
+}
+
+}
+
+console.log(missingEvenNumber(missingEvenNum));
+
+const missingSquare = [1,4,9,25];
+
+function missingSquareNumbers(arr){
+    const roots = arr.map((num)=>Math.sqrt(num));
+
+    for(let i=1; i<roots.length; i++){
+        if(roots[i]-roots[i-1] !== 1){
+            return (roots[i] - 1)**2;
+        }
+    }
+}
+
+console.log(missingSquareNumbers(missingSquare));
+
+// 5. Check whether two objects are equal.
+
+const obj1 = {
+  name: "Amit",
+  age: 28,
+};
+
+const obj2 = {
+  name: "Amit",
+  age: 28,
+};
+
+console.log(obj1 === obj2); // false -> because compares by reference not values
+
+// Using JSON.stringfy
+
+function areObjectsEqual(obj1,obj2){
+    return JSON.stringify(obj1) === JSON.stringify(obj2);
+}
+
+console.log(areObjectsEqual(obj1,obj2)) // true -> limitation May return: false because key order differs.
+
+// Using Manual method
+
+function areObjectsEqualUsingManualMethod(obj1,obj2){
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+
+    if(keys1.length !== keys2.length) return false;
+
+    for(const key of keys1){
+        if(obj1[key] !== obj2[key]){
+            return false;
+        }
+    }
+
+    return true;
+}
+
+console.log(areObjectsEqualUsingManualMethod(obj1,obj2)); // true
+
+
+*/
+
+/*
+// Interview-Level Questions
+
+// 1. Difference between:
+// - function declaration
+// - function expression
+// - arrow function
+*/
+
+/*
+// Function Declaration
+
+// Syntax
+function greet(name){
+    return `Hello ${name}`;
+}
+console.log(greet("Amit"));
+
+// Characteristics
+
+// a. Hoisted Completely
+sayHello(); //  Works because the entire function is hoisted. Prints Hello
+function sayHello(){
+    console.log(`Hello`);   
+}
+
+*/
+
+
+/*
+// Function Expression
+
+// Syntax 
+const greetExp = function(name){
+    return `Hello ${name}`;
+}
+
+console.log(greetExp("Amit"));
+
+// Characteristics
+/*
+// Not fully hoisted
+sayHelloExp();  // referenceError: Cannot access 'sayHelloExp' before initialization because only the variable declaration is hoisted, not its value.
+const sayHelloExp = function(){
+    console.log(`Hello`);
+};
+*/
+// Internally:
+
+/*
+const sayHelloExp;
+
+// then
+sayHelloExp = function(){
+    console.log(`Hello`);
+};
+
+Before Assignment:
+
+sayHello
+
+doesn't contains a function
+*/
+
+/*
+// Arrow Function
+
+// Syntax 
+
+const greetArrow = (name) =>{
+    return `Hello ${name}`
+}
+console.log(greetArrow("Amit"));
+
+
+// Short Form
+
+const greetArrowShort = name => `Hello ${name}`;
+console.log(greetArrowShort("Amit"));
+
+*/
+
+/*
+| Feature                    | Function Declaration | Function Expression | Arrow Function |
+| -------------------------- | -------------------- | ------------------- | -------------- |
+| Hoisted                    | ✅ Yes               | ❌ No                | ❌ No          |
+| Has own `this`             | ✅ Yes               | ✅ Yes               | ❌ No          |
+| Can be constructor (`new`) | ✅ Yes               | ✅ Yes               | ❌ No          |
+| Has `arguments` object     | ✅ Yes               | ✅ Yes               | ❌ No          |
+| Short syntax               | ❌                   | ❌                   | ✅             |
+*/
+
+/*
+// Biggest Difference: this
+
+// Function Declaration
+
+const person = {
+    name : "Amit",
+    greet: function(){
+        console.log(this.name); // this === person
+    }
+};
+
+person.greet();
+
+// Arrow Function
+
+const personArrow = {
+    name: "Amit",
+    greetWithName: ()=>{
+        console.log(this.name);
+    }
+};
+
+personArrow.greetWithName(); // undefined Why? Arrow function does not it's own this.
+// They inherit this from their surrounding scope.
+
+// Constructor Example
+
+// Function Declaration
+function Person(name){
+    this.name = name;
+};
+
+p1 = new Person("Amit");
+
+console.log(p1.name); // Amit
+
+*/
+
+// Arrow function
+/*
+const PersonWithArrow = (name)=>{
+    this.name = name;
+};
+
+p2 = new PersonWithArrow('Amit')
+
+console.log(p1.name); // Uncaught TypeError: PersonWithArrow is not a constructor
+// Arrow function cannot be used with new.
+
+*/
+
+/*
+// Function Declaration
+function greeting(){};
+
+// 1. Fully hoisted.
+// 2. Has its own this.
+// 3. Can be used as constructor.
+
+
+// Function Expression
+const greetingWithExpression = function (){};
+
+// 1. Not fully hoisted.
+// 2. Has its own this.
+// 3. Can be used as constructor.
+
+// Arrow Function
+const greetingWithArrow = () => {}
+
+// 1. Not hoisted like declarations.
+// 2. No own this.
+// 3. Cannot be used constructor.
+// 4. Shorter Syntax.
+
+// Rule of Thumb
+
+// Use function declaration for reusable functions.
+// Use function declaration when assigning function to a variable.
+// Use arrow functions for callbacks(map,filter,reduce), event listeners where lexical this is desired.
+
+*/
+
+// 2. Difference between:
+// - `slice`
+// - `splice`
+
+/*
+
+| Feature                 | `slice()`          | `splice()`                |
+| ----------------------- | ------------------ | ------------------------- |
+| Modifies Original Array | ❌ No              | ✅ Yes                     |
+| Returns                 | New Array          | Removed Elements          |
+| Used For                | Copying/Extracting | Adding/Removing/Replacing |
+| Mutates Array           | ❌ No              | ✅ Yes                     |
+
+*/
+
+
+// 1. slice() - used to extract a portion of an array.
+
+// Syntax:
+/*
+array.slice(start,end);
+start -> inclusive
+end -> exclusive
+*/
+
+/*
+
+const numbers = [
+    10,
+    20,
+    30,
+    40,
+    50
+];
+
+result = numbers.slice(1,4);
+console.log(result); // [20,30,40]
+
+*/
+
+// 2. splice() - Used to remove, add and replace elements in the original array.
+
+//Syntax
+/*
+array.splice(start,deleteCount,item1,item2,items3);
+*/
+
+/*
+
+const numbersSplice = [
+    10,
+    20,
+    30,
+    40,
+    50
+];
+
+// remove elements
+
+numbersSplice.splice(1,2)
+
+console.log(numbersSplice); // [10,40,50]
+
+// add elements
+
+numbersSplice.splice(1,0,20,60);
+
+console.log(numbersSplice); // [10,20,60,40,50]
+
+// replacing element
+
+numbersSplice.splice(2,1,30)
+
+console.log(numbersSplice); // [10,20,30,40,50]
+
+*/
+
+// 3. 1. Difference between:
+// - `for...in`
+// - `for...of`
+
+/*
+| Feature             | `for...in`       | `for...of`                              |
+| ------------------- | ---------------- | --------------------------------------- |
+| Returns             | Keys / Indexes   | Values                                  |
+| Works On            | Objects & Arrays | Iterables (Arrays, Strings, Maps, Sets) |
+| Best For            | Objects          | Arrays                                  |
+| Gives Actual Value? | ❌ No            | ✅ Yes                                   |
+*/
+
+/*
+
+// 1. for...in
+
+// Objects
+const personObj = {
+    name: "Amit",
+    age: 28
+};
+
+for (key in personObj) console.log(key,personObj[key]);
+
+// Arrays
+
+const numbersLoop = [
+    10,
+    20,
+    30
+];
+
+for(index in numbersLoop) console.log(index,numbersLoop[index]);
+
+// 2. for... of -> returns actual value
+
+// Array Example:
+
+const numbersOfLoop = [
+    10,
+    20,
+    30
+]
+
+for(const num of numbersOfLoop) console.log(num);
+
+const stringLoop = "Amit";
+
+for(const letter of stringLoop) console.log(letter);
+
+*/
+
+// 4. Difference between:
+// - shallow copy
+// - deep copy
+/*
+| Feature                               | Shallow Copy        | Deep Copy           |
+| ------------------------------------- | ------------------  | ------------------- |
+| Top-level properties copied           | ✅ Yes              | ✅ Yes               |
+| Nested objects copied                 | ❌ Reference shared | ✅ Completely copied |
+| Changes affect original nested object | ✅ Yes              | ❌ No                |
+| Memory                                | Less                | More                 |
+*/
+
+// 1. 1. Shallow Copy - Copies only the first level.
+
+/*
+
+const personShallow = {
+    name: "Amit",
+    address: {
+        city: "Cuttack"
+    }
+};
+
+const personShallowCopied = {...personShallow};
+
+personShallow.name = "Rohit"
+personShallow.address.city = "Bhubaneswar" // this takes the reference of the object and the changes are reflected in shallow copy.
+
+console.log(personShallowCopied);
+
+personShallow.name = "Rohit"
+
+*/
+
+// Memory Visualization
+/*
+person
+ │
+ ├─ name → "Amit"
+ │
+ └─ address ─────────┐
+                     │
+copiedPerson         │
+ │                   │
+ ├─ name → "Amit"    │
+ │                   │
+ └─ address ─────────┘
+ */
+// Both share the same nested object.
+
+/*
+
+// Common Ways to Create Shallow Copy
+
+// 1. Spread Operator
+
+const shallowCopy1 = {...personShallow};
+
+// 2. Object.assign()
+
+const shallowCopy2 = Object.assign({},personShallow);
+
+// 3. Array spread Operator
+
+const NumbersShallowArray = [1,2,3,4,5];
+
+const shallowCopy3 = [...NumbersShallowArray];
+
+// 5. Array.slice
+
+const shallowCopy4 = NumbersShallowArray.slice();
+
+
+// 2. Deep Copy - copies completely independent copies including the nested objects and arrays.
+
+const personDeep = {
+    name: "Amit",
+    address : {
+        city: "Mumbai",
+        state: "MH"
+    }
+}
+
+const personDeepCopied = structuredClone(personDeep);
+
+personDeepCopied.address.city = "Bhubaneswar";
+personDeepCopied.address.state = "OD";
+
+
+console.log(personDeep.address.city, personDeep.address.state);
+console.log(personDeepCopied.address.city, personDeepCopied.address.state);
+
+*/
+
+/* Memory Visual Representation
+
+user1 ----------> {
+                    name:"Amit"
+                    address ---> {
+                                   city:"Mumbai"
+                                 }
+                 }
+
+user2 ----------> {
+                    name:"Amit"
+                    address ---> {
+                                   city:"Delhi"
+                                 }
+                 }
+
+*/
+
+/*
+
+// Ways to Create a Deep Copy
+
+// 1. structuredClone()
+
+const deepCopy1 = structuredClone(personDeep);
+
+// Advantages : 1. Handles Nested Objects 
+//              2. Handles Arrays 
+//              3. Handles Map & Set 
+//              4. Handles circular reference
+
+// 2. JSON Method.
+
+const deepCopy2 = JSON.parse(JSON.stringify(personDeep))
+
+// Advantages : 1. Works for Objects, Arrays, Strings, Numbers, Boolean
+// Disadvantages : 1. Does not works correctly for Date, Map, Set, Functions, undefined, circular references and BigInt
+
+// For example 
+
+const dateDeep = {
+    date : new Date()
+}
+
+console.log(dateDeep.date); // Sat Jun 27 2026 13:18:40 GMT+0530 (India Standard Time)
+
+const dateDeepCopy = JSON.parse(JSON.stringify(dateDeep))
+
+console.log(dateDeepCopy.date); // 2026-06-27T07:48:48.285Z
+
+*/
+
+/* Comparison
+| Feature               | Shallow Copy | Deep Copy        |
+| --------------------- | ------------ | ---------------- |
+| Creates new object    | ✅           | ✅                |
+| Nested objects copied | ❌ Shared    | ✅ Independent    |
+| Nested arrays copied  | ❌ Shared    | ✅ Independent    |
+| Fast                  | ✅           | ❌ Usually slower |
+| Memory usage          | Low          | Higher           |
+| Safe for nested data  | ❌           | ✅                |
+
+*/
+
+/*
+// Array Example
+
+const deepArray =  [
+    1,
+    2,
+    [3,4]
+];
+
+
+const deepArrayCopy1 = structuredClone(deepArray);
+
+const deepArrayCopy2 = JSON.parse(JSON.stringify(deepArray));
+
+*/
+
+// Logic Building Questions
+
+// 1. Rotate array by k positions.
+
+// Input:
+let arr = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+let k = 7
+
+// slice() Method
+function rotateArrayByKSliceMethod(arr,k){
+    k%=arr.length; // 7%15 = 7
+    return [...arr.slice(arr.length-k),...arr.slice(0,arr.length-k)];
+}
+
+console.log(rotateArrayByKSliceMethod(arr,k));
+
+// pop() and unshift() method
+function rotateArrayByKPopUnshiftMethod(arr,k){
+    k%=arr.length; // 7%15 = 7
+    for(let i=0;i<k;i++){
+        let lastElement = arr.pop();
+        arr.unshift(lastElement);
+    }
+    return arr
+}
+
+console.log(rotateArrayByKPopUnshiftMethod(arr,k));
+
+// Reverse Alogrithm
+
+let arr1 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+
+function reverse(arr,start,end){
+    while(end>start){
+        [arr[start], arr[end]] = [arr[end] , arr[start]]
+        start++;
+        end--;
+    }
+}
+
+function rotateArrayRightByK(arr,k){
+    reverse(arr,0,arr.length-1); // [15,14,13,12,11,10,9,8,7,6,5,4,3,2,1]
+    reverse(arr,0,k-1); // [9,10,11,12,13,14,15,8,7,6,5,4,3,2,1]
+    reverse(arr,k,arr.length-1);
+
+    return arr;
+}
+
+console.log(rotateArrayRightByK(arr1,k));
+
+let arr2 = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15]
+
+// Required Output = [8,9,10,11,12,13,14,15,1,2,3,4,5,6,7]
+function rotateArrayByLeftByK(arr,k){
+    reverse(arr,0,k-1); // [7,6,5,4,3,2,1,8,9,10,11,12,13,14,15]
+    reverse(arr,k,arr.length-1); // [7,6,5,4,3,2,1,15,14,13,12,11,10,9,8]
+    reverse(arr,0,arr.length-1)
+}
+
+console.log(rotateArrayByLeftByK(arr2,k));
+
+// 2. Find frequency of characters in string.
+
+function frequencyOfCharactersInString(str){
+    let frequency = {};
+    str = str.toLowerCase();
+    for (let char of str){
+        if(frequency[char]){
+            frequency[char]++;
+        }else{
+            frequency[char] = 1;
+        }
+    }
+    return frequency;
+}
+
+console.log(frequencyOfCharactersInString("Racecar"));
+
+// 3. Find longest word in sentence.
+
+function longestWordInSentence(sentence){
+    let longestWord = "";
+    let words = sentence.split(" ");
+    for(word of words){
+        if(longestWord.length<word.length){
+            longestWord = word;
+        }
+    }
+    return longestWord;
+}
+
+console.log(longestWordInSentence("I love learning JavaScript programming, problem-solving and web-development"));
+
+
+// 4. Check if two strings are anagrams.
+// Two strings are anagrams if they contain the same characters with the same frequency, but possibly in a different order.
+// Eg. "listen"&"silent","heart"&"earth","triangle"&"integral", etc
+
+function isAnagram(str1,str2){
+    let word1 = str1.toLowerCase().replace(/\s/g,"");
+    let word2 = str2.toLowerCase().replace(/\s/g,"");
+    if(word1.length !== word2.length) return false;
+    let frequency = {};
+    for(char of word1) frequency[char] = (frequency[char] || 0 ) + 1;
+    for(char of word2){
+        if(!frequency[char]) return false;
+        frequency[char]--;
+    }
+    return true;
+}
+
+console.log(isAnagram("heart","earth"));
+console.log(isAnagram("triangle","integral"));
+console.log(isAnagram("hello","world"));
+
+// 5. Capitalize first letter of every word
+
+function capitalizeFirstLetterOfWords(sentence){
+    let words = sentence.split(" ");
+
+    for(let i =0;i <words.length; i++){
+        words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    }
+
+    return words.join(" ");
+}
+
+console.log(capitalizeFirstLetterOfWords("i love Javascript programming"));
+
+// Using map() function 
+
+function capitalizeFirstLetterOfWordsUsingMap(sentence){
+    return sentence.split(" ").map((word)=>word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
+}
+
+console.log(capitalizeFirstLetterOfWordsUsingMap("i love functional programming with javascript"));
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,455 @@
+/* profile.css */
+
+.profile-container{
+
+    min-height:100vh;
+
+    padding:48px 20px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    background:var(--background);
+
+}
+
+.profile-card{
+
+    width:100%;
+
+    max-width:950px;
+
+    background:var(--surface);
+
+    border:1px solid var(--border);
+
+    border-radius:24px;
+
+    padding:40px;
+
+    box-shadow:var(--shadow);
+
+    animation:fadeUp .35s ease;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(25px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.profile-header{
+
+    text-align:center;
+
+    margin-bottom:40px;
+
+}
+
+.profile-header h1{
+
+    font-size:36px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+    margin-bottom:10px;
+
+}
+
+.profile-header p{
+
+    font-size:16px;
+
+    color:var(--text-light);
+
+}
+
+.profile-avatar-section{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:22px;
+
+    margin-bottom:42px;
+
+}
+
+.profile-avatar-section img{
+
+    width:170px;
+
+    height:170px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    border:6px solid #EEF2FF;
+
+    box-shadow:
+
+        0 15px 35px rgba(0,0,0,.12);
+
+    transition:.3s;
+
+}
+
+.profile-avatar-section img:hover{
+
+    transform:scale(1.03);
+
+}
+
+.avatar-buttons{
+
+    display:flex;
+
+    gap:14px;
+
+    flex-wrap:wrap;
+
+}
+
+.avatar-buttons button{
+
+    height:46px;
+
+    padding:0 22px;
+
+    border-radius:12px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#uploadImage{
+
+    background:var(--primary);
+
+    color:#fff;
+
+}
+
+#uploadImage:hover{
+
+    background:var(--primary-hover);
+
+    transform:translateY(-2px);
+
+}
+
+#removeImage{
+
+    background:#FEE2E2;
+
+    color:#B91C1C;
+
+}
+
+#removeImage:hover{
+
+    background:#FECACA;
+
+}
+
+.form-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:24px;
+
+    margin-bottom:40px;
+
+}
+
+.account-info{
+
+    margin-bottom:40px;
+
+    padding-top:32px;
+
+    border-top:1px solid var(--border);
+
+}
+
+.account-info h2{
+
+    margin-bottom:24px;
+
+    font-size:24px;
+
+    color:var(--text);
+
+}
+
+.info-row{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:16px 0;
+
+    border-bottom:1px solid var(--border);
+
+}
+
+.info-row:last-child{
+
+    border-bottom:none;
+
+}
+
+.info-row span{
+
+    color:var(--text-light);
+
+    font-size:15px;
+
+}
+
+.info-row strong{
+
+    color:var(--text);
+
+    font-size:15px;
+
+    font-weight:600;
+
+}
+
+.profile-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:16px;
+
+    flex-wrap:wrap;
+
+}
+
+.profile-actions button{
+
+    min-width:150px;
+
+}
+
+.change-password-card{
+
+    margin-top:45px;
+
+    padding:28px;
+
+    border-radius:20px;
+
+    border:1px solid var(--border);
+
+    background:var(--surface);
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:16px;
+
+}
+
+.change-password-card h2{
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:var(--text);
+
+}
+
+.change-password-card p{
+
+    color:var(--text-light);
+
+    line-height:1.7;
+
+}
+
+#changePasswordButton{
+
+    width:220px;
+
+    height:48px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:var(--primary);
+
+    color:#fff;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+#changePasswordButton:hover{
+
+    background:var(--primary-hover);
+
+    transform:translateY(-2px);
+
+}
+
+@media(max-width:768px){
+
+    .profile-card{
+
+        padding:28px;
+
+    }
+
+    .profile-text .welcome{
+
+    display:none;
+
+    }
+
+    .profile-header h1{
+
+        font-size:30px;
+
+    }
+
+    .profile-button{
+
+    width:100%;
+
+    justify-content:space-between;
+
+    }
+
+    .profile-button img{
+
+    width:42px;
+
+    height:42px;
+
+    }
+
+    .username{
+
+    font-size:15px;
+
+    }
+
+    .form-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .profile-actions{
+
+        flex-direction:column;
+
+    }
+
+    .profile-actions button{
+
+        width:100%;
+
+    }
+
+    .avatar-buttons{
+
+        width:100%;
+
+        flex-direction:column;
+
+    }
+
+    .avatar-buttons button{
+
+        width:100%;
+
+    }
+
+    #changePasswordButton{
+
+        width:100%;
+
+    }
+
+}
+
+@media(max-width:480px){
+
+    .profile-container{
+
+        padding:24px 12px;
+
+    }
+
+    .profile-card{
+
+        padding:22px;
+
+    }
+
+    .profile-avatar-section img{
+
+        width:140px;
+
+        height:140px;
+
+    }
+
+    .profile-header h1{
+
+        font-size:26px;
+
+    }
+
+    .account-info h2{
+
+        font-size:20px;
+
+    }
+
+}

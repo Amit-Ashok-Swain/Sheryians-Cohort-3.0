@@ -1,0 +1,153 @@
+/* filter.css */
+
+.filter-bar{
+
+    display:grid;
+
+    grid-template-columns:
+
+        repeat(3,1fr)
+
+        auto;
+
+    gap:16px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    background:var(--background);
+
+    border-radius:18px;
+
+}
+
+.filter-group{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:16px;
+
+    flex-wrap:wrap;
+
+    flex:1;
+
+}
+
+.filter-bar select{
+
+    height:48px;
+
+    border-radius:12px;
+
+    padding:0 14px;
+
+    font-size:14px;
+
+}
+
+.filter-bar select:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(59,130,246,.12);
+
+}
+
+.filter-bar input{
+
+    min-width:260px;
+
+    height:46px;
+
+    padding:0 16px;
+
+    border:1px solid var(--border);
+
+    border-radius:12px;
+
+    background:var(--surface);
+
+    color:var(--text);
+
+    transition:.25s;
+
+}
+
+.filter-bar input::placeholder{
+
+    color:var(--text-light);
+
+}
+
+.filter-bar input:focus{
+
+    border-color:var(--primary);
+
+    box-shadow:0 0 0 4px rgba(59,130,246,.12);
+
+}
+
+#clearFilters{
+
+    height:48px;
+
+    padding:0 20px;
+
+    border-radius:12px;
+
+}
+
+#clearFilters:hover{
+
+    background:#EF4444;
+
+    color:white;
+
+    border-color:#EF4444;
+
+    transform:translateY(-2px);
+
+}
+
+#clearFilters:active{
+
+    transform:translateY(0);
+
+}
+
+@media(max-width:768px){
+
+    .filter-bar{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    .filter-group{
+
+        width:100%;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    .filter-bar input,
+
+    .filter-bar select,
+
+    #clearFilters{
+
+        width:100%;
+
+        min-width:unset;
+
+    }
+
+}

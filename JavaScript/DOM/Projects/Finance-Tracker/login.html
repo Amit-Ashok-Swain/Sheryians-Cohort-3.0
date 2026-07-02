@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Login | FinTrack Pro</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/images/logo-icon.png" type="image/png">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/auth.css">
+
+</head>
+
+<body>
+
+    <div class="auth-container">
+
+        <div class="auth-card">
+
+            <div class="auth-logo">
+
+            <img
+                src="assets/images/logo-dark.png"
+                alt="Finance Tracker Logo"
+            >
+
+            </div>
+
+            <div class="auth-header">
+
+                <h1>
+
+                    Welcome Back 👋
+
+                </h1>
+
+                <p>
+
+                    Login to continue managing your finances.
+
+                </p>
+
+            </div>
+
+            <form
+                id="loginForm"
+                novalidate
+            >
+
+                <!-- Username / Email -->
+
+                <div class="form-group">
+
+                    <label for="loginIdentifier">
+
+                        Username or Email
+
+                    </label>
+
+                    <input
+
+                        type="text"
+
+                        id="loginIdentifier"
+
+                        placeholder="Enter Username or Email"
+
+                        autocomplete="username"
+
+                    >
+
+                    <small
+                        class="error"
+                        id="loginIdentifierError"
+                    ></small>
+
+                </div>
+
+                <!-- Password -->
+
+                <div class="form-group">
+
+                    <label for="password">
+
+                        Password
+
+                    </label>
+
+                    <div class="password-wrapper">
+
+                        <input
+
+                            type="password"
+
+                            id="password"
+
+                            placeholder="Enter Password"
+
+                            autocomplete="current-password"
+
+                        >
+
+                        <button
+
+                            type="button"
+
+                            id="togglePassword"
+
+                            class="toggle-password"
+
+                        >
+
+                            👁
+
+                        </button>
+
+                    </div>
+
+                    <small
+                        class="error"
+                        id="passwordError"
+                    ></small>
+
+                </div>
+
+                <!-- Password Strength (Hidden for Login) -->
+
+                <div
+                    class="password-strength hidden"
+                    id="passwordStrengthContainer"
+                >
+
+                    <div
+                        class="strength-bar"
+                        id="strengthProgress"
+                    ></div>
+
+                    <small id="strengthText">
+
+                        Password Strength
+
+                    </small>
+
+                </div>
+
+                <!-- Remember -->
+
+                <div class="remember-forgot">
+
+                    <label class="remember-me">
+
+                        <input
+                            type="checkbox"
+                            id="rememberMe"
+                        >
+
+                        Remember Me
+
+                    </label>
+
+                    <a
+                        href="forgot-password.html"
+                        id="forgotPasswordLink"
+                    >
+
+                        Forgot Password?
+
+                    </a>
+
+                </div>
+
+                <!-- Login -->
+
+                <button
+
+                    type="submit"
+
+                    class="btn btn-primary"
+
+                    id="loginBtn"
+
+                >
+
+                    Login
+
+                </button>
+
+            </form>
+
+            <div class="divider">
+
+                <span>
+
+                    OR
+
+                </span>
+
+            </div>
+
+            <div class="auth-footer">
+
+                <p>
+
+                    Don't have an account?
+
+                    <a href="register.html">
+
+                        Create one now
+
+                    </a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+<script src="./js/constants.js"></script>
+<script src="./js/storage.js"></script>
+
+<script src="./js/utils/format.js"></script>
+<script src="./js/utils/helpers.js"></script>
+<script src="./js/utils/validator.js"></script>
+<script src="./js/utils/toast.js"></script>
+<script src="./js/theme.js"></script>
+
+<script src="./js/auth.js"></script>
+<script src="./js/app.js"></script>
+
+</body>
+
+</html>

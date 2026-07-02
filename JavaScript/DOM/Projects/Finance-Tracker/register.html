@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Register | FinTrack Pro</title>
+    <link rel="icon" type="image/png" sizes="192x192" href="./assets/images/logo-icon.png" type="image/png">
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/variables.css">
+    <link rel="stylesheet" href="./css/global.css">
+    <link rel="stylesheet" href="./css/auth.css">
+</head>
+
+<body>
+
+<main class="auth-container">
+
+    <section class="auth-card">
+
+        <div class="auth-logo">
+
+            <img
+                src="assets/images/logo-dark.png"
+                alt="Finance Tracker Logo"
+            >
+
+        </div>
+
+        <div class="auth-header">
+
+            <h1>Create Account</h1>
+
+            <p>
+                Start managing your finances smarter.
+            </p>
+
+        </div>
+
+        <form id="registerForm" novalidate>
+
+            <div class="form-row">
+
+                <div class="form-group">
+
+                    <label for="firstName">
+
+                        First Name
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        placeholder="John"
+                    >
+
+                    <small
+                        class="error"
+                        id="firstNameError">
+                    </small>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="lastName">
+
+                        Last Name
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        placeholder="Doe"
+                    >
+
+                    <small
+                        class="error"
+                        id="lastNameError">
+                    </small>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="username">
+
+                    Username
+
+                </label>
+
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    autocomplete="username"
+                    placeholder="john_doe"
+                >
+
+                <small
+                    class="error"
+                    id="usernameError">
+                </small>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="email">
+
+                    Email
+
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    autocomplete="email"
+                    placeholder="john@example.com"
+                >
+
+                <small
+                    class="error"
+                    id="emailError">
+                </small>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="password">
+
+                    Password
+
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        autocomplete="new-password"
+                        placeholder="Enter Password"
+                    >
+
+                    <button
+                        type="button"
+                        id="togglePassword">
+
+                        👁
+
+                    </button>
+
+                </div>
+
+                <small
+                    class="error"
+                    id="passwordError">
+                </small>
+
+            </div>
+
+            <div class="password-strength">
+
+                <div class="strength-bar">
+
+                    <div
+                        class="strength-progress"
+                        id="strengthProgress">
+                    </div>
+
+                </div>
+
+                <p id="strengthText">
+
+                    Password Strength
+
+                </p>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="confirmPassword">
+
+                    Confirm Password
+
+                </label>
+
+                <div class="password-wrapper">
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        autocomplete="new-password"
+                        placeholder="Confirm Password"
+                    >
+
+                    <button
+                        type="button"
+                        id="toggleConfirmPassword">
+
+                        👁
+
+                    </button>
+
+                </div>
+
+                <small
+                    class="error"
+                    id="confirmPasswordError">
+                </small>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="securityQuestion">
+
+                    Security Question
+
+                </label>
+
+                <select
+                    id="securityQuestion"
+                    name="securityQuestion"
+                >
+
+                    <option value="">
+
+                        Select a Security Question
+
+                    </option>
+
+                    <option value="school">
+
+                        What was your first school name?
+
+                    </option>
+
+                    <option value="pet">
+
+                        What was your first pet's name?
+
+                    </option>
+
+                    <option value="teacher">
+
+                        Who was your favorite teacher?
+
+                    </option>
+
+                    <option value="city">
+
+                        Which city were you born in?
+
+                    </option>
+
+                    <option value="mother">
+
+                        What is your mother's maiden name?
+
+                    </option>
+
+                </select>
+
+                <small
+                    class="error"
+                    id="securityQuestionError"
+                ></small>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="securityAnswer">
+
+                    Security Answer
+
+                </label>
+
+                <input
+                    type="text"
+                    id="securityAnswer"
+                    name="securityAnswer"
+                    placeholder="Enter your answer"
+                    autocomplete="off"
+                >
+
+                <small
+                    class="error"
+                    id="securityAnswerError"
+                ></small>
+
+            </div>
+
+            <div class="checkbox-group">
+
+                <input
+                    type="checkbox"
+                    id="termsCheckbox"
+                >
+
+                <label for="termsCheckbox">
+
+                    I agree to the
+                    <a href="#">
+                        Terms & Conditions
+                    </a>
+
+                </label>
+
+            </div>
+
+            <small
+                class="error"
+                id="termsError">
+            </small>
+
+            <button
+                type="submit"
+                id="registerBtn"
+                class="btn btn-primary">
+
+                Create Account
+
+            </button>
+
+        </form>
+
+        <div class="auth-footer">
+
+            Already have an account?
+
+            <a href="login.html">
+
+                Login
+
+            </a>
+
+        </div>
+
+    </section>
+
+</main>
+
+<script src="./js/constants.js"></script>
+<script src="./js/storage.js"></script>
+
+<script src="./js/utils/format.js"></script>
+<script src="./js/utils/toast.js"></script>
+<script src="./js/utils/helpers.js"></script>
+<script src="./js/utils/validator.js"></script>
+<script src="./js/theme.js"></script>
+
+<script src="./js/auth.js"></script>
+<script src="./js/app.js"></script>
+
+</body>
+</html>
