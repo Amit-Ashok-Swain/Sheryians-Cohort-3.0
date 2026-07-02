@@ -6,17 +6,22 @@
 
 }
 
-html,body{
-        background:
-        radial-gradient(circle at top left,#2563eb 0%,transparent 30%),
-        radial-gradient(circle at bottom right,#7c3aed 0%,transparent 35%),
-        linear-gradient(135deg,#020617,#0f172a);
-}
-
+html,
 body{
+
+    min-height:100%;
+
+    background:
+        radial-gradient(circle at top left,#2563EB 0%,transparent 30%),
+        radial-gradient(circle at bottom right,#7C3AED 0%,transparent 35%),
+        linear-gradient(135deg,#020617,#0F172A);
+
     background-repeat:no-repeat;
+
     background-size:cover;
+
     background-attachment:fixed;
+
 }
 
 .auth-container{
@@ -44,6 +49,8 @@ body{
 
     border-radius:24px;
 
+    -webkit-backdrop-filter:blur(18px);
+
     background:rgba(15,23,42,.75);
 
     backdrop-filter:blur(18px);
@@ -51,6 +58,12 @@ body{
     border:1px solid rgba(255,255,255,.06);
 
     animation:fadeUp .6s ease;
+
+        transition:
+
+        transform .3s ease,
+
+        box-shadow .3s ease;
 
     box-shadow:
 
@@ -77,6 +90,18 @@ body{
         transform:translateY(0);
 
     }
+
+}
+
+.auth-card:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+        0 45px 90px rgba(0,0,0,.6),
+
+        0 0 0 1px rgba(255,255,255,.08);
 
 }
 
@@ -126,7 +151,7 @@ body{
 
     line-height:1.7;
 
-    color:#94a3b8;
+    color:#CBD5E1;
 
 }
 
@@ -150,29 +175,53 @@ body{
 
 }
 
-.auth-card.form-group select{
+.form-group label{
+    color:#F8FAFC;
+}
+
+.auth-card .form-group select{
 
     cursor:pointer;
 
 }
 
-.auth-card.form-group select option{
+.auth-card .form-group select option{
 
-    background:#1e293b;
+    background:#1E293B;
 
-    color:#ffffff;
+    color:#FFFFFF;
+
+}
+
+.auth-card .form-group input:focus,
+.auth-card .form-group select:focus{
+
+    border-color:#3B82F6;
+
+    box-shadow:0 0 0 3px rgba(59,130,246,.25);
 
 }
 
-.auth-card.form-group input:focus,
-.auth-card.form-group select:focus{
+.form-group input,
+.form-group select{
 
-    border-color:#3b82f6;
+    width:100%;
 
-    box-shadow:
-        0 0 0 3px rgba(59,130,246,.25);
+    color:#FFFFFF;
+
+    background:rgba(30,41,59,.9);
+
+    border:1px solid rgba(255,255,255,.08);
 
 }
+
+.form-group input::placeholder{
+
+    color:#94A3B8;
+
+}
+
+
 
 button,
 input,
@@ -209,7 +258,7 @@ select{
 
     font-size:.85rem;
 
-    color:var(--text-secondary);
+    color:#CBD5E1;
 
 }
 
@@ -345,7 +394,7 @@ select{
 
     margin-top:2rem;
 
-    color:#94a3b8;
+    color:#CBD5E1;
 
     text-align:center;
 
@@ -451,7 +500,7 @@ select{
 
     margin:2.5rem 0;
 
-    color:#64748b;
+    color:#CBD5E1;
 
 }
 
@@ -475,7 +524,7 @@ select{
 
     font-size:.9rem;
 
-    color:#94a3b8;
+    color:#CBD5E1;
 
 }
 
@@ -636,7 +685,7 @@ input:-webkit-autofill:focus{
 
     .auth-card{
 
-        padding:1.5rem;
+        padding:1.75rem;
 
         border-radius:18px;
 
@@ -672,6 +721,16 @@ input:-webkit-autofill:focus{
 
     }
 
+    .form-group select{
+
+    appearance:none;
+
+    -webkit-appearance:none;
+
+    color:#FFFFFF;
+
+    }
+
     .form-group input,
 
     .form-group select{
@@ -700,7 +759,7 @@ input:-webkit-autofill:focus{
 
     .checkbox-group{
 
-        align-items:flex-start;
+        align-items:center;
 
     }
 
