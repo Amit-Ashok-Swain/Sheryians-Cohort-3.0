@@ -1,4 +1,5 @@
 // chart.js
+
 let incomeExpenseChart = null;
 let categoryChart = null;
 let monthlyChart = null;

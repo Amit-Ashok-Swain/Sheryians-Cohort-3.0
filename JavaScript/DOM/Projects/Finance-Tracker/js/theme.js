@@ -1,3 +1,5 @@
+// theme.js
+
 const themeToggle =
     document.querySelector("#themeToggle");
 
