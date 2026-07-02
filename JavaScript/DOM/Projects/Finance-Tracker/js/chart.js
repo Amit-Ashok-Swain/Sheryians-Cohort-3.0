@@ -5,16 +5,20 @@ let categoryChart = null;
 let monthlyChart = null;
 let expandedChart = null;
 
-const categoryColors = [
-    "#3B82F6",
-    "#10B981",
-    "#F59E0B",
-    "#EF4444",
-    "#8B5CF6",
-    "#06B6D4",
-    "#F97316",
-    "#EC4899"
-];
+const categoryColors = {
+    Groceries: "#3B82F6",
+    Bills: "#10B981",
+    Entertainment: "#F59E0B",
+    Travel: "#EF4444",
+    Food: "#8B5CF6",
+    Health: "#06B6D4",
+    Shopping: "#F97316",
+    Utilities: "#855124",
+    Other: "#14B8A6",
+    Education: "#f755e1",
+    Salary: "#22C55E",
+    Investment: "#EAB308"
+};
 
 const chartElements = {
     incomeExpenseChart: document.querySelector("#incomeExpenseChart"),
@@ -223,7 +227,9 @@ function updateCategoryChart(){
     else{
         categoryChart.data.labels = Object.keys(categoryTotals);
         categoryChart.data.datasets[0].data = Object.values(categoryTotals);
-        categoryChart.data.datasets[0].backgroundColor = categoryColors;
+        categoryChart.data.datasets[0].backgroundColor = Object.keys(categoryTotals).map(category =>
+        categoryColors[category] || "#9CA3AF"
+        );
     }
     categoryChart.update();
 }
