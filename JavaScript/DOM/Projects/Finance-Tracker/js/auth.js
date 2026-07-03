@@ -1008,11 +1008,16 @@ function logout(){
 
 function protectRoute(){
 
-    if(!isLoggedIn()){
+    if(!appState.currentUser){
 
-        window.location.href = "login.html";
+        window.location.replace("login.html");
+        return false;
 
     }
+
+    document.body.classList.remove("page-loading");
+
+    return true;
 
 }
 

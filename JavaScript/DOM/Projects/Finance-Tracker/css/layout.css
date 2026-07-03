@@ -56,6 +56,12 @@ header{
 
 }
 
+.page-loading{
+
+    visibility:hidden;
+
+}
+
 
 .page{
     width:100%;
