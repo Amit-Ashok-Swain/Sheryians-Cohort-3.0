@@ -438,8 +438,9 @@ function handleRegister(event){
 
     setTimeout(function(){
 
-        window.location.href =
-            "login.html";
+    window.location.replace(
+        "login.html"
+    );
 
     },1500);
 
@@ -724,17 +725,65 @@ function findUser(identifier){
 
 }
 
+// function saveSession(user){
+
+//         appState.currentUser = {...user};
+
+//     if(  authElements.rememberMe && authElements.rememberMe.checked){
+
+//         localStorage.setItem(
+
+//             STORAGE_KEYS.CURRENT_USER,
+
+//             JSON.stringify(user)
+
+//         );
+
+//     }
+
+//     else{
+
+//         sessionStorage.setItem(
+
+//             STORAGE_KEYS.CURRENT_USER,
+
+//             JSON.stringify(user)
+
+//         );
+
+//     }
+
+// }
+
 function saveSession(user){
 
-        appState.currentUser = {...user};
+    const sessionUser = {
 
-    if(  authElements.rememberMe && authElements.rememberMe.checked){
+        id: user.id,
+
+        firstName: user.firstName,
+
+        lastName: user.lastName,
+
+        username: user.username,
+
+        email: user.email,
+
+        profileImage: user.profileImage,
+
+        settings: user.settings
+
+    };
+
+    appState.currentUser = { ...sessionUser };
+
+    if(authElements.rememberMe && authElements.rememberMe.checked){
 
         localStorage.setItem(
 
             STORAGE_KEYS.CURRENT_USER,
 
-            JSON.stringify(user)
+            JSON.stringify(sessionUser)
 
         );
 
@@ -746,7 +795,7 @@ function saveSession(user){
 
             STORAGE_KEYS.CURRENT_USER,
 
-            JSON.stringify(user)
+            JSON.stringify(sessionUser)
 
         );
 
@@ -861,8 +910,9 @@ function handleLogin(event){
 
     setTimeout(function(){
 
-        window.location.href =
-            "index.html";
+        window.location.replace(
+        "index.html"
+        );
 
     },500);
 
@@ -1000,7 +1050,9 @@ function logout(){
 
     setTimeout(function(){
 
-        window.location.href = "login.html";
+    window.location.replace(
+        "login.html"
+    );
 
     },500);
 
@@ -1008,9 +1060,12 @@ function logout(){
 
 function protectRoute(){
 
+    initializeSession();
+
     if(!appState.currentUser){
 
         window.location.replace("login.html");
+
         return false;
 
     }
@@ -1029,7 +1084,9 @@ function protectGuestRoute(){
         console.log("Redirecting to Dashboard...");
         console.log(getCurrentUser());
 
-        window.location.href = "index.html";
+            window.location.replace(
+            "index.html"
+        );
 
     }
 

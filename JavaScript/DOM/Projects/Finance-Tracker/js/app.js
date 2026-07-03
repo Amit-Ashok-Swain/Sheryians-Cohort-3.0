@@ -20,6 +20,19 @@ if (document.querySelector("#forgotPasswordForm")) {
 
 if (document.querySelector("#dashboardPage")) {
 
+
+    window.history.replaceState(null, "", window.location.href);
+
+    window.addEventListener("pageshow", function (event) {
+
+    if (event.persisted) {
+
+        protectRoute();
+
+    }
+
+    });
+
     protectRoute();
 
     initializeDashboard();
