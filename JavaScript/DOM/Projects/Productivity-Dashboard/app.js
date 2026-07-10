@@ -40,7 +40,6 @@ const FocusAudio = (() => {
       const filter = new Tone.Filter(1000, "lowpass");
       synth.chain(filter, reverb, Tone.Destination);
 
-      // ADDED: .start(0) tells the loop to schedule itself on the Transport timeline
       loop = new Tone.Loop((time) => {
         const note1 = notes[Math.floor(Math.random() * notes.length)];
         const note2 = notes[Math.floor(Math.random() * notes.length)];
@@ -265,7 +264,6 @@ const Confetti = (() => {
   return { fire };
 })();
 
-// --- App UI & Routing... ---
 const AppUI = (() => {
   const themeToggle = document.getElementById("theme-toggle");
   let isDark = Storage.load("isDark", true);
@@ -358,7 +356,6 @@ const Router = (() => {
 
   return {
     init: () => {
-      // Allow clicks anywhere on the card to open it (Fixing the unresponsive button issue)
       triggers.forEach((t) =>
         t.addEventListener("click", () => showView(t.dataset.target)),
       );
@@ -403,7 +400,7 @@ const Todo = (() => {
         html = `<div class="text-slate-400 italic text-sm">Inbox Zero! Great job.</div>`;
       } else {
         pending.slice(0, 3).forEach((t) => {
-          html += `<div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300"><i class="ph-bold ph-circle text-brand-500"></i><span class="truncate ${t.important ? "font-bold text-amber-500" : ""}">${t.text}</span></div>`;
+          html += `<div class="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300 min-w-0"><i class="ph-bold ph-circle text-brand-500 shrink-0"></i><span class="truncate ${t.important ? "font-bold text-amber-500" : ""}">${t.text}</span></div>`;
         });
         if (pending.length > 3)
           html += `<div class="text-xs text-slate-400 mt-1 font-bold">+${pending.length - 3} more items</div>`;
@@ -417,25 +414,25 @@ const Todo = (() => {
     list.innerHTML = "";
     if (tasks.length === 0) {
       list.innerHTML =
-        '<div class="text-center py-10 text-slate-500 glass rounded-3xl"><p class="text-lg font-bold">Inbox Zero!</p></div>';
+        '<div class="text-center py-10 text-slate-500 glass rounded-3xl"><p class="text-base sm:text-lg font-bold">Inbox Zero!</p></div>';
     }
 
     tasks
       .sort((a, b) => a.completed - b.completed || b.important - a.important)
       .forEach((t) => {
         const li = document.createElement("li");
-        li.className = `flex items-center justify-between p-4 rounded-2xl transition-all shadow-sm ${t.completed ? "bg-slate-100/50 dark:bg-slate-800/30 opacity-60" : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"} ${t.important && !t.completed ? "border-l-4 border-l-amber-400" : ""}`;
+        li.className = `flex items-center justify-between p-3 sm:p-4 rounded-2xl transition-all shadow-sm gap-2 ${t.completed ? "bg-slate-100/50 dark:bg-slate-800/30 opacity-60" : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700"} ${t.important && !t.completed ? "border-l-4 border-l-amber-400" : ""}`;
 
         li.innerHTML = `
-        <div class="flex items-center gap-4 flex-grow truncate cursor-pointer toggle-cb-wrap" data-id="${t.id}">
-          <button class="toggle-cb w-6 h-6 rounded-full border-2 flex-shrink-0 flex items-center justify-center transition-all ${t.completed ? "border-brand-500 bg-brand-500 text-white" : "border-slate-300 dark:border-slate-600"}" data-id="${t.id}">
-            ${t.completed ? '<i class="ph-bold ph-check text-sm"></i>' : ""}
+        <div class="flex items-center gap-3 sm:gap-4 flex-grow overflow-hidden cursor-pointer toggle-cb-wrap" data-id="${t.id}">
+          <button class="toggle-cb w-6 h-6 shrink-0 rounded-full border-2 flex items-center justify-center transition-all ${t.completed ? "border-brand-500 bg-brand-500 text-white" : "border-slate-300 dark:border-slate-600"}" data-id="${t.id}">
+            ${t.completed ? '<i class="ph-bold ph-check text-xs sm:text-sm"></i>' : ""}
           </button>
-          <span class="text-lg truncate transition-all ${t.completed ? "line-through text-slate-500" : "text-slate-800 dark:text-white"} ${t.important && !t.completed ? "font-bold text-amber-500" : "font-medium"}">${t.text}</span>
+          <span class="text-base sm:text-lg min-w-0 break-words whitespace-normal transition-all ${t.completed ? "line-through text-slate-500" : "text-slate-800 dark:text-white"} ${t.important && !t.completed ? "font-bold text-amber-500" : "font-medium"}">${t.text}</span>
         </div>
-        <div class="flex gap-1 ml-2">
-          <button class="important-btn p-2 rounded-xl transition-all ${t.important ? "text-amber-500 bg-amber-50 dark:bg-amber-900/30" : "text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700"}" data-id="${t.id}"><i class="${t.important ? "ph-fill" : "ph"} ph-star text-xl"></i></button>
-          <button class="delete-btn p-2 rounded-xl text-slate-400 hover:text-white hover:bg-red-500 transition-all" data-id="${t.id}"><i class="ph-bold ph-trash"></i></button>
+        <div class="flex gap-1 ml-2 shrink-0">
+          <button class="important-btn p-1.5 sm:p-2 rounded-xl transition-all ${t.important ? "text-amber-500 bg-amber-50 dark:bg-amber-900/30" : "text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-700"}" data-id="${t.id}"><i class="${t.important ? "ph-fill" : "ph"} ph-star text-lg sm:text-xl"></i></button>
+          <button class="delete-btn p-1.5 sm:p-2 rounded-xl text-slate-400 hover:text-white hover:bg-red-500 transition-all" data-id="${t.id}"><i class="ph-bold ph-trash"></i></button>
         </div>
       `;
         list.appendChild(li);
@@ -538,7 +535,7 @@ const Pomodoro = (() => {
             <svg class="absolute inset-0 w-full h-full -z-10 opacity-20 p-2" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet">
               <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="4" class="${colorClass}"></circle>
             </svg>
-            <div class="text-4xl font-mono font-black ${colorClass} drop-shadow-sm">${format(timeLeft)}</div>
+            <div class="text-3xl sm:text-4xl font-mono font-black ${colorClass} drop-shadow-sm">${format(timeLeft)}</div>
          `;
     }
   };
@@ -561,15 +558,15 @@ const Pomodoro = (() => {
     if (modeWorkBtn && modeBreakBtn && ring) {
       if (isWork) {
         modeWorkBtn.className =
-          "px-6 py-2.5 rounded-full bg-brand-500 text-white shadow-md font-bold transition-all";
+          "flex-1 sm:flex-none px-6 py-2.5 rounded-full bg-brand-500 text-white shadow-md font-bold transition-all truncate";
         modeBreakBtn.className =
-          "px-6 py-2.5 rounded-full text-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-700 font-bold transition-all cursor-pointer";
+          "flex-1 sm:flex-none px-6 py-2.5 rounded-full text-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-700 font-bold transition-all cursor-pointer truncate";
         ring.classList.replace("text-emerald-500", "text-brand-500");
       } else {
         modeBreakBtn.className =
-          "px-6 py-2.5 rounded-full bg-emerald-500 text-white shadow-md font-bold transition-all";
+          "flex-1 sm:flex-none px-6 py-2.5 rounded-full bg-emerald-500 text-white shadow-md font-bold transition-all truncate";
         modeWorkBtn.className =
-          "px-6 py-2.5 rounded-full text-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-700 font-bold transition-all cursor-pointer";
+          "flex-1 sm:flex-none px-6 py-2.5 rounded-full text-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-700 font-bold transition-all cursor-pointer truncate";
         ring.classList.replace("text-brand-500", "text-emerald-500");
       }
     }
@@ -708,22 +705,22 @@ const Planner = (() => {
       let html = "";
       if (currPlan) {
         html += `
-            <div>
+            <div class="min-w-0">
               <div class="text-[10px] font-bold text-amber-500 uppercase tracking-widest mb-1 flex items-center gap-1.5"><span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> NOW</div>
-              <div class="text-sm font-semibold truncate">${currPlan}</div>
+              <div class="text-sm font-semibold truncate w-full">${currPlan}</div>
             </div>`;
       }
       if (nextPlan) {
         html += `
-            <div class="${currPlan ? "opacity-60" : ""}">
+            <div class="min-w-0 ${currPlan ? "opacity-60" : ""}">
               <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">UP NEXT</div>
-              <div class="text-sm font-semibold truncate">${nextPlan}</div>
+              <div class="text-sm font-semibold truncate w-full">${nextPlan}</div>
             </div>`;
       }
 
       if (!currPlan && !nextPlan) {
         html = `
-            <div class="my-auto">
+            <div class="my-auto min-w-0">
               <div class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">STATUS</div>
               <div class="text-sm font-semibold italic text-slate-500">Free time block</div>
             </div>`;
@@ -743,7 +740,7 @@ const Planner = (() => {
       const isCurr = i === currentHr;
 
       const slot = document.createElement("div");
-      slot.className = `flex flex-col sm:flex-row gap-2 sm:gap-4 p-5 rounded-2xl transition-all shadow-sm ${
+      slot.className = `flex flex-col sm:flex-row gap-2 sm:gap-4 p-4 sm:p-5 rounded-2xl transition-all shadow-sm ${
         isCurr
           ? "bg-amber-50/80 dark:bg-amber-900/30 border border-amber-400 transform scale-[1.02] z-10"
           : isPast
@@ -755,7 +752,7 @@ const Planner = (() => {
         <div class="flex items-center sm:w-28 shrink-0 font-bold ${isCurr ? "text-amber-600 dark:text-amber-400 text-lg" : "text-slate-500"}">
           ${isCurr ? '<i class="ph-fill ph-clock-countdown mr-2 animate-pulse"></i>' : ""} ${formatHr(i)}
         </div>
-        <input type="text" data-hr="${i}" value="${plans[i] || ""}" placeholder="${isCurr ? "What are you doing right now?" : "Plan block..."}" class="planner-input flex-grow bg-transparent border-none focus:ring-0 px-2 py-1 outline-none text-slate-800 dark:text-white font-medium ${isPast ? "line-through decoration-slate-400" : ""} placeholder-slate-400">
+        <input type="text" data-hr="${i}" value="${plans[i] || ""}" placeholder="${isCurr ? "What are you doing right now?" : "Plan block..."}" class="planner-input flex-grow min-w-0 w-full bg-transparent border-none focus:ring-0 px-2 py-1 outline-none text-slate-800 dark:text-white font-medium ${isPast ? "line-through decoration-slate-400" : ""} placeholder-slate-400">
       `;
       container.appendChild(slot);
     }
@@ -829,19 +826,19 @@ const Goals = (() => {
     } else {
       goals.forEach((g) => {
         const li = document.createElement("li");
-        li.className = `flex items-center justify-between p-5 rounded-2xl transition-all cursor-pointer shadow-sm ${
+        li.className = `flex items-center justify-between p-4 sm:p-5 rounded-2xl transition-all cursor-pointer shadow-sm gap-2 ${
           g.completed
             ? "border border-emerald-400 bg-emerald-50 dark:bg-emerald-900/30 shadow-[0_0_15px_rgba(52,211,153,0.1)]"
             : "border border-slate-200 bg-white dark:bg-slate-800 dark:border-slate-700 hover:border-emerald-300"
         }`;
         li.innerHTML = `
-            <div class="flex items-center gap-4 flex-grow goal-toggle" data-id="${g.id}">
-              <div class="w-8 h-8 rounded-full flex items-center justify-center transition-all ${g.completed ? "bg-emerald-500 text-white scale-110 shadow-lg shadow-emerald-500/30" : "bg-slate-100 dark:bg-slate-700 text-slate-400"}">
-                ${g.completed ? '<i class="ph-bold ph-check"></i>' : ""}
+            <div class="flex items-center gap-3 sm:gap-4 flex-grow overflow-hidden goal-toggle" data-id="${g.id}">
+              <div class="w-6 h-6 sm:w-8 sm:h-8 shrink-0 rounded-full flex items-center justify-center transition-all ${g.completed ? "bg-emerald-500 text-white scale-110 shadow-lg shadow-emerald-500/30" : "bg-slate-100 dark:bg-slate-700 text-slate-400"}">
+                ${g.completed ? '<i class="ph-bold ph-check text-xs sm:text-base"></i>' : ""}
               </div>
-              <span class="text-lg font-bold ${g.completed ? "text-emerald-700 dark:text-emerald-400 line-through opacity-70" : "text-slate-800 dark:text-white"}">${g.text}</span>
+              <span class="text-base sm:text-lg min-w-0 break-words whitespace-normal font-bold ${g.completed ? "text-emerald-700 dark:text-emerald-400 line-through opacity-70" : "text-slate-800 dark:text-white"}">${g.text}</span>
             </div>
-            <button class="goal-del text-slate-400 hover:text-red-500 p-2 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors" data-id="${g.id}"><i class="ph-bold ph-trash"></i></button>
+            <button class="goal-del shrink-0 text-slate-400 hover:text-red-500 p-1.5 sm:p-2 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors" data-id="${g.id}"><i class="ph-bold ph-trash text-lg"></i></button>
           `;
         list.appendChild(li);
       });
@@ -905,9 +902,9 @@ const Calendar = (() => {
       const monthName = today.toLocaleDateString("en-US", { month: "short" });
       const dateNum = today.getDate();
       previewDate.innerHTML = `
-          <div class="text-4xl font-black text-rose-500 drop-shadow-sm leading-none">${dateNum}</div>
-          <div class="text-xl font-bold tracking-wide">${dayName}</div>
-          <div class="text-sm font-semibold text-slate-500 uppercase tracking-widest">${monthName} ${today.getFullYear()}</div>
+          <div class="text-3xl md:text-4xl font-black text-rose-500 drop-shadow-sm leading-none">${dateNum}</div>
+          <div class="text-lg md:text-xl font-bold tracking-wide">${dayName}</div>
+          <div class="text-xs md:text-sm font-semibold text-slate-500 uppercase tracking-widest">${monthName} ${today.getFullYear()}</div>
        `;
     }
 
@@ -953,7 +950,7 @@ const Calendar = (() => {
         m === today.getMonth() &&
         y === today.getFullYear();
       html += `
-          <div class="aspect-square flex items-center justify-center rounded-2xl transition-all font-bold text-lg cursor-pointer ${
+          <div class="aspect-square flex items-center justify-center rounded-xl sm:rounded-2xl transition-all font-bold text-sm sm:text-lg cursor-pointer ${
             isToday
               ? "bg-gradient-to-br from-rose-400 to-rose-600 text-white shadow-lg shadow-rose-500/30 scale-105 z-10"
               : "bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:border-rose-300 dark:hover:border-rose-700 hover:shadow-md"
@@ -1028,7 +1025,7 @@ const Quotes = (() => {
       showToast("Using offline quote fallback.");
     } finally {
       if (btn)
-        btn.innerHTML = `<i class="ph-bold ph-arrows-clockwise text-2xl"></i> Inspire Me`;
+        btn.innerHTML = `<i class="ph-bold ph-arrows-clockwise text-xl sm:text-2xl"></i> Inspire Me`;
     }
   };
 
@@ -1118,41 +1115,41 @@ const Weather = (() => {
         });
         const fw = WMO[data.daily.weather_code[i]] || WMO[0];
         forecastHTML += `
-              <div class="flex flex-col items-center bg-black/20 rounded-2xl p-4 backdrop-blur-md w-full border border-white/10">
-                  <span class="text-sm font-bold mb-2 uppercase tracking-widest text-slate-200">${date}</span>
-                  <i class="ph-fill ${fw.i} text-4xl mb-2 drop-shadow-md"></i>
-                  <div class="text-base font-bold">${Math.round(data.daily.temperature_2m_max[i])}° <span class="opacity-50 text-xs">${Math.round(data.daily.temperature_2m_min[i])}°</span></div>
+              <div class="flex flex-col items-center bg-black/20 rounded-2xl p-3 sm:p-4 backdrop-blur-md w-full border border-white/10 overflow-hidden min-w-0">
+                  <span class="text-[10px] sm:text-sm font-bold mb-1 sm:mb-2 uppercase tracking-widest text-slate-200 truncate w-full text-center">${date}</span>
+                  <i class="ph-fill ${fw.i} text-3xl sm:text-4xl mb-1 sm:mb-2 drop-shadow-md"></i>
+                  <div class="text-sm sm:text-base font-bold">${Math.round(data.daily.temperature_2m_max[i])}° <span class="opacity-50 text-xs">${Math.round(data.daily.temperature_2m_min[i])}°</span></div>
               </div>
           `;
       }
 
       if (card) {
-        card.className = `flex flex-col items-center justify-between p-10 bg-gradient-to-br ${w.c} rounded-[2.5rem] text-white shadow-3d min-h-[450px] w-full relative overflow-hidden transition-all border border-white/20`;
+        card.className = `flex flex-col items-center justify-between p-6 sm:p-10 bg-gradient-to-br ${w.c} rounded-[2.5rem] text-white shadow-3d min-h-[400px] sm:min-h-[450px] w-full relative overflow-hidden transition-all border border-white/20`;
         card.innerHTML = `
-            <div class="w-full flex justify-between items-center mb-8 z-10 relative">
-                <span class="text-2xl font-extrabold flex items-center gap-2 drop-shadow-md"><i class="ph-fill ph-map-pin text-white/80"></i> ${city}</span>
+            <div class="w-full flex justify-between items-center mb-6 sm:mb-8 z-10 relative">
+                <span class="text-xl sm:text-2xl font-extrabold flex items-center gap-2 drop-shadow-md min-w-0"><i class="ph-fill ph-map-pin text-white/80 shrink-0"></i> <span class="truncate">${city}</span></span>
             </div>
-            <div class="flex flex-col items-center z-10 relative mb-10 w-full">
-                <div class="flex items-center justify-center gap-6 w-full">
-                   <i class="ph-fill ${w.i} text-[8rem] drop-shadow-2xl"></i>
+            <div class="flex flex-col items-center z-10 relative mb-8 sm:mb-10 w-full">
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 w-full">
+                   <i class="ph-fill ${w.i} text-7xl sm:text-[8rem] drop-shadow-2xl"></i>
                    <div class="flex items-start">
-                     <h3 class="text-[6rem] leading-none font-black tracking-tighter drop-shadow-lg">${Math.round(c.temperature_2m)}</h3><span class="text-5xl mt-2 font-bold opacity-80">°</span>
+                     <h3 class="text-6xl sm:text-[6rem] leading-none font-black tracking-tighter drop-shadow-lg">${Math.round(c.temperature_2m)}</h3><span class="text-4xl sm:text-5xl mt-1 sm:mt-2 font-bold opacity-80">°</span>
                    </div>
                 </div>
-                <p class="text-3xl font-bold opacity-90 capitalize tracking-wide mt-2 drop-shadow-md">${w.t}</p>
+                <p class="text-2xl sm:text-3xl font-bold opacity-90 capitalize tracking-wide mt-2 drop-shadow-md text-center">${w.t}</p>
             </div>
-            <div class="grid grid-cols-3 gap-4 w-full mb-10 z-10 relative text-center">
-                <div class="bg-black/20 p-4 rounded-2xl backdrop-blur-md border border-white/10">
-                    <i class="ph-fill ph-thermometer text-3xl mb-1 text-amber-300"></i><div class="text-[11px] opacity-70 uppercase tracking-widest font-bold mb-1">Feels</div><div class="font-black text-xl">${Math.round(c.apparent_temperature)}°</div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 w-full mb-8 sm:mb-10 z-10 relative text-center">
+                <div class="bg-black/20 p-3 sm:p-4 rounded-2xl backdrop-blur-md border border-white/10">
+                    <i class="ph-fill ph-thermometer text-2xl sm:text-3xl mb-1 text-amber-300"></i><div class="text-[10px] sm:text-[11px] opacity-70 uppercase tracking-widest font-bold mb-1">Feels</div><div class="font-black text-lg sm:text-xl">${Math.round(c.apparent_temperature)}°</div>
                 </div>
-                <div class="bg-black/20 p-4 rounded-2xl backdrop-blur-md border border-white/10">
-                    <i class="ph-fill ph-drop text-3xl mb-1 text-blue-300"></i><div class="text-[11px] opacity-70 uppercase tracking-widest font-bold mb-1">Humidity</div><div class="font-black text-xl">${c.relative_humidity_2m}%</div>
+                <div class="bg-black/20 p-3 sm:p-4 rounded-2xl backdrop-blur-md border border-white/10">
+                    <i class="ph-fill ph-drop text-2xl sm:text-3xl mb-1 text-blue-300"></i><div class="text-[10px] sm:text-[11px] opacity-70 uppercase tracking-widest font-bold mb-1">Humidity</div><div class="font-black text-lg sm:text-xl">${c.relative_humidity_2m}%</div>
                 </div>
-                <div class="bg-black/20 p-4 rounded-2xl backdrop-blur-md border border-white/10">
-                    <i class="ph-fill ph-wind text-3xl mb-1 text-teal-300"></i><div class="text-[11px] opacity-70 uppercase tracking-widest font-bold mb-1">Wind</div><div class="font-black text-xl">${Math.round(c.wind_speed_10m)} <span class="text-xs opacity-70">km/h</span></div>
+                <div class="bg-black/20 p-3 sm:p-4 rounded-2xl backdrop-blur-md border border-white/10">
+                    <i class="ph-fill ph-wind text-2xl sm:text-3xl mb-1 text-teal-300"></i><div class="text-[10px] sm:text-[11px] opacity-70 uppercase tracking-widest font-bold mb-1">Wind</div><div class="font-black text-lg sm:text-xl">${Math.round(c.wind_speed_10m)} <span class="text-[10px] sm:text-xs opacity-70">km/h</span></div>
                 </div>
             </div>
-            <div class="flex justify-between gap-4 w-full z-10 relative">${forecastHTML}</div>
+            <div class="flex flex-row justify-between gap-2 sm:gap-4 w-full z-10 relative">${forecastHTML}</div>
           `;
       }
 
@@ -1172,12 +1169,12 @@ const Weather = (() => {
         previewText.innerHTML = `
            <div class="text-4xl font-black mb-1">${Math.round(c.temperature_2m)}°</div>
            <div class="text-sm font-bold text-sky-400 mb-1 tracking-wide">${w.t}</div>
-           <div class="text-xs font-bold text-slate-500 uppercase tracking-widest truncate max-w-[150px] mb-3"><i class="ph-fill ph-map-pin"></i> ${city}</div>
-           <div class="text-[10px] font-bold text-slate-400 bg-slate-200/50 dark:bg-slate-700/50 px-2.5 py-1 rounded-md inline-block shadow-inner">
+           <div class="text-xs font-bold text-slate-500 uppercase tracking-widest truncate w-full mb-3 min-w-0"><i class="ph-fill ph-map-pin"></i> ${city}</div>
+           <div class="text-[10px] font-bold text-slate-400 bg-slate-200/50 dark:bg-slate-700/50 px-2.5 py-1 rounded-md inline-block shadow-inner shrink-0">
              H: ${todayMax}° &bull; L: ${todayMin}°
            </div>
          `;
-        previewIcon.innerHTML = `<i class="ph-fill ${w.i} text-[4rem]"></i>`;
+        previewIcon.innerHTML = `<i class="ph-fill ${w.i} text-5xl md:text-[4rem]"></i>`;
 
         previewText.classList.remove("mt-auto");
         previewText.classList.add("mt-4");
@@ -1204,7 +1201,6 @@ const Weather = (() => {
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Safe initialization prevents one broken module from killing the whole app
   const safeInit = (module, name) => {
     try {
       if (module && module.init) module.init();

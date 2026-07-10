@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>FocusOS|Productive Pro</title>
+    <title>FocusOS | Solar Bento Pro</title>
 
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
@@ -128,6 +128,34 @@
           "bg-gradient-to-br",
           "toast-enter",
           "toast-exit",
+          /* Responsive Overrides */
+          "min-w-0",
+          "break-words",
+          "whitespace-normal",
+          "shrink-0",
+          "flex-grow",
+          "overflow-hidden",
+          "grid",
+          "grid-cols-1",
+          "sm:grid-cols-3",
+          "gap-2",
+          "sm:gap-4",
+          "p-2",
+          "sm:p-4",
+          "text-7xl",
+          "sm:text-[8rem]",
+          "text-6xl",
+          "sm:text-[6rem]",
+          "text-4xl",
+          "sm:text-5xl",
+          "sm:w-8",
+          "sm:h-8",
+          "w-6",
+          "h-6",
+          "text-base",
+          "sm:text-lg",
+          "flex-col",
+          "sm:flex-row",
         ],
         theme: {
           extend: {
@@ -188,7 +216,7 @@
             FocusOS
             <span
               class="text-[10px] text-indigo-400 uppercase tracking-widest ml-1 bg-indigo-500/10 px-2 py-0.5 rounded-full border border-indigo-500/20"
-              >Productive Pro</span
+              >Bento Pro</span
             >
           </h1>
         </div>
@@ -214,7 +242,7 @@
     </header>
 
     <main
-      class="flex-grow p-4 md:p-6 flex justify-center items-start relative w-full max-w-[1400px] mx-auto perspective-[2000px]"
+      class="flex-grow p-4 md:p-6 flex justify-center items-start relative w-full max-w-[1400px] mx-auto perspective-[2000px] overflow-hidden"
     >
       <section
         id="dashboard-hub"
@@ -246,7 +274,8 @@
           <div
             id="pomodoro-preview-content"
             class="flex-grow flex flex-col justify-center items-center w-full relative"
-          ></div>
+          >
+          </div>
           <div class="bento-action">
             <div
               class="text-sm font-semibold text-slate-500 dark:text-slate-400"
@@ -263,19 +292,20 @@
 
         <div
           data-target="weather-view"
-          class="bento-card glass col-span-1 md:col-span-1 lg:col-span-2 row-span-1 rounded-3xl p-6 border-t border-l border-white/40 dark:border-white/10 hover:border-sky-500/50 hover:shadow-[0_0_20px_rgba(14,165,233,0.3)]"
+          class="bento-card glass col-span-1 md:col-span-1 lg:col-span-2 row-span-1 rounded-3xl p-6 border-t border-l border-white/40 dark:border-white/10 hover:border-sky-500/50 hover:shadow-[0_0_20px_rgba(14,165,233,0.3)] min-w-0"
         >
-          <div class="flex justify-between items-start w-full h-full">
-            <div class="flex flex-col justify-between h-full">
+          <div class="flex justify-between items-start w-full h-full min-w-0">
+            <div class="flex flex-col justify-between h-full min-w-0">
               <div
                 class="flex items-center gap-2 text-sky-500 dark:text-sky-400 font-bold"
               >
-                <i class="ph-fill ph-radar text-xl"></i> Atmosphere
+                <i class="ph-fill ph-radar text-xl shrink-0"></i>
+                <span class="truncate">Atmosphere</span>
               </div>
-              <div id="weather-preview-text" class="mt-auto">
+              <div id="weather-preview-text" class="mt-auto min-w-0">
                 <div class="text-3xl font-black mb-1">--°</div>
                 <div
-                  class="text-sm font-medium text-slate-500 dark:text-slate-400 truncate max-w-[150px]"
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400 truncate w-full"
                 >
                   Locating...
                 </div>
@@ -283,7 +313,7 @@
             </div>
             <div
               id="weather-preview-icon"
-              class="h-full flex items-center text-6xl text-sky-400 opacity-80 drop-shadow-md"
+              class="h-full flex items-center text-5xl md:text-6xl text-sky-400 opacity-80 drop-shadow-md shrink-0 ml-2"
             >
               <i class="ph ph-spinner animate-spin"></i>
             </div>
@@ -313,7 +343,7 @@
             </div>
             <div
               id="quotes-preview-content"
-              class="flex-grow flex flex-col justify-center"
+              class="flex-grow flex flex-col justify-center min-h-0"
             >
               <div
                 class="text-sm md:text-base font-serif italic line-clamp-3 leading-relaxed"
@@ -321,7 +351,7 @@
                 "Thinking..."
               </div>
               <div
-                class="text-xs font-bold text-slate-400 mt-2 uppercase tracking-wider author-preview"
+                class="text-xs font-bold text-slate-400 mt-2 uppercase tracking-wider author-preview truncate"
               ></div>
             </div>
           </div>
@@ -340,26 +370,26 @@
 
         <div
           data-target="todo-view"
-          class="bento-card glass col-span-1 md:col-span-2 lg:col-span-2 row-span-2 rounded-3xl p-6 border-t border-l border-white/40 dark:border-white/10 hover:border-brand-500/50 hover:shadow-glow"
+          class="bento-card glass col-span-1 md:col-span-2 lg:col-span-2 row-span-2 rounded-3xl p-6 border-t border-l border-white/40 dark:border-white/10 hover:border-brand-500/50 hover:shadow-glow min-h-0"
         >
           <div class="flex justify-between items-center w-full mb-4">
-            <div class="flex items-center gap-3">
+            <div class="flex items-center gap-3 min-w-0">
               <div
-                class="p-2.5 rounded-xl bg-brand-500/10 text-brand-500 dark:text-brand-400"
+                class="p-2.5 rounded-xl bg-brand-500/10 text-brand-500 dark:text-brand-400 shrink-0"
               >
                 <i class="ph-fill ph-list-checks text-2xl"></i>
               </div>
-              <h2 class="text-lg font-bold">Action Items</h2>
+              <h2 class="text-lg font-bold truncate">Action Items</h2>
             </div>
             <div
               id="todo-preview-stats"
-              class="text-xs font-bold bg-slate-200 dark:bg-slate-800 px-3 py-1 rounded-full"
+              class="text-xs font-bold bg-slate-200 dark:bg-slate-800 px-3 py-1 rounded-full shrink-0"
             >
               0/0
             </div>
           </div>
           <div
-            class="w-full bg-slate-200 dark:bg-slate-700/50 rounded-full h-1.5 mb-4 overflow-hidden"
+            class="w-full bg-slate-200 dark:bg-slate-700/50 rounded-full h-1.5 mb-4 overflow-hidden shrink-0"
           >
             <div
               id="todo-preview-bar"
@@ -368,17 +398,17 @@
           </div>
           <div
             id="todo-preview-list"
-            class="flex-grow overflow-hidden flex flex-col gap-3"
+            class="flex-grow overflow-hidden flex flex-col gap-3 min-h-0"
           >
             <div class="text-sm text-slate-400 italic">Loading tasks...</div>
           </div>
           <div class="bento-action">
             <span
-              class="text-sm font-semibold text-slate-500 dark:text-slate-400"
+              class="text-sm font-semibold text-slate-500 dark:text-slate-400 hidden sm:block"
               >Manage Tasks</span
             >
             <div
-              class="text-brand-500 font-bold flex items-center gap-1 bg-brand-500/10 px-4 py-1.5 rounded-full"
+              class="text-brand-500 font-bold flex items-center gap-1 bg-brand-500/10 px-4 py-1.5 rounded-full ml-auto"
             >
               Open List <i class="ph-bold ph-arrow-right"></i>
             </div>
@@ -396,17 +426,17 @@
           </div>
           <div
             id="planner-preview-content"
-            class="flex flex-col justify-start h-full pb-4 gap-4 overflow-hidden"
+            class="flex flex-col justify-start h-full pb-4 gap-4 overflow-hidden min-h-0"
           >
-            <div
-              class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1"
-            >
-              Up Next
-            </div>
-            <div
-              class="text-sm font-semibold truncate line-clamp-2 leading-tight"
-            >
-              Loading schedule...
+            <div>
+              <div
+                class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1"
+              >
+                Up Next
+              </div>
+              <div class="text-sm font-semibold truncate leading-tight">
+                Loading schedule...
+              </div>
             </div>
           </div>
           <div class="bento-action !p-4">
@@ -454,29 +484,34 @@
 
         <div
           data-target="calendar-view"
-          class="bento-card glass col-span-1 md:col-span-2 lg:col-span-2 row-span-1 rounded-3xl p-6 border-t border-l border-white/40 dark:border-white/10 hover:border-rose-500/50 hover:shadow-[0_0_20px_rgba(244,63,94,0.3)]"
+          class="bento-card glass col-span-1 md:col-span-2 lg:col-span-2 row-span-1 rounded-3xl p-6 border-t border-l border-white/40 dark:border-white/10 hover:border-rose-500/50 hover:shadow-[0_0_20px_rgba(244,63,94,0.3)] min-w-0"
         >
-          <div class="flex flex-col h-full w-full">
+          <div class="flex flex-col h-full w-full min-w-0">
             <div
               class="flex items-center gap-2 text-rose-500 dark:text-rose-400 font-bold mb-2"
             >
               <i class="ph-fill ph-calendar text-xl"></i> Calendar
             </div>
-            <div class="flex-grow flex items-center justify-between pb-4">
-              <div id="calendar-preview-date" class="flex flex-col"></div>
+            <div
+              class="flex-grow flex items-center justify-between pb-4 min-w-0 gap-4"
+            >
+              <div
+                id="calendar-preview-date"
+                class="flex flex-col min-w-0 shrink"
+              ></div>
               <div
                 id="calendar-preview-mini"
-                class="hidden sm:grid grid-cols-7 gap-1 text-[8px] opacity-70"
+                class="hidden sm:grid grid-cols-7 gap-1 text-[8px] opacity-70 shrink-0"
               ></div>
             </div>
           </div>
           <div class="bento-action">
             <span
-              class="text-sm font-semibold text-slate-500 dark:text-slate-400"
+              class="text-sm font-semibold text-slate-500 dark:text-slate-400 hidden sm:block"
               >Monthly View</span
             >
             <div
-              class="text-rose-500 font-bold flex items-center gap-1 bg-rose-500/10 px-4 py-1.5 rounded-full"
+              class="text-rose-500 font-bold flex items-center gap-1 bg-rose-500/10 px-4 py-1.5 rounded-full ml-auto"
             >
               Open Calendar <i class="ph-bold ph-arrow-right"></i>
             </div>
@@ -486,27 +521,29 @@
 
       <section
         id="todo-view"
-        class="feature-view hidden w-full max-w-4xl glass p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0"
+        class="feature-view hidden w-full max-w-4xl glass p-4 sm:p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0 max-h-[85vh] overflow-hidden flex flex-col"
       >
         <div
-          class="flex justify-between items-center mb-8 border-b border-slate-200 dark:border-slate-700/50 pb-4"
+          class="flex justify-between items-center mb-6 sm:mb-8 border-b border-slate-200 dark:border-slate-700/50 pb-4 shrink-0"
         >
           <button
-            class="back-btn text-brand-500 font-bold hover:text-brand-600 flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
+            class="back-btn text-brand-500 font-bold hover:text-brand-600 flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
           >
             <i class="ph-bold ph-caret-left text-xl"></i> Hub
           </button>
           <button
             id="todo-clear-btn"
-            class="text-sm font-semibold text-red-500 hover:text-white hover:bg-red-500 px-4 py-2 rounded-xl transition-all border border-red-200 dark:border-red-900/50"
+            class="text-sm font-semibold text-red-500 hover:text-white hover:bg-red-500 px-3 sm:px-4 py-2 rounded-xl transition-all border border-red-200 dark:border-red-900/50"
           >
             Clear Done
           </button>
         </div>
 
-        <div class="flex flex-col md:flex-row gap-8">
-          <div class="w-full md:w-1/3">
-            <h2 class="text-4xl font-extrabold mb-2 tracking-tight">
+        <div
+          class="flex flex-col lg:flex-row gap-6 lg:gap-8 flex-grow overflow-hidden"
+        >
+          <div class="w-full lg:w-1/3 shrink-0">
+            <h2 class="text-3xl sm:text-4xl font-extrabold mb-2 tracking-tight">
               Action Items.
             </h2>
             <div
@@ -533,7 +570,7 @@
               <input
                 type="text"
                 id="todo-input"
-                class="w-full p-4 rounded-xl border-none bg-white dark:bg-slate-900/80 shadow-inner focus:ring-2 focus:ring-brand-500 transition-all text-slate-900 dark:text-white font-medium"
+                class="w-full p-4 rounded-xl border-none bg-white dark:bg-slate-900/80 shadow-inner focus:ring-2 focus:ring-brand-500 transition-all text-slate-900 dark:text-white font-medium min-w-0"
                 placeholder="What's next?"
               />
               <button
@@ -544,10 +581,11 @@
               </button>
             </div>
           </div>
-          <div class="w-full md:w-2/3">
+
+          <div class="w-full lg:w-2/3 flex-grow overflow-hidden flex flex-col">
             <ul
               id="todo-list"
-              class="space-y-3 max-h-[55vh] overflow-y-auto pr-2 no-scrollbar"
+              class="space-y-3 overflow-y-auto pr-2 flex-grow no-scrollbar pb-10"
             ></ul>
           </div>
         </div>
@@ -555,20 +593,22 @@
 
       <section
         id="pomodoro-view"
-        class="feature-view hidden w-full max-w-2xl glass p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0 text-center relative"
+        class="feature-view hidden w-full max-w-2xl glass p-4 sm:p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0 text-center relative max-h-[85vh] overflow-y-auto overflow-x-hidden no-scrollbar"
       >
         <button
-          class="back-btn absolute top-6 left-6 text-brand-500 font-bold hover:text-brand-600 flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors z-20"
+          class="back-btn absolute top-4 sm:top-6 left-4 sm:left-6 text-brand-500 font-bold hover:text-brand-600 flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors z-20"
         >
           <i class="ph-bold ph-caret-left text-xl"></i>
         </button>
 
         <div
           id="pomodoro-settings"
-          class="absolute inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl z-30 rounded-3xl flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300"
+          class="absolute inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl z-30 rounded-3xl flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 overflow-y-auto p-6"
         >
           <h3 class="text-2xl font-bold mb-6">Timer Configuration</h3>
-          <div class="flex gap-6 mb-8">
+          <div
+            class="flex flex-col sm:flex-row gap-6 mb-8 w-full justify-center"
+          >
             <div class="flex flex-col items-center">
               <label class="text-sm font-semibold text-slate-500 mb-2"
                 >Work (min)</label
@@ -598,7 +638,7 @@
           </div>
           <button
             id="save-settings-btn"
-            class="bg-brand-500 text-white font-bold py-3 px-10 rounded-full shadow-lg hover:bg-brand-600 transition-colors"
+            class="bg-brand-500 w-full sm:w-auto text-white font-bold py-3 px-10 rounded-full shadow-lg hover:bg-brand-600 transition-colors"
           >
             Save Settings
           </button>
@@ -606,18 +646,18 @@
 
         <button
           id="open-settings-btn"
-          class="absolute top-6 right-6 text-slate-400 hover:text-brand-500 transition-colors p-2 z-20 bg-white/50 dark:bg-slate-800/50 rounded-xl"
+          class="absolute top-4 sm:top-6 right-4 sm:right-6 text-slate-400 hover:text-brand-500 transition-colors p-2 z-20 bg-white/50 dark:bg-slate-800/50 rounded-xl"
         >
           <i class="ph-fill ph-sliders text-2xl"></i>
         </button>
 
         <div
-          class="relative w-72 h-72 mx-auto mb-10 mt-6 flex justify-center items-center perspective-[1000px]"
+          class="relative w-full max-w-[18rem] aspect-square mx-auto mb-8 sm:mb-10 mt-12 sm:mt-6 flex justify-center items-center perspective-[1000px]"
         >
           <svg
             class="absolute inset-0 w-full h-full drop-shadow-2xl"
-            width="288"
-            height="288"
+            viewBox="0 0 288 288"
+            preserveAspectRatio="xMidYMid meet"
           >
             <defs>
               <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
@@ -653,39 +693,41 @@
             ></circle>
           </svg>
           <div
-            class="z-10 flex flex-col items-center bg-white/40 dark:bg-slate-800/60 backdrop-blur-md rounded-full w-56 h-56 justify-center shadow-3d border border-white/50 dark:border-white/10"
+            class="z-10 flex flex-col items-center bg-white/40 dark:bg-slate-800/60 backdrop-blur-md rounded-full w-[75%] h-[75%] justify-center shadow-3d border border-white/50 dark:border-white/10"
           >
             <div
               id="pomodoro-label"
-              class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1"
+              class="text-xs sm:text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1"
             >
               Focus
             </div>
             <div
               id="pomodoro-display"
-              class="font-mono text-6xl font-extrabold tracking-tighter text-slate-800 dark:text-white drop-shadow-sm"
+              class="font-mono text-5xl sm:text-6xl font-extrabold tracking-tighter text-slate-800 dark:text-white drop-shadow-sm"
             >
               25:00
             </div>
           </div>
         </div>
 
-        <div class="flex justify-center gap-4 mb-6">
+        <div
+          class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 w-full"
+        >
           <button
             id="pomodoro-start"
-            class="bg-gradient-to-r from-brand-500 to-indigo-600 text-white font-bold py-4 px-10 rounded-full transition-all shadow-lg hover:shadow-glow w-40 text-lg"
+            class="bg-gradient-to-r from-brand-500 to-indigo-600 text-white font-bold py-4 px-10 rounded-full transition-all shadow-lg hover:shadow-glow w-full sm:w-40 text-lg"
           >
             Start
           </button>
           <button
             id="pomodoro-pause"
-            class="bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold py-4 px-10 rounded-full transition-all hidden w-40 text-lg shadow-inner"
+            class="bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold py-4 px-10 rounded-full transition-all hidden w-full sm:w-40 text-lg shadow-inner"
           >
             Pause
           </button>
           <button
             id="pomodoro-reset"
-            class="bg-white hover:bg-red-50 text-red-600 dark:bg-slate-800 dark:text-red-400 font-bold py-4 px-10 rounded-full transition-all w-40 border-2 border-red-100 dark:border-red-900/50 shadow-sm text-lg"
+            class="bg-white hover:bg-red-50 text-red-600 dark:bg-slate-800 dark:text-red-400 font-bold py-4 px-10 rounded-full transition-all w-full sm:w-40 border-2 border-red-100 dark:border-red-900/50 shadow-sm text-lg"
           >
             Reset
           </button>
@@ -693,24 +735,24 @@
 
         <button
           id="audio-toggle-btn"
-          class="flex items-center gap-2 mx-auto px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800/80 text-sm font-semibold text-slate-500 hover:text-brand-500 border border-slate-200 dark:border-slate-700 transition-colors"
+          class="flex items-center justify-center w-full sm:w-auto gap-2 mx-auto px-4 py-3 sm:py-2 rounded-full bg-slate-100 dark:bg-slate-800/80 text-sm font-semibold text-slate-500 hover:text-brand-500 border border-slate-200 dark:border-slate-700 transition-colors"
         >
           <i class="ph-fill ph-speaker-high text-lg audio-icon"></i> Ambient
           Audio: <span class="audio-status">Off</span>
         </button>
 
         <div
-          class="mt-6 flex justify-center gap-3 text-sm bg-white/40 dark:bg-slate-800/40 p-2 rounded-full inline-flex border border-white/50 dark:border-slate-700 shadow-inner"
+          class="mt-6 flex justify-center gap-2 sm:gap-3 text-sm bg-white/40 dark:bg-slate-800/40 p-2 rounded-full inline-flex border border-white/50 dark:border-slate-700 shadow-inner w-full sm:w-auto overflow-hidden"
         >
           <button
             id="mode-work"
-            class="px-6 py-2.5 rounded-full bg-brand-500 text-white shadow-md font-bold transition-all"
+            class="flex-1 sm:flex-none px-6 py-2.5 rounded-full bg-brand-500 text-white shadow-md font-bold transition-all truncate"
           >
             Work
           </button>
           <button
             id="mode-break"
-            class="px-6 py-2.5 rounded-full text-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-700 font-bold transition-all"
+            class="flex-1 sm:flex-none px-6 py-2.5 rounded-full text-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-700 font-bold transition-all truncate"
           >
             Break
           </button>
@@ -719,57 +761,66 @@
 
       <section
         id="planner-view"
-        class="feature-view hidden w-full max-w-4xl glass p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0"
+        class="feature-view hidden w-full max-w-4xl glass p-4 sm:p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0 max-h-[85vh] flex flex-col"
       >
         <div
-          class="flex justify-between items-center mb-6 border-b border-slate-200 dark:border-slate-700/50 pb-4"
+          class="flex justify-between items-center mb-4 sm:mb-6 border-b border-slate-200 dark:border-slate-700/50 pb-4 shrink-0"
         >
           <button
-            class="back-btn text-brand-500 font-bold hover:text-brand-600 flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
+            class="back-btn text-brand-500 font-bold hover:text-brand-600 flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
           >
             <i class="ph-bold ph-caret-left text-xl"></i> Hub
           </button>
-          <h2 class="text-3xl font-extrabold tracking-tight">Timeline.</h2>
+          <h2
+            class="text-2xl sm:text-3xl font-extrabold tracking-tight truncate"
+          >
+            Timeline.
+          </h2>
         </div>
         <div
-          class="relative pl-4 pr-2 py-4 max-h-[65vh] overflow-y-auto no-scrollbar"
+          class="relative px-2 py-4 overflow-y-auto flex-grow no-scrollbar pb-10"
           id="planner-scroll-area"
         >
           <div id="timeline-indicator"></div>
-          <div id="planner-container" class="space-y-4 relative"></div>
+          <div
+            id="planner-container"
+            class="space-y-3 sm:space-y-4 relative"
+          ></div>
         </div>
       </section>
 
       <section
         id="goals-view"
-        class="feature-view hidden w-full max-w-2xl glass p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0"
+        class="feature-view hidden w-full max-w-2xl glass p-4 sm:p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0 max-h-[85vh] flex flex-col"
       >
-        <button
-          class="back-btn mb-6 text-emerald-500 font-bold flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
-        >
-          <i class="ph-bold ph-caret-left text-xl"></i> Hub
-        </button>
+        <div class="shrink-0 mb-4 sm:mb-6">
+          <button
+            class="back-btn text-emerald-500 font-bold flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors w-fit"
+          >
+            <i class="ph-bold ph-caret-left text-xl"></i> Hub
+          </button>
+        </div>
 
         <div
-          class="mb-8 p-8 bg-slate-900 text-white rounded-3xl relative overflow-hidden shadow-2xl border border-slate-700"
+          class="mb-6 sm:mb-8 p-6 sm:p-8 bg-slate-900 text-white rounded-3xl relative overflow-hidden shadow-2xl border border-slate-700 shrink-0"
         >
           <div class="relative z-10">
-            <h2 class="text-3xl font-extrabold mb-2 tracking-tight">
+            <h2 class="text-2xl sm:text-3xl font-extrabold mb-2 tracking-tight">
               Milestones.
             </h2>
-            <div class="flex justify-between items-end mb-4 mt-6">
+            <div class="flex justify-between items-end mb-4 mt-4 sm:mt-6">
               <span
-                class="text-sm text-slate-400 font-bold uppercase tracking-widest"
+                class="text-xs sm:text-sm text-slate-400 font-bold uppercase tracking-widest"
                 >Progress</span
               >
               <span
                 id="goals-progress-text-full"
-                class="text-3xl font-black text-emerald-400 drop-shadow-md"
+                class="text-2xl sm:text-3xl font-black text-emerald-400 drop-shadow-md"
                 >0%</span
               >
             </div>
             <div
-              class="w-full bg-slate-950 rounded-full h-6 overflow-hidden shadow-inner border border-slate-700/50 p-1"
+              class="w-full bg-slate-950 rounded-full h-4 sm:h-6 overflow-hidden shadow-inner border border-slate-700/50 p-1"
             >
               <div
                 id="goals-progress-bar-full"
@@ -779,39 +830,45 @@
           </div>
         </div>
 
-        <div class="flex gap-3 mb-8 shadow-sm">
+        <div
+          class="flex flex-col sm:flex-row gap-3 mb-6 sm:mb-8 shadow-sm shrink-0"
+        >
           <input
             type="text"
             id="goal-input"
-            class="flex-grow p-4 rounded-xl border-none bg-white dark:bg-slate-900/80 shadow-inner focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white font-medium"
+            class="flex-grow p-4 rounded-xl border-none bg-white dark:bg-slate-900/80 shadow-inner focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white font-medium min-w-0"
             placeholder="What will you achieve today?"
           />
           <button
             id="goal-add-btn"
-            class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl"
+            class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl w-full sm:w-auto flex justify-center"
           >
             <i class="ph-bold ph-plus text-xl"></i>
           </button>
         </div>
-        <ul
-          id="goals-list-full"
-          class="space-y-4 max-h-[40vh] overflow-y-auto pr-2 no-scrollbar"
-        ></ul>
+        <div class="flex-grow overflow-hidden flex flex-col">
+          <ul
+            id="goals-list-full"
+            class="space-y-3 sm:space-y-4 overflow-y-auto pr-2 flex-grow no-scrollbar pb-10"
+          ></ul>
+        </div>
       </section>
 
       <section
         id="calendar-view"
-        class="feature-view hidden w-full max-w-4xl glass p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0"
+        class="feature-view hidden w-full max-w-4xl glass p-4 sm:p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0 max-h-[85vh] overflow-y-auto no-scrollbar"
       >
         <div
-          class="flex justify-between items-center mb-8 border-b border-slate-200 dark:border-slate-700/50 pb-4"
+          class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 border-b border-slate-200 dark:border-slate-700/50 pb-4 gap-4"
         >
           <button
-            class="back-btn text-rose-500 font-bold hover:text-rose-600 flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
+            class="back-btn text-rose-500 font-bold hover:text-rose-600 flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
           >
             <i class="ph-bold ph-caret-left text-xl"></i> Hub
           </button>
-          <div class="flex items-center gap-4">
+          <div
+            class="flex items-center justify-between w-full sm:w-auto gap-2 sm:gap-4"
+          >
             <button
               id="cal-prev"
               class="p-2 rounded-xl bg-white/50 dark:bg-slate-800/50 shadow-sm hover:bg-rose-500 hover:text-white transition"
@@ -820,7 +877,7 @@
             </button>
             <h2
               id="cal-month-year"
-              class="text-2xl md:text-3xl font-extrabold tracking-tight min-w-[200px] text-center"
+              class="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight min-w-[150px] sm:min-w-[200px] text-center truncate"
             >
               Month Year
             </h2>
@@ -834,70 +891,73 @@
         </div>
 
         <div
-          class="w-full bg-slate-900/5 dark:bg-slate-900/40 p-4 md:p-6 rounded-3xl border border-white/40 dark:border-slate-700/50 shadow-inner"
+          class="w-full bg-slate-900/5 dark:bg-slate-900/40 p-2 sm:p-4 md:p-6 rounded-3xl border border-white/40 dark:border-slate-700/50 shadow-inner"
         >
-          <div class="grid grid-cols-7 mb-4">
+          <div class="grid grid-cols-7 mb-2 sm:mb-4">
             <div
-              class="text-center text-sm font-bold text-rose-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-sm font-bold text-rose-500 uppercase tracking-wider"
             >
               Sun
             </div>
             <div
-              class="text-center text-sm font-bold text-slate-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-sm font-bold text-slate-500 uppercase tracking-wider"
             >
               Mon
             </div>
             <div
-              class="text-center text-sm font-bold text-slate-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-sm font-bold text-slate-500 uppercase tracking-wider"
             >
               Tue
             </div>
             <div
-              class="text-center text-sm font-bold text-slate-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-sm font-bold text-slate-500 uppercase tracking-wider"
             >
               Wed
             </div>
             <div
-              class="text-center text-sm font-bold text-slate-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-sm font-bold text-slate-500 uppercase tracking-wider"
             >
               Thu
             </div>
             <div
-              class="text-center text-sm font-bold text-slate-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-sm font-bold text-slate-500 uppercase tracking-wider"
             >
               Fri
             </div>
             <div
-              class="text-center text-sm font-bold text-slate-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-sm font-bold text-slate-500 uppercase tracking-wider"
             >
               Sat
             </div>
           </div>
           <div
             id="calendar-grid"
-            class="grid grid-cols-7 gap-3 md:gap-4 auto-rows-fr"
-          ></div>
+            class="grid grid-cols-7 gap-1 sm:gap-3 md:gap-4 auto-rows-fr"
+          >
+          </div>
         </div>
       </section>
 
       <section
         id="weather-view"
-        class="feature-view hidden w-full max-w-2xl glass p-6 md:p-8 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0"
+        class="feature-view hidden w-full max-w-2xl glass p-4 sm:p-6 md:p-8 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0 max-h-[85vh] overflow-y-auto no-scrollbar"
       >
         <button
-          class="back-btn mb-6 text-sky-500 font-bold hover:text-sky-600 flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
+          class="back-btn mb-4 sm:mb-6 text-sky-500 font-bold hover:text-sky-600 flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors w-fit"
         >
           <i class="ph-bold ph-caret-left text-xl"></i> Hub
         </button>
 
         <div
           id="weather-card"
-          class="flex flex-col items-center justify-center p-8 bg-slate-800 rounded-[2rem] text-white shadow-2xl min-h-[450px] w-full transition-all border border-slate-700"
+          class="flex flex-col items-center justify-center p-6 sm:p-8 bg-slate-800 rounded-[2rem] text-white shadow-2xl min-h-[450px] w-full transition-all border border-slate-700 overflow-hidden"
         >
           <i
             class="ph-bold ph-spinner-gap animate-spin text-5xl mb-4 text-sky-400"
           ></i>
-          <div class="text-lg font-medium tracking-wide text-slate-300">
+          <div
+            class="text-base sm:text-lg font-medium tracking-wide text-slate-300 text-center"
+          >
             Syncing satellite data...
           </div>
         </div>
@@ -905,72 +965,78 @@
 
       <section
         id="quotes-view"
-        class="feature-view hidden w-full max-w-3xl p-6 md:p-10 transition-all duration-300 transform scale-95 opacity-0 perspective-[1500px]"
+        class="feature-view hidden w-full max-w-3xl p-4 sm:p-6 md:p-10 transition-all duration-300 transform scale-95 opacity-0 perspective-[1500px]"
       >
-        <div class="flex justify-between items-center mb-8 relative z-10">
+        <div
+          class="flex justify-between items-center mb-6 sm:mb-8 relative z-10"
+        >
           <button
-            class="back-btn text-white font-bold flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md rounded-xl shadow-sm hover:bg-black/60 transition-colors"
+            class="back-btn text-white font-bold flex items-center gap-2 px-3 sm:px-4 py-2 bg-black/40 backdrop-blur-md rounded-xl shadow-sm hover:bg-black/60 transition-colors"
           >
             <i class="ph-bold ph-caret-left text-xl"></i> Hub
           </button>
           <button
             id="quote-copy-btn"
-            class="text-white bg-black/40 backdrop-blur-md transition-colors p-3 rounded-xl shadow-sm hover:bg-black/60"
+            class="text-white bg-black/40 backdrop-blur-md transition-colors p-2 sm:p-3 rounded-xl shadow-sm hover:bg-black/60"
             title="Copy to clipboard"
           >
             <i class="ph-bold ph-copy text-xl"></i>
           </button>
         </div>
 
-        <div id="quote-flip-card" class="flip-card w-full h-[400px]">
+        <div
+          id="quote-flip-card"
+          class="flip-card w-full min-h-[300px] h-[50vh] max-h-[500px]"
+        >
           <div class="flip-card-inner h-full shadow-3d rounded-3xl">
             <div
-              class="flip-card-front absolute inset-0 glass rounded-3xl flex flex-col items-center justify-center p-8 md:p-12 bg-gradient-to-br from-indigo-900/90 to-purple-900/90 border border-white/20"
+              class="flip-card-front absolute inset-0 glass rounded-3xl flex flex-col items-center justify-center p-6 sm:p-8 md:p-12 bg-gradient-to-br from-indigo-900/90 to-purple-900/90 border border-white/20"
             >
               <i
-                class="ph-fill ph-quotes text-6xl text-white/20 mb-4 flex-shrink-0"
+                class="ph-fill ph-quotes text-4xl sm:text-6xl text-white/20 mb-4 flex-shrink-0"
               ></i>
               <div
                 class="overflow-y-auto no-scrollbar flex-grow flex flex-col justify-center w-full text-center"
               >
                 <div
                   id="quote-content-front"
-                  class="text-2xl md:text-3xl font-serif text-white mb-6 leading-relaxed font-bold"
+                  class="text-xl sm:text-2xl md:text-3xl font-serif text-white mb-4 sm:mb-6 leading-relaxed font-bold break-words min-w-0"
                 ></div>
               </div>
               <div
                 id="quote-author-front"
-                class="text-lg text-purple-300 font-bold uppercase tracking-widest flex-shrink-0"
+                class="text-sm sm:text-lg text-purple-300 font-bold uppercase tracking-widest flex-shrink-0 truncate w-full text-center"
               ></div>
             </div>
             <div
-              class="flip-card-back absolute inset-0 glass rounded-3xl flex flex-col items-center justify-center p-8 md:p-12 bg-gradient-to-bl from-purple-900/90 to-indigo-900/90 border border-white/20"
+              class="flip-card-back absolute inset-0 glass rounded-3xl flex flex-col items-center justify-center p-6 sm:p-8 md:p-12 bg-gradient-to-bl from-purple-900/90 to-indigo-900/90 border border-white/20"
             >
               <i
-                class="ph-fill ph-quotes text-6xl text-white/20 mb-4 flex-shrink-0"
+                class="ph-fill ph-quotes text-4xl sm:text-6xl text-white/20 mb-4 flex-shrink-0"
               ></i>
               <div
                 class="overflow-y-auto no-scrollbar flex-grow flex flex-col justify-center w-full text-center"
               >
                 <div
                   id="quote-content-back"
-                  class="text-2xl md:text-3xl font-serif text-white mb-6 leading-relaxed font-bold"
+                  class="text-xl sm:text-2xl md:text-3xl font-serif text-white mb-4 sm:mb-6 leading-relaxed font-bold break-words min-w-0"
                 ></div>
               </div>
               <div
                 id="quote-author-back"
-                class="text-lg text-purple-300 font-bold uppercase tracking-widest flex-shrink-0"
+                class="text-sm sm:text-lg text-purple-300 font-bold uppercase tracking-widest flex-shrink-0 truncate w-full text-center"
               ></div>
             </div>
           </div>
         </div>
 
-        <div class="mt-10 flex justify-center">
+        <div class="mt-8 sm:mt-10 flex justify-center">
           <button
             id="new-quote-btn"
-            class="px-10 py-5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full font-extrabold text-lg transition-all shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:-translate-y-1 flex items-center gap-3"
+            class="px-8 sm:px-10 py-4 sm:py-5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full font-extrabold text-base sm:text-lg transition-all shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:-translate-y-1 flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-center"
           >
-            <i class="ph-bold ph-arrows-clockwise text-2xl"></i> Inspire Me
+            <i class="ph-bold ph-arrows-clockwise text-xl sm:text-2xl"></i>
+            Inspire Me
           </button>
         </div>
       </section>
@@ -981,7 +1047,11 @@
       class="fixed bottom-6 right-6 bg-slate-900 dark:bg-slate-800 text-white px-6 py-4 rounded-2xl shadow-2xl transition-all duration-300 transform translate-y-[150%] opacity-0 z-[100] flex items-center gap-3 border border-slate-700"
     >
       <i class="ph-fill ph-info text-brand-400 text-xl"></i>
-      <div id="toast-message" class="font-medium"><span></span></div>
+      <div id="toast-message" class="font-medium text-sm sm:text-base">
+        <span></span>
+      </div>
     </div>
+
+    <script src="app.js"></script>
   </body>
 </html>
