@@ -105,6 +105,7 @@ This repository currently includes:
 
 ### 🚀 Projects
 
+- 🚀 Aura Productivity Workspace OS (Vite + Vanilla JavaScript + Tailwind CSS)
 - 💰 FinTrack Pro (Personal Finance Management System)
 - 📋 Kanban Task Manager
 - 🛒 Product Management System
@@ -287,6 +288,9 @@ Sheryians-Cohort-3.0
 - Chart.js
 - jsPDF
 - Local Storage API
+- Tailwind CSS
+- Vanilla JavaScript (ES Modules)
+- Vite
 
 ---
 
@@ -612,6 +616,69 @@ Throughout this learning journey, I built multiple real-world projects that help
 These projects focus on solving real-world problems while following clean code practices and modular architecture.
 
 ---
+
+---
+
+# 🚀 Aura Productivity Workspace OS
+
+## Modern Productivity Dashboard
+
+Aura Productivity Workspace OS is a premium single-page productivity dashboard developed using **Vite**, **Vanilla JavaScript (ES Modules)** and **Tailwind CSS**.
+
+It combines multiple productivity tools into one modern workspace featuring a responsive dashboard, Todo Manager, Daily Planner, Goals Tracker, Pomodoro Timer, Weather Widget, Motivational Quotes, Theme Switching, Local Storage persistence and smooth UI animations.
+
+---
+
+## ✨ Features
+
+### Dashboard
+
+- Beautiful Glassmorphism UI
+- Responsive Layout
+- Interactive Sidebar
+- Feature Cards
+- Live Clock
+- Search Interface
+
+---
+
+### Productivity
+
+- Todo Manager
+- Daily Planner
+- Goal Tracking
+- Pomodoro Timer
+
+---
+
+### Personalization
+
+- Dark / Light Theme
+- Motivational Quotes
+- Weather Updates
+- Local Storage
+- Smooth Animations
+
+---
+
+## Technologies Used
+
+- Vite
+- Vanilla JavaScript (ES Modules)
+- Tailwind CSS
+- Local Storage API
+
+---
+
+## Skills Demonstrated
+
+- Modular JavaScript
+- Component-Based Architecture
+- Responsive Design
+- State Management
+- Local Storage
+- UI Engineering
+- Dashboard Development
 
 # 💰 FinTrack Pro
 
@@ -944,6 +1011,22 @@ These projects helped me understand:
 ✔ Mobile Navigation
 
 ✔ Modern UI Components
+
+✔ Productivity Dashboard
+
+✔ Planner System
+
+✔ Pomodoro Timer
+
+✔ Goal Tracking
+
+✔ Weather Integration
+
+✔ Glassmorphism UI
+
+✔ Tailwind CSS
+
+✔ Vite Architecture
 
 ---
 
