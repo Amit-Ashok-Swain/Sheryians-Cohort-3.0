@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+html,body{
+  background-color: rgba(0, 0, 0, 0.627);
+  color: aliceblue;
+}
+
+/* 
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,body{
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.627);
+  color: aliceblue;
+} */
+
+/* 
+
+.background{
+  background-color: goldenrod;
+  color: black;
+}
+
+.text-xl{
+  font-size: 50px;
+} 
+  
+*/
