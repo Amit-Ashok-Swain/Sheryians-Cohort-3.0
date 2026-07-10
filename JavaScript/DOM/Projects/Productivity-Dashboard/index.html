@@ -1,0 +1,987 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FocusOS|Productive Pro</title>
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        safelist: [
+          "text-brand-500",
+          "text-emerald-500",
+          "text-amber-500",
+          "text-rose-500",
+          "text-sky-500",
+          "text-white",
+          "text-slate-400",
+          "text-slate-500",
+          "text-slate-600",
+          "text-slate-700",
+          "text-slate-800",
+          "dark:text-white",
+          "dark:text-slate-300",
+          "dark:text-amber-400",
+          "dark:text-emerald-400",
+          "bg-brand-500",
+          "bg-emerald-500",
+          "bg-rose-500",
+          "bg-white",
+          "bg-slate-100",
+          "bg-amber-50",
+          "bg-emerald-50",
+          "bg-white/20",
+          "bg-slate-100/50",
+          "bg-slate-200/50",
+          "bg-white/5",
+          "bg-amber-50/80",
+          "dark:bg-slate-700",
+          "dark:bg-slate-800",
+          "dark:bg-slate-800/30",
+          "dark:bg-amber-900/30",
+          "dark:bg-slate-800/20",
+          "dark:bg-slate-700/50",
+          "dark:bg-slate-800/10",
+          "dark:bg-emerald-900/30",
+          "border-brand-500",
+          "border-emerald-400",
+          "border-amber-400",
+          "border-slate-200",
+          "border-slate-300",
+          "border-slate-100",
+          "border-l-4",
+          "border-l-amber-400",
+          "border-slate-100/50",
+          "dark:border-slate-600",
+          "dark:border-slate-700",
+          "dark:border-slate-700/20",
+          "hover:bg-slate-100",
+          "hover:bg-slate-200",
+          "hover:bg-red-500",
+          "hover:bg-red-50",
+          "dark:hover:bg-slate-700",
+          "dark:hover:bg-red-900/30",
+          "hover:text-white",
+          "hover:text-red-500",
+          "hover:border-emerald-300",
+          "hover:border-rose-300",
+          "dark:hover:border-rose-700",
+          "hover:shadow-md",
+          "from-sky-400",
+          "to-blue-600",
+          "from-slate-400",
+          "to-slate-600",
+          "from-slate-500",
+          "to-slate-700",
+          "from-blue-400",
+          "from-blue-500",
+          "to-indigo-600",
+          "from-cyan-300",
+          "from-slate-800",
+          "to-indigo-950",
+          "from-rose-400",
+          "to-rose-600",
+          "shadow-md",
+          "shadow-lg",
+          "shadow-rose-500/30",
+          "shadow-emerald-500/30",
+          "shadow-[0_0_15px_rgba(52,211,153,0.1)]",
+          "scale-[1.02]",
+          "scale-105",
+          "scale-110",
+          "scale-100",
+          "scale-95",
+          "opacity-0",
+          "opacity-40",
+          "opacity-60",
+          "opacity-70",
+          "opacity-100",
+          "hidden",
+          "italic",
+          "text-sm",
+          "text-xs",
+          "text-lg",
+          "font-bold",
+          "font-medium",
+          "line-through",
+          "decoration-slate-400",
+          "mt-1",
+          "px-6",
+          "py-2.5",
+          "rounded-full",
+          "transition-all",
+          "cursor-pointer",
+          "transform",
+          "z-10",
+          "grayscale-[50%]",
+          "bg-gradient-to-br",
+          "toast-enter",
+          "toast-exit",
+        ],
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              mono: ["Fira Code", "monospace"],
+              serif: ["Georgia", "serif"],
+            },
+            colors: {
+              brand: {
+                50: "#eef2ff",
+                100: "#e0e7ff",
+                400: "#818cf8",
+                500: "#6366f1",
+                600: "#4f46e5",
+                900: "#312e81",
+              },
+              dark: { bg: "#050505", surface: "#111111", border: "#222222" },
+            },
+            boxShadow: {
+              "3d": "0 20px 40px -10px rgba(0,0,0,0.7), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.8)",
+              glow: "0 0 25px rgba(99, 102, 241, 0.5)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="app.js" defer></script>
+  </head>
+  <body
+    id="dynamic-body"
+    class="text-slate-900 dark:text-slate-100 min-h-screen flex flex-col font-sans transition-colors duration-1000 ease-in-out"
+  >
+    <canvas id="bg-canvas"></canvas>
+    <div
+      id="ambient-overlay"
+      class="fixed inset-0 transition-colors duration-[2000ms] -z-10 bg-slate-100/30 dark:bg-black/40 backdrop-blur-[2px]"
+    ></div>
+    <canvas id="confetti-canvas"></canvas>
+
+    <header
+      class="p-4 md:p-6 flex justify-between items-center glass sticky top-0 z-50 border-b border-white/20 dark:border-white/5"
+    >
+      <div
+        id="nav-hub-btn"
+        class="flex items-center gap-4 cursor-pointer group"
+      >
+        <div
+          class="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-2.5 rounded-xl shadow-lg group-hover:scale-110 transition-transform"
+        >
+          <i class="ph-fill ph-planet text-2xl"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-extrabold tracking-tight hidden sm:block">
+            FocusOS
+            <span
+              class="text-[10px] text-indigo-400 uppercase tracking-widest ml-1 bg-indigo-500/10 px-2 py-0.5 rounded-full border border-indigo-500/20"
+              >Productive Pro</span
+            >
+          </h1>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <div
+          id="clock-widget-header"
+          class="hidden md:flex font-mono text-sm font-semibold bg-white/50 dark:bg-slate-800/50 px-4 py-2 rounded-xl shadow-sm border border-white/40 dark:border-slate-700"
+        >
+          --:--
+        </div>
+        <button
+          id="theme-toggle"
+          class="p-3 rounded-xl bg-white/60 dark:bg-slate-800/60 hover:bg-white dark:hover:bg-slate-700 border border-white/50 dark:border-slate-700 transition-all shadow-sm"
+        >
+          <i class="ph-fill ph-moon text-xl dark:hidden text-indigo-900"></i>
+          <i
+            class="ph-fill ph-sun text-xl hidden dark:block text-amber-400"
+          ></i>
+        </button>
+      </div>
+    </header>
+
+    <main
+      class="flex-grow p-4 md:p-6 flex justify-center items-start relative w-full max-w-[1400px] mx-auto perspective-[2000px]"
+    >
+      <section
+        id="dashboard-hub"
+        class="w-full grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-[200px] transition-all duration-500"
+      >
+        <div
+          data-target="pomodoro-view"
+          class="bento-card glass col-span-1 md:col-span-2 lg:col-span-2 row-span-2 rounded-3xl p-6 border-t border-l border-white/40 dark:border-white/10 hover:border-brand-500/50 hover:shadow-glow"
+        >
+          <div class="flex justify-between items-start w-full mb-2">
+            <div class="flex items-center gap-3">
+              <div
+                class="p-2.5 rounded-xl bg-brand-500/10 text-brand-500 dark:text-brand-400"
+              >
+                <i class="ph-fill ph-timer text-2xl"></i>
+              </div>
+              <h2 class="text-lg font-bold">Focus Engine</h2>
+            </div>
+            <div
+              id="audio-visualizer-preview"
+              class="hidden flex gap-1 h-4 items-end opacity-50"
+            >
+              <div class="w-1 bg-brand-500 rounded-t audio-wave h-[40%]"></div>
+              <div class="w-1 bg-brand-500 rounded-t audio-wave h-[80%]"></div>
+              <div class="w-1 bg-brand-500 rounded-t audio-wave h-[60%]"></div>
+              <div class="w-1 bg-brand-500 rounded-t audio-wave h-[100%]"></div>
+            </div>
+          </div>
+          <div
+            id="pomodoro-preview-content"
+            class="flex-grow flex flex-col justify-center items-center w-full relative"
+          ></div>
+          <div class="bento-action">
+            <div
+              class="text-sm font-semibold text-slate-500 dark:text-slate-400"
+            >
+              Control Timer
+            </div>
+            <div
+              class="text-brand-500 font-bold flex items-center gap-1 bg-brand-500/10 px-4 py-1.5 rounded-full"
+            >
+              Open App <i class="ph-bold ph-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+
+        <div
+          data-target="weather-view"
+          class="bento-card glass col-span-1 md:col-span-1 lg:col-span-2 row-span-1 rounded-3xl p-6 border-t border-l border-white/40 dark:border-white/10 hover:border-sky-500/50 hover:shadow-[0_0_20px_rgba(14,165,233,0.3)]"
+        >
+          <div class="flex justify-between items-start w-full h-full">
+            <div class="flex flex-col justify-between h-full">
+              <div
+                class="flex items-center gap-2 text-sky-500 dark:text-sky-400 font-bold"
+              >
+                <i class="ph-fill ph-radar text-xl"></i> Atmosphere
+              </div>
+              <div id="weather-preview-text" class="mt-auto">
+                <div class="text-3xl font-black mb-1">--°</div>
+                <div
+                  class="text-sm font-medium text-slate-500 dark:text-slate-400 truncate max-w-[150px]"
+                >
+                  Locating...
+                </div>
+              </div>
+            </div>
+            <div
+              id="weather-preview-icon"
+              class="h-full flex items-center text-6xl text-sky-400 opacity-80 drop-shadow-md"
+            >
+              <i class="ph ph-spinner animate-spin"></i>
+            </div>
+          </div>
+          <div class="bento-action">
+            <span
+              class="text-sm font-semibold text-slate-500 dark:text-slate-400"
+              >Forecast</span
+            >
+            <div
+              class="text-sky-500 font-bold flex items-center gap-1 bg-sky-500/10 px-4 py-1.5 rounded-full"
+            >
+              Open Radar <i class="ph-bold ph-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+
+        <div
+          data-target="quotes-view"
+          class="bento-card glass col-span-1 md:col-span-2 lg:col-span-2 row-span-1 rounded-3xl p-6 border-t border-l border-white/40 dark:border-white/10 hover:border-purple-500/50 hover:shadow-[0_0_20px_rgba(168,85,247,0.3)]"
+        >
+          <div class="flex flex-col h-full w-full">
+            <div
+              class="flex items-center gap-2 text-purple-500 dark:text-purple-400 font-bold mb-3"
+            >
+              <i class="ph-fill ph-sparkle text-xl"></i> Daily Wisdom
+            </div>
+            <div
+              id="quotes-preview-content"
+              class="flex-grow flex flex-col justify-center"
+            >
+              <div
+                class="text-sm md:text-base font-serif italic line-clamp-3 leading-relaxed"
+              >
+                "Thinking..."
+              </div>
+              <div
+                class="text-xs font-bold text-slate-400 mt-2 uppercase tracking-wider author-preview"
+              ></div>
+            </div>
+          </div>
+          <div class="bento-action">
+            <span
+              class="text-sm font-semibold text-slate-500 dark:text-slate-400"
+              >Get Inspired</span
+            >
+            <div
+              class="text-purple-500 font-bold flex items-center gap-1 bg-purple-500/10 px-4 py-1.5 rounded-full"
+            >
+              Read More <i class="ph-bold ph-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+
+        <div
+          data-target="todo-view"
+          class="bento-card glass col-span-1 md:col-span-2 lg:col-span-2 row-span-2 rounded-3xl p-6 border-t border-l border-white/40 dark:border-white/10 hover:border-brand-500/50 hover:shadow-glow"
+        >
+          <div class="flex justify-between items-center w-full mb-4">
+            <div class="flex items-center gap-3">
+              <div
+                class="p-2.5 rounded-xl bg-brand-500/10 text-brand-500 dark:text-brand-400"
+              >
+                <i class="ph-fill ph-list-checks text-2xl"></i>
+              </div>
+              <h2 class="text-lg font-bold">Action Items</h2>
+            </div>
+            <div
+              id="todo-preview-stats"
+              class="text-xs font-bold bg-slate-200 dark:bg-slate-800 px-3 py-1 rounded-full"
+            >
+              0/0
+            </div>
+          </div>
+          <div
+            class="w-full bg-slate-200 dark:bg-slate-700/50 rounded-full h-1.5 mb-4 overflow-hidden"
+          >
+            <div
+              id="todo-preview-bar"
+              class="bg-brand-500 h-full w-0 transition-all duration-500"
+            ></div>
+          </div>
+          <div
+            id="todo-preview-list"
+            class="flex-grow overflow-hidden flex flex-col gap-3"
+          >
+            <div class="text-sm text-slate-400 italic">Loading tasks...</div>
+          </div>
+          <div class="bento-action">
+            <span
+              class="text-sm font-semibold text-slate-500 dark:text-slate-400"
+              >Manage Tasks</span
+            >
+            <div
+              class="text-brand-500 font-bold flex items-center gap-1 bg-brand-500/10 px-4 py-1.5 rounded-full"
+            >
+              Open List <i class="ph-bold ph-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+
+        <div
+          data-target="planner-view"
+          class="bento-card glass col-span-1 md:col-span-1 lg:col-span-1 row-span-1 rounded-3xl p-6 border-t border-l border-white/40 dark:border-white/10 hover:border-amber-500/50 hover:shadow-[0_0_20px_rgba(245,158,11,0.3)]"
+        >
+          <div
+            class="flex items-center gap-2 text-amber-500 dark:text-amber-400 font-bold mb-4"
+          >
+            <i class="ph-fill ph-calendar-blank text-xl"></i> Schedule
+          </div>
+          <div
+            id="planner-preview-content"
+            class="flex flex-col justify-start h-full pb-4 gap-4 overflow-hidden"
+          >
+            <div
+              class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-1"
+            >
+              Up Next
+            </div>
+            <div
+              class="text-sm font-semibold truncate line-clamp-2 leading-tight"
+            >
+              Loading schedule...
+            </div>
+          </div>
+          <div class="bento-action !p-4">
+            <div
+              class="w-full text-center text-amber-500 font-bold text-xs bg-amber-500/10 py-2 rounded-xl"
+            >
+              View Timeline
+            </div>
+          </div>
+        </div>
+
+        <div
+          data-target="goals-view"
+          class="bento-card glass col-span-1 md:col-span-1 lg:col-span-1 row-span-1 rounded-3xl p-6 border-t border-l border-white/40 dark:border-white/10 hover:border-emerald-500/50 hover:shadow-[0_0_20px_rgba(16,185,129,0.3)]"
+        >
+          <div
+            class="flex items-center justify-between text-emerald-500 dark:text-emerald-400 font-bold mb-2"
+          >
+            <div class="flex items-center gap-2">
+              <i class="ph-fill ph-target text-xl"></i> Goals
+            </div>
+            <span id="goals-preview-pct" class="text-lg">0%</span>
+          </div>
+          <div
+            class="flex-grow flex items-center justify-center relative w-full h-full pb-6"
+          >
+            <div
+              class="w-full h-full border-[10px] border-emerald-500/20 rounded-full flex items-center justify-center relative overflow-hidden"
+            >
+              <div
+                id="goals-preview-fill"
+                class="absolute bottom-0 w-full bg-emerald-500/80 transition-all duration-1000"
+                style="height: 0%"
+              ></div>
+            </div>
+          </div>
+          <div class="bento-action !p-4">
+            <div
+              class="w-full text-center text-emerald-500 font-bold text-xs bg-emerald-500/10 py-2 rounded-xl"
+            >
+              Track Progress
+            </div>
+          </div>
+        </div>
+
+        <div
+          data-target="calendar-view"
+          class="bento-card glass col-span-1 md:col-span-2 lg:col-span-2 row-span-1 rounded-3xl p-6 border-t border-l border-white/40 dark:border-white/10 hover:border-rose-500/50 hover:shadow-[0_0_20px_rgba(244,63,94,0.3)]"
+        >
+          <div class="flex flex-col h-full w-full">
+            <div
+              class="flex items-center gap-2 text-rose-500 dark:text-rose-400 font-bold mb-2"
+            >
+              <i class="ph-fill ph-calendar text-xl"></i> Calendar
+            </div>
+            <div class="flex-grow flex items-center justify-between pb-4">
+              <div id="calendar-preview-date" class="flex flex-col"></div>
+              <div
+                id="calendar-preview-mini"
+                class="hidden sm:grid grid-cols-7 gap-1 text-[8px] opacity-70"
+              ></div>
+            </div>
+          </div>
+          <div class="bento-action">
+            <span
+              class="text-sm font-semibold text-slate-500 dark:text-slate-400"
+              >Monthly View</span
+            >
+            <div
+              class="text-rose-500 font-bold flex items-center gap-1 bg-rose-500/10 px-4 py-1.5 rounded-full"
+            >
+              Open Calendar <i class="ph-bold ph-arrow-right"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="todo-view"
+        class="feature-view hidden w-full max-w-4xl glass p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0"
+      >
+        <div
+          class="flex justify-between items-center mb-8 border-b border-slate-200 dark:border-slate-700/50 pb-4"
+        >
+          <button
+            class="back-btn text-brand-500 font-bold hover:text-brand-600 flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
+          >
+            <i class="ph-bold ph-caret-left text-xl"></i> Hub
+          </button>
+          <button
+            id="todo-clear-btn"
+            class="text-sm font-semibold text-red-500 hover:text-white hover:bg-red-500 px-4 py-2 rounded-xl transition-all border border-red-200 dark:border-red-900/50"
+          >
+            Clear Done
+          </button>
+        </div>
+
+        <div class="flex flex-col md:flex-row gap-8">
+          <div class="w-full md:w-1/3">
+            <h2 class="text-4xl font-extrabold mb-2 tracking-tight">
+              Action Items.
+            </h2>
+            <div
+              class="text-sm font-medium text-slate-500 mb-6 flex items-center gap-2"
+            >
+              <div
+                class="w-full bg-slate-200 dark:bg-slate-700/50 rounded-full h-2 flex-grow overflow-hidden shadow-inner"
+              >
+                <div
+                  id="todo-progress-bar"
+                  class="bg-gradient-to-r from-brand-400 to-brand-600 h-full w-0 transition-all duration-500"
+                ></div>
+              </div>
+              <span
+                id="todo-stats-full"
+                class="whitespace-nowrap w-12 text-right"
+                >0%</span
+              >
+            </div>
+
+            <div
+              class="flex flex-col gap-3 shadow-sm p-4 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-white/50 dark:border-slate-700/50"
+            >
+              <input
+                type="text"
+                id="todo-input"
+                class="w-full p-4 rounded-xl border-none bg-white dark:bg-slate-900/80 shadow-inner focus:ring-2 focus:ring-brand-500 transition-all text-slate-900 dark:text-white font-medium"
+                placeholder="What's next?"
+              />
+              <button
+                id="todo-add-btn"
+                class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold p-4 rounded-xl transition-all shadow-md shadow-brand-500/20 flex justify-center items-center gap-2"
+              >
+                <i class="ph-bold ph-plus"></i> Add Task
+              </button>
+            </div>
+          </div>
+          <div class="w-full md:w-2/3">
+            <ul
+              id="todo-list"
+              class="space-y-3 max-h-[55vh] overflow-y-auto pr-2 no-scrollbar"
+            ></ul>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="pomodoro-view"
+        class="feature-view hidden w-full max-w-2xl glass p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0 text-center relative"
+      >
+        <button
+          class="back-btn absolute top-6 left-6 text-brand-500 font-bold hover:text-brand-600 flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors z-20"
+        >
+          <i class="ph-bold ph-caret-left text-xl"></i>
+        </button>
+
+        <div
+          id="pomodoro-settings"
+          class="absolute inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl z-30 rounded-3xl flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300"
+        >
+          <h3 class="text-2xl font-bold mb-6">Timer Configuration</h3>
+          <div class="flex gap-6 mb-8">
+            <div class="flex flex-col items-center">
+              <label class="text-sm font-semibold text-slate-500 mb-2"
+                >Work (min)</label
+              >
+              <input
+                type="number"
+                id="setting-work"
+                value="25"
+                min="1"
+                max="120"
+                class="w-24 p-3 text-center text-xl font-bold rounded-xl bg-slate-100 dark:bg-slate-800 border-2 border-brand-500 outline-none"
+              />
+            </div>
+            <div class="flex flex-col items-center">
+              <label class="text-sm font-semibold text-slate-500 mb-2"
+                >Break (min)</label
+              >
+              <input
+                type="number"
+                id="setting-break"
+                value="5"
+                min="1"
+                max="30"
+                class="w-24 p-3 text-center text-xl font-bold rounded-xl bg-slate-100 dark:bg-slate-800 border-2 border-emerald-500 outline-none"
+              />
+            </div>
+          </div>
+          <button
+            id="save-settings-btn"
+            class="bg-brand-500 text-white font-bold py-3 px-10 rounded-full shadow-lg hover:bg-brand-600 transition-colors"
+          >
+            Save Settings
+          </button>
+        </div>
+
+        <button
+          id="open-settings-btn"
+          class="absolute top-6 right-6 text-slate-400 hover:text-brand-500 transition-colors p-2 z-20 bg-white/50 dark:bg-slate-800/50 rounded-xl"
+        >
+          <i class="ph-fill ph-sliders text-2xl"></i>
+        </button>
+
+        <div
+          class="relative w-72 h-72 mx-auto mb-10 mt-6 flex justify-center items-center perspective-[1000px]"
+        >
+          <svg
+            class="absolute inset-0 w-full h-full drop-shadow-2xl"
+            width="288"
+            height="288"
+          >
+            <defs>
+              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="8" result="blur" />
+                <feMerge>
+                  <feMergeNode in="blur" />
+                  <feMergeNode in="SourceGraphic" />
+                </feMerge>
+              </filter>
+            </defs>
+            <circle
+              cx="144"
+              cy="144"
+              r="130"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="12"
+              class="text-slate-200 dark:text-slate-700/50 shadow-inner"
+            ></circle>
+            <circle
+              id="pomodoro-ring"
+              cx="144"
+              cy="144"
+              r="130"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="12"
+              stroke-linecap="round"
+              class="text-brand-500 progress-ring__circle"
+              stroke-dasharray="816.8"
+              stroke-dashoffset="0"
+              filter="url(#glow)"
+            ></circle>
+          </svg>
+          <div
+            class="z-10 flex flex-col items-center bg-white/40 dark:bg-slate-800/60 backdrop-blur-md rounded-full w-56 h-56 justify-center shadow-3d border border-white/50 dark:border-white/10"
+          >
+            <div
+              id="pomodoro-label"
+              class="text-sm font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest mb-1"
+            >
+              Focus
+            </div>
+            <div
+              id="pomodoro-display"
+              class="font-mono text-6xl font-extrabold tracking-tighter text-slate-800 dark:text-white drop-shadow-sm"
+            >
+              25:00
+            </div>
+          </div>
+        </div>
+
+        <div class="flex justify-center gap-4 mb-6">
+          <button
+            id="pomodoro-start"
+            class="bg-gradient-to-r from-brand-500 to-indigo-600 text-white font-bold py-4 px-10 rounded-full transition-all shadow-lg hover:shadow-glow w-40 text-lg"
+          >
+            Start
+          </button>
+          <button
+            id="pomodoro-pause"
+            class="bg-slate-200 dark:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold py-4 px-10 rounded-full transition-all hidden w-40 text-lg shadow-inner"
+          >
+            Pause
+          </button>
+          <button
+            id="pomodoro-reset"
+            class="bg-white hover:bg-red-50 text-red-600 dark:bg-slate-800 dark:text-red-400 font-bold py-4 px-10 rounded-full transition-all w-40 border-2 border-red-100 dark:border-red-900/50 shadow-sm text-lg"
+          >
+            Reset
+          </button>
+        </div>
+
+        <button
+          id="audio-toggle-btn"
+          class="flex items-center gap-2 mx-auto px-4 py-2 rounded-full bg-slate-100 dark:bg-slate-800/80 text-sm font-semibold text-slate-500 hover:text-brand-500 border border-slate-200 dark:border-slate-700 transition-colors"
+        >
+          <i class="ph-fill ph-speaker-high text-lg audio-icon"></i> Ambient
+          Audio: <span class="audio-status">Off</span>
+        </button>
+
+        <div
+          class="mt-6 flex justify-center gap-3 text-sm bg-white/40 dark:bg-slate-800/40 p-2 rounded-full inline-flex border border-white/50 dark:border-slate-700 shadow-inner"
+        >
+          <button
+            id="mode-work"
+            class="px-6 py-2.5 rounded-full bg-brand-500 text-white shadow-md font-bold transition-all"
+          >
+            Work
+          </button>
+          <button
+            id="mode-break"
+            class="px-6 py-2.5 rounded-full text-slate-600 hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-700 font-bold transition-all"
+          >
+            Break
+          </button>
+        </div>
+      </section>
+
+      <section
+        id="planner-view"
+        class="feature-view hidden w-full max-w-4xl glass p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0"
+      >
+        <div
+          class="flex justify-between items-center mb-6 border-b border-slate-200 dark:border-slate-700/50 pb-4"
+        >
+          <button
+            class="back-btn text-brand-500 font-bold hover:text-brand-600 flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
+          >
+            <i class="ph-bold ph-caret-left text-xl"></i> Hub
+          </button>
+          <h2 class="text-3xl font-extrabold tracking-tight">Timeline.</h2>
+        </div>
+        <div
+          class="relative pl-4 pr-2 py-4 max-h-[65vh] overflow-y-auto no-scrollbar"
+          id="planner-scroll-area"
+        >
+          <div id="timeline-indicator"></div>
+          <div id="planner-container" class="space-y-4 relative"></div>
+        </div>
+      </section>
+
+      <section
+        id="goals-view"
+        class="feature-view hidden w-full max-w-2xl glass p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0"
+      >
+        <button
+          class="back-btn mb-6 text-emerald-500 font-bold flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
+        >
+          <i class="ph-bold ph-caret-left text-xl"></i> Hub
+        </button>
+
+        <div
+          class="mb-8 p-8 bg-slate-900 text-white rounded-3xl relative overflow-hidden shadow-2xl border border-slate-700"
+        >
+          <div class="relative z-10">
+            <h2 class="text-3xl font-extrabold mb-2 tracking-tight">
+              Milestones.
+            </h2>
+            <div class="flex justify-between items-end mb-4 mt-6">
+              <span
+                class="text-sm text-slate-400 font-bold uppercase tracking-widest"
+                >Progress</span
+              >
+              <span
+                id="goals-progress-text-full"
+                class="text-3xl font-black text-emerald-400 drop-shadow-md"
+                >0%</span
+              >
+            </div>
+            <div
+              class="w-full bg-slate-950 rounded-full h-6 overflow-hidden shadow-inner border border-slate-700/50 p-1"
+            >
+              <div
+                id="goals-progress-bar-full"
+                class="bg-gradient-to-b from-emerald-400 to-emerald-600 h-full rounded-full transition-all duration-1000 w-0 relative shadow-[0_0_20px_rgba(52,211,153,0.4)]"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-3 mb-8 shadow-sm">
+          <input
+            type="text"
+            id="goal-input"
+            class="flex-grow p-4 rounded-xl border-none bg-white dark:bg-slate-900/80 shadow-inner focus:ring-2 focus:ring-emerald-500 text-slate-900 dark:text-white font-medium"
+            placeholder="What will you achieve today?"
+          />
+          <button
+            id="goal-add-btn"
+            class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold px-8 py-4 rounded-xl transition-all shadow-lg hover:shadow-xl"
+          >
+            <i class="ph-bold ph-plus text-xl"></i>
+          </button>
+        </div>
+        <ul
+          id="goals-list-full"
+          class="space-y-4 max-h-[40vh] overflow-y-auto pr-2 no-scrollbar"
+        ></ul>
+      </section>
+
+      <section
+        id="calendar-view"
+        class="feature-view hidden w-full max-w-4xl glass p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0"
+      >
+        <div
+          class="flex justify-between items-center mb-8 border-b border-slate-200 dark:border-slate-700/50 pb-4"
+        >
+          <button
+            class="back-btn text-rose-500 font-bold hover:text-rose-600 flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
+          >
+            <i class="ph-bold ph-caret-left text-xl"></i> Hub
+          </button>
+          <div class="flex items-center gap-4">
+            <button
+              id="cal-prev"
+              class="p-2 rounded-xl bg-white/50 dark:bg-slate-800/50 shadow-sm hover:bg-rose-500 hover:text-white transition"
+            >
+              <i class="ph-bold ph-caret-left text-xl"></i>
+            </button>
+            <h2
+              id="cal-month-year"
+              class="text-2xl md:text-3xl font-extrabold tracking-tight min-w-[200px] text-center"
+            >
+              Month Year
+            </h2>
+            <button
+              id="cal-next"
+              class="p-2 rounded-xl bg-white/50 dark:bg-slate-800/50 shadow-sm hover:bg-rose-500 hover:text-white transition"
+            >
+              <i class="ph-bold ph-caret-right text-xl"></i>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="w-full bg-slate-900/5 dark:bg-slate-900/40 p-4 md:p-6 rounded-3xl border border-white/40 dark:border-slate-700/50 shadow-inner"
+        >
+          <div class="grid grid-cols-7 mb-4">
+            <div
+              class="text-center text-sm font-bold text-rose-500 uppercase tracking-wider"
+            >
+              Sun
+            </div>
+            <div
+              class="text-center text-sm font-bold text-slate-500 uppercase tracking-wider"
+            >
+              Mon
+            </div>
+            <div
+              class="text-center text-sm font-bold text-slate-500 uppercase tracking-wider"
+            >
+              Tue
+            </div>
+            <div
+              class="text-center text-sm font-bold text-slate-500 uppercase tracking-wider"
+            >
+              Wed
+            </div>
+            <div
+              class="text-center text-sm font-bold text-slate-500 uppercase tracking-wider"
+            >
+              Thu
+            </div>
+            <div
+              class="text-center text-sm font-bold text-slate-500 uppercase tracking-wider"
+            >
+              Fri
+            </div>
+            <div
+              class="text-center text-sm font-bold text-slate-500 uppercase tracking-wider"
+            >
+              Sat
+            </div>
+          </div>
+          <div
+            id="calendar-grid"
+            class="grid grid-cols-7 gap-3 md:gap-4 auto-rows-fr"
+          ></div>
+        </div>
+      </section>
+
+      <section
+        id="weather-view"
+        class="feature-view hidden w-full max-w-2xl glass p-6 md:p-8 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0"
+      >
+        <button
+          class="back-btn mb-6 text-sky-500 font-bold hover:text-sky-600 flex items-center gap-2 px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
+        >
+          <i class="ph-bold ph-caret-left text-xl"></i> Hub
+        </button>
+
+        <div
+          id="weather-card"
+          class="flex flex-col items-center justify-center p-8 bg-slate-800 rounded-[2rem] text-white shadow-2xl min-h-[450px] w-full transition-all border border-slate-700"
+        >
+          <i
+            class="ph-bold ph-spinner-gap animate-spin text-5xl mb-4 text-sky-400"
+          ></i>
+          <div class="text-lg font-medium tracking-wide text-slate-300">
+            Syncing satellite data...
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="quotes-view"
+        class="feature-view hidden w-full max-w-3xl p-6 md:p-10 transition-all duration-300 transform scale-95 opacity-0 perspective-[1500px]"
+      >
+        <div class="flex justify-between items-center mb-8 relative z-10">
+          <button
+            class="back-btn text-white font-bold flex items-center gap-2 px-4 py-2 bg-black/40 backdrop-blur-md rounded-xl shadow-sm hover:bg-black/60 transition-colors"
+          >
+            <i class="ph-bold ph-caret-left text-xl"></i> Hub
+          </button>
+          <button
+            id="quote-copy-btn"
+            class="text-white bg-black/40 backdrop-blur-md transition-colors p-3 rounded-xl shadow-sm hover:bg-black/60"
+            title="Copy to clipboard"
+          >
+            <i class="ph-bold ph-copy text-xl"></i>
+          </button>
+        </div>
+
+        <div id="quote-flip-card" class="flip-card w-full h-[400px]">
+          <div class="flip-card-inner h-full shadow-3d rounded-3xl">
+            <div
+              class="flip-card-front absolute inset-0 glass rounded-3xl flex flex-col items-center justify-center p-8 md:p-12 bg-gradient-to-br from-indigo-900/90 to-purple-900/90 border border-white/20"
+            >
+              <i
+                class="ph-fill ph-quotes text-6xl text-white/20 mb-4 flex-shrink-0"
+              ></i>
+              <div
+                class="overflow-y-auto no-scrollbar flex-grow flex flex-col justify-center w-full text-center"
+              >
+                <div
+                  id="quote-content-front"
+                  class="text-2xl md:text-3xl font-serif text-white mb-6 leading-relaxed font-bold"
+                ></div>
+              </div>
+              <div
+                id="quote-author-front"
+                class="text-lg text-purple-300 font-bold uppercase tracking-widest flex-shrink-0"
+              ></div>
+            </div>
+            <div
+              class="flip-card-back absolute inset-0 glass rounded-3xl flex flex-col items-center justify-center p-8 md:p-12 bg-gradient-to-bl from-purple-900/90 to-indigo-900/90 border border-white/20"
+            >
+              <i
+                class="ph-fill ph-quotes text-6xl text-white/20 mb-4 flex-shrink-0"
+              ></i>
+              <div
+                class="overflow-y-auto no-scrollbar flex-grow flex flex-col justify-center w-full text-center"
+              >
+                <div
+                  id="quote-content-back"
+                  class="text-2xl md:text-3xl font-serif text-white mb-6 leading-relaxed font-bold"
+                ></div>
+              </div>
+              <div
+                id="quote-author-back"
+                class="text-lg text-purple-300 font-bold uppercase tracking-widest flex-shrink-0"
+              ></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-10 flex justify-center">
+          <button
+            id="new-quote-btn"
+            class="px-10 py-5 bg-gradient-to-r from-purple-600 to-indigo-600 text-white rounded-full font-extrabold text-lg transition-all shadow-[0_0_20px_rgba(168,85,247,0.4)] hover:shadow-[0_0_30px_rgba(168,85,247,0.6)] hover:-translate-y-1 flex items-center gap-3"
+          >
+            <i class="ph-bold ph-arrows-clockwise text-2xl"></i> Inspire Me
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <div
+      id="toast-container"
+      class="fixed bottom-6 right-6 bg-slate-900 dark:bg-slate-800 text-white px-6 py-4 rounded-2xl shadow-2xl transition-all duration-300 transform translate-y-[150%] opacity-0 z-[100] flex items-center gap-3 border border-slate-700"
+    >
+      <i class="ph-fill ph-info text-brand-400 text-xl"></i>
+      <div id="toast-message" class="font-medium"><span></span></div>
+    </div>
+  </body>
+</html>
