@@ -1,0 +1,25 @@
+# Node dependencies
+node_modules/
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# VS Code
+.vscode/
+
+# Environment files
+.env
+
+# npm cache
+.npm/
+
+# Temporary files
+*.tmp
+*.temp
+
+# Build folders
+dist/
+build/

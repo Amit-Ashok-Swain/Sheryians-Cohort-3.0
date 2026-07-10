@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aura Productivity Workspace OS</title>
+    <script type="module" crossorigin src="./assets/index-c8Wk_Umc.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-DNynFtWD.css">
+  </head>
+  <body
+    id="app-bg"
+    class="immersive-canvas font-sans text-slate-900 dark:text-slate-50 flex flex-col"
+  >
+    <nav class="floating-sidebar" aria-label="Quick Navigation Links">
+      <button
+        data-target="dashboard"
+        class="p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-90 transition-all text-xl"
+        title="Control Center Center"
+      >
+        🏠
+      </button>
+      <div
+        class="h-px bg-slate-200 dark:bg-slate-800 w-full"
+        role="separator"
+      ></div>
+      <button
+        data-target="weather"
+        class="p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-90 transition-all text-xl"
+        title="Weather Telemetry"
+      >
+        ☀️
+      </button>
+      <button
+        data-target="todo"
+        class="p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-90 transition-all text-xl"
+        title="Task Infrastructure Matrix"
+      >
+        📋
+      </button>
+      <button
+        data-target="planner"
+        class="p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-90 transition-all text-xl"
+        title="Hourly Daily Timeline"
+      >
+        📅
+      </button>
+      <button
+        data-target="goals"
+        class="p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-90 transition-all text-xl"
+        title="Strategic Key Targets"
+      >
+        🎯
+      </button>
+      <button
+        data-target="pomodoro"
+        class="p-3 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-90 transition-all text-xl"
+        title="Pomodoro Deep Focus Engine"
+      >
+        ⏱️
+      </button>
+    </nav>
+
+    <header
+      class="solid-panel sticky top-4 mx-4 md:mx-8 my-4 z-40 rounded-2xl p-5"
+    >
+      <div
+        class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4"
+      >
+        <div class="text-center sm:text-left cursor-default">
+          <h1
+            id="live-time"
+            class="text-4xl font-black tracking-tight tabular-nums text-slate-900 dark:text-white"
+          >
+            00:00:00
+          </h1>
+          <p
+            id="live-date"
+            class="text-xs font-black tracking-widest uppercase text-indigo-600 dark:text-indigo-400 mt-0.5"
+          >
+            Syncing Core Chronograph...
+          </p>
+        </div>
+
+        <button
+          id="theme-toggle"
+          class="p-3 rounded-xl solid-panel hover:bg-slate-100 dark:hover:bg-slate-800 active:scale-95 text-xl"
+          aria-label="Switch User Visual Theme Mode"
+        >
+          🌓
+        </button>
+      </div>
+    </header>
+
+    <main
+      class="flex-grow p-4 md:p-8 max-w-7xl mx-auto w-full flex flex-col justify-start items-center lg:pl-28"
+    >
+      <div
+        id="dashboard-view"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full opacity-0 animate-fade-in"
+      >
+        <div
+          data-target="weather"
+          class="solid-grid-card group border-l-4 border-l-sky-500"
+        >
+          <div class="flex justify-between items-start">
+            <div
+              id="dash-weather-icon"
+              class="w-14 h-14 rounded-xl bg-sky-500/10 dark:bg-sky-500/20 flex items-center justify-center text-3xl transition-transform duration-300 group-hover:scale-105"
+            >
+              ⏳
+            </div>
+            <span
+              class="text-xs font-black uppercase tracking-wider text-slate-400"
+              >Meteorological Metric</span
+            >
+          </div>
+          <h3
+            id="dash-weather-temp"
+            class="text-2xl font-black tracking-tight mt-4"
+          >
+            Syncing...
+          </h3>
+          <p
+            id="dash-weather-desc"
+            class="text-sm text-slate-500 dark:text-slate-400 mt-1 truncate"
+          >
+            Reading telemetry coordinates profiles...
+          </p>
+        </div>
+
+        <div
+          data-target="todo"
+          class="solid-grid-card group border-l-4 border-l-indigo-500"
+        >
+          <div class="flex justify-between items-start">
+            <div
+              class="w-14 h-14 rounded-xl bg-indigo-500/10 dark:bg-indigo-500/20 flex items-center justify-center text-3xl transition-transform duration-300 group-hover:scale-105"
+            >
+              📋
+            </div>
+            <span
+              class="text-xs font-black uppercase tracking-wider text-slate-400"
+              >Prioritized Lists</span
+            >
+          </div>
+          <h3 class="text-2xl font-black tracking-tight mt-4">Tasks Matrix</h3>
+          <p
+            class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed"
+          >
+            Task manager supporting core structural prioritization parameters
+            and browser cache pipelines.
+          </p>
+        </div>
+
+        <div
+          data-target="planner"
+          class="solid-grid-card group border-l-4 border-l-emerald-500"
+        >
+          <div class="flex justify-between items-start">
+            <div
+              class="w-14 h-14 rounded-xl bg-emerald-500/10 dark:bg-emerald-500/20 flex items-center justify-center text-3xl transition-transform duration-300 group-hover:scale-105"
+            >
+              📅
+            </div>
+            <span
+              class="text-xs font-black uppercase tracking-wider text-slate-400"
+              >Day Operations</span
+            >
+          </div>
+          <h3 class="text-2xl font-black tracking-tight mt-4">Hourly Agenda</h3>
+          <p
+            class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed"
+          >
+            Map notes and critical work blocks systematically across individual
+            persistent day timeline indexes.
+          </p>
+        </div>
+
+        <div
+          data-target="goals"
+          class="solid-grid-card group border-l-4 border-l-violet-500"
+        >
+          <div class="flex justify-between items-start">
+            <div
+              class="w-14 h-14 rounded-xl bg-violet-500/10 dark:bg-violet-500/20 flex items-center justify-center text-3xl transition-transform duration-300 group-hover:scale-105"
+            >
+              🎯
+            </div>
+            <span
+              class="text-xs font-black uppercase tracking-wider text-slate-400"
+              >Key Progression</span
+            >
+          </div>
+          <h3 class="text-2xl font-black tracking-tight mt-4">Daily Goals</h3>
+          <p
+            class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed"
+          >
+            Define core benchmarks for today's runtime tracked by real-time
+            progression calculators.
+          </p>
+        </div>
+
+        <div
+          data-target="pomodoro"
+          class="solid-grid-card group border-l-4 border-l-rose-500"
+        >
+          <div class="flex justify-between items-start">
+            <div
+              class="w-14 h-14 rounded-xl bg-rose-500/10 dark:bg-rose-500/20 flex items-center justify-center text-3xl transition-transform duration-300 group-hover:scale-105"
+            >
+              ⏱️
+            </div>
+            <span
+              class="text-xs font-black uppercase tracking-wider text-slate-400"
+              >Timebox Framework</span
+            >
+          </div>
+          <h3 class="text-2xl font-black tracking-tight mt-4">Focus Core</h3>
+          <p
+            class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed"
+          >
+            Execute intense workflows within structured time blocks linked with
+            deliberate recovery sessions.
+          </p>
+        </div>
+
+        <div
+          data-target="motivation"
+          class="solid-grid-card group border-l-4 border-l-amber-500"
+        >
+          <div class="flex justify-between items-start">
+            <div
+              class="w-14 h-14 rounded-xl bg-amber-500/10 dark:bg-amber-500/20 flex items-center justify-center text-3xl transition-transform duration-300 group-hover:scale-105"
+            >
+              ✨
+            </div>
+            <span
+              class="text-xs font-black uppercase tracking-wider text-slate-400"
+              >Mental Frameworks</span
+            >
+          </div>
+          <h3 class="text-2xl font-black tracking-tight mt-4">
+            Inspiration Engine
+          </h3>
+          <p
+            class="text-sm text-slate-500 dark:text-slate-400 mt-1 leading-relaxed"
+          >
+            Ingest logic principles and strategy statements parsed continuously
+            via secure API network calls.
+          </p>
+        </div>
+      </div>
+
+      <div
+        id="feature-container"
+        class="hidden w-full max-w-3xl flex flex-col opacity-0"
+      >
+        <button
+          id="back-to-dashboard"
+          class="mb-6 self-start px-5 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 font-bold tracking-tight shadow-md active:scale-95 flex items-center gap-2 transition-all"
+        >
+          ← Return to Control Center Hub
+        </button>
+
+        <div class="solid-panel rounded-3xl p-6 md:p-10 flex-grow shadow-2xl">
+          <section
+            id="view-weather"
+            class="feature-view hidden animate-scale-up"
+          >
+            <h2
+              class="text-3xl font-black tracking-tight mb-1 text-slate-900 dark:text-white"
+            >
+              ☀️ Local Weather Telemetry
+            </h2>
+            <p
+              class="text-xs text-slate-400 uppercase font-black tracking-widest mb-6"
+            >
+              Real-Time Geolocation Diagnostics Pipeline
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div
+                class="p-6 bg-slate-50 dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 text-center flex flex-col justify-center items-center"
+              >
+                <span id="expanded-weather-icon" class="text-6xl block mb-2"
+                  >⏳</span
+                >
+                <p
+                  id="expanded-weather-temp"
+                  class="text-5xl font-black tracking-tighter text-slate-900 dark:text-white"
+                >
+                  Syncing...
+                </p>
+                <p
+                  id="expanded-weather-desc"
+                  class="text-xs font-black tracking-wider uppercase text-slate-400 mt-2"
+                >
+                  Connecting Open-Meteo Pipeline
+                </p>
+              </div>
+              <div
+                class="p-6 bg-slate-50 dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800 flex flex-col justify-center text-left space-y-3"
+              >
+                <p
+                  class="text-sm font-semibold flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1.5 text-slate-500 dark:text-slate-400"
+                >
+                  <span>💨 Wind Velocity Rate:</span>
+                  <span
+                    id="weather-detail-wind"
+                    class="font-black text-slate-900 dark:text-white"
+                    >-- km/h</span
+                  >
+                </p>
+                <p
+                  class="text-sm font-semibold flex justify-between border-b border-slate-200 dark:border-slate-800 pb-1.5 text-slate-500 dark:text-slate-400"
+                >
+                  <span>🧭 Geolocation Latitude:</span>
+                  <span
+                    id="weather-detail-lat"
+                    class="font-black text-slate-900 dark:text-white"
+                    >--</span
+                  >
+                </p>
+                <p
+                  class="text-sm font-semibold flex justify-between text-slate-500 dark:text-slate-400"
+                >
+                  <span>🗺️ Geolocation Longitude:</span>
+                  <span
+                    id="weather-detail-lon"
+                    class="font-black text-slate-900 dark:text-white"
+                    >--</span
+                  >
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="view-todo" class="feature-view hidden animate-scale-up">
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6"
+            >
+              <h2
+                class="text-3xl font-black tracking-tight text-slate-900 dark:text-white"
+              >
+                📋 Task Registry Matrix
+              </h2>
+              <div
+                class="flex rounded-xl bg-slate-100 dark:bg-slate-950 p-1 border border-slate-200 dark:border-slate-800 text-xs font-bold uppercase tracking-wider"
+              >
+                <button
+                  id="todo-filter-all"
+                  class="px-3 py-1.5 rounded-lg bg-white dark:bg-slate-800 shadow-sm text-indigo-600 dark:text-indigo-400"
+                >
+                  All Tasks
+                </button>
+                <button
+                  id="todo-filter-active"
+                  class="px-3 py-1.5 rounded-lg text-slate-500"
+                >
+                  Active
+                </button>
+                <button
+                  id="todo-filter-starred"
+                  class="px-3 py-1.5 rounded-lg text-slate-500"
+                >
+                  Starred
+                </button>
+              </div>
+            </div>
+            <form
+              id="todo-form"
+              class="flex flex-col sm:flex-row gap-3 mb-6"
+              novalidate
+            >
+              <div class="relative flex-grow">
+                <input
+                  type="text"
+                  id="todo-input"
+                  placeholder="What core metric requires execution today?..."
+                  class="modern-input pr-12"
+                />
+                <button
+                  type="button"
+                  id="todo-star-toggle"
+                  class="absolute right-4 top-1/2 -translate-y-1/2 text-xl opacity-30 hover:opacity-100 transition-opacity"
+                  title="Toggle Initial Star State"
+                >
+                  ⭐
+                </button>
+              </div>
+              <button
+                type="submit"
+                class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-4 rounded-xl font-bold active:scale-95 transition-all shadow-md shadow-indigo-600/10"
+              >
+                Commit Task
+              </button>
+            </form>
+            <ul
+              id="todo-list"
+              class="space-y-3 max-h-[360px] overflow-y-auto pr-2"
+            ></ul>
+          </section>
+
+          <section
+            id="view-planner"
+            class="feature-view hidden animate-scale-up"
+          >
+            <div class="flex justify-between items-center mb-6">
+              <div>
+                <h2
+                  class="text-3xl font-black tracking-tight text-slate-900 dark:text-white"
+                >
+                  📅 Hourly Timeline Agenda
+                </h2>
+                <p class="text-xs text-slate-400 mt-1">
+                  Changes map directly on element verification blurs.
+                </p>
+              </div>
+              <button
+                id="planner-clear-all"
+                class="text-xs font-black uppercase tracking-wider text-red-500 hover:underline"
+              >
+                Flush Agenda
+              </button>
+            </div>
+            <div
+              id="planner-slots"
+              class="space-y-3 max-h-[400px] overflow-y-auto pr-2"
+            ></div>
+          </section>
+
+          <section id="view-goals" class="feature-view hidden animate-scale-up">
+            <div
+              class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6"
+            >
+              <div>
+                <h2
+                  class="text-3xl font-black tracking-tight text-slate-900 dark:text-white"
+                >
+                  🎯 Key Foundational Targets
+                </h2>
+                <p class="text-xs text-slate-400 mt-1">
+                  Quantitative progression mapping values dashboard analytics
+                  context.
+                </p>
+              </div>
+              <div class="text-right">
+                <span
+                  id="goals-progress"
+                  class="text-xs font-black uppercase tracking-widest bg-emerald-500/10 dark:bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 px-4 py-2 rounded-xl border border-emerald-500/20"
+                  >0 / 0 Completed</span
+                >
+              </div>
+            </div>
+            <div
+              class="w-full bg-slate-100 dark:bg-slate-950 h-2.5 rounded-full mb-6 overflow-hidden border border-slate-200 dark:border-slate-800"
+            >
+              <div
+                id="goals-progress-bar"
+                class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full w-0 transition-all duration-500 ease-out"
+              ></div>
+            </div>
+            <form id="goals-form" class="flex gap-3 mb-6" novalidate>
+              <input
+                type="text"
+                id="goals-input"
+                placeholder="Configure high-level target metric tracker..."
+                class="modern-input"
+              />
+              <button
+                type="submit"
+                class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-4 rounded-xl font-bold active:scale-95 transition-all shadow-md shadow-emerald-600/10"
+              >
+                Track Goal
+              </button>
+            </form>
+            <ul
+              id="goals-list"
+              class="space-y-3 max-h-[320px] overflow-y-auto pr-2"
+            ></ul>
+          </section>
+
+          <section
+            id="view-pomodoro"
+            class="feature-view hidden animate-scale-up text-center py-4"
+          >
+            <div class="mb-4">
+              <span
+                id="pomo-status"
+                class="uppercase tracking-widest text-xs font-black text-rose-600 bg-rose-500/10 dark:bg-rose-500/20 px-4 py-2 rounded-full border border-rose-500/20"
+                >Focus Block Engine Terminus Idle</span
+              >
+            </div>
+
+            <div
+              class="relative w-64 h-64 mx-auto my-8 flex items-center justify-center group"
+            >
+              <svg
+                class="w-full h-full transform -rotate-90"
+                viewBox="0 0 100 100"
+              >
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="44"
+                  stroke-width="5"
+                  class="stroke-slate-100 dark:stroke-slate-950 fill-transparent"
+                />
+                <circle
+                  id="pomo-progress-ring"
+                  cx="50"
+                  cy="50"
+                  r="44"
+                  stroke-width="5"
+                  stroke-dasharray="276.46"
+                  stroke-dashoffset="0"
+                  stroke-linecap="round"
+                  class="stroke-rose-500 fill-transparent transition-all duration-100"
+                />
+              </svg>
+              <div
+                id="pomo-display"
+                class="absolute text-6xl font-black tracking-tighter tabular-nums text-slate-800 dark:text-white"
+              >
+                25:00
+              </div>
+            </div>
+
+            <div
+              class="flex justify-center items-center gap-4 max-w-md mx-auto"
+            >
+              <button
+                id="pomo-start"
+                class="flex-grow px-6 py-4 bg-rose-600 hover:bg-rose-700 text-white font-bold rounded-xl shadow-lg active:scale-95 transition-all"
+              >
+                Start Interval
+              </button>
+              <button
+                id="pomo-pause"
+                class="flex-grow px-6 py-4 bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-bold rounded-xl active:scale-95 transition-all"
+              >
+                Pause
+              </button>
+              <button
+                id="pomo-reset"
+                class="px-4 py-4 border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-950 font-bold rounded-xl transition-all"
+                aria-label="Reset Timer State Profile"
+              >
+                🔄
+              </button>
+            </div>
+          </section>
+
+          <section
+            id="view-motivation"
+            class="feature-view hidden text-center py-6"
+          >
+            <div
+              id="quote-loading"
+              class="hidden text-sm tracking-widest font-bold uppercase text-indigo-500 animate-pulse mb-4"
+            >
+              Connecting Philosophy API Vault...
+            </div>
+            <div
+              class="min-h-[160px] flex flex-col justify-center items-center"
+            >
+              <blockquote class="px-4">
+                <p
+                  id="quote-text"
+                  class="text-2xl md:text-3xl italic font-serif font-medium leading-relaxed text-slate-800 dark:text-slate-200"
+                >
+                  "Build or be built."
+                </p>
+                <cite
+                  id="quote-author"
+                  class="block mt-4 text-xs font-black uppercase tracking-widest text-indigo-600 dark:text-indigo-400"
+                  >— Workstation Core Kernel</cite
+                >
+              </blockquote>
+            </div>
+            <button
+              id="quote-refresh"
+              class="mt-8 px-6 py-3 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-700 hover:to-violet-700 text-white font-bold rounded-xl shadow-lg active:scale-95 transition-all"
+            >
+              Stream Axiom Statement
+            </button>
+          </section>
+        </div>
+      </div>
+    </main>
+
+  </body>
+</html>
