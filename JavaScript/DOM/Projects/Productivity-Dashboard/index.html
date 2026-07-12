@@ -274,8 +274,7 @@
           <div
             id="pomodoro-preview-content"
             class="flex-grow flex flex-col justify-center items-center w-full relative"
-          >
-          </div>
+          ></div>
           <div class="bento-action">
             <div
               class="text-sm font-semibold text-slate-500 dark:text-slate-400"
@@ -856,13 +855,13 @@
 
       <section
         id="calendar-view"
-        class="feature-view hidden w-full max-w-4xl glass p-4 sm:p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0 max-h-[85vh] overflow-y-auto no-scrollbar"
+        class="feature-view hidden w-full max-w-2xl glass p-4 sm:p-6 md:p-8 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0 max-h-[85vh] overflow-y-auto no-scrollbar"
       >
         <div
-          class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 sm:mb-8 border-b border-slate-200 dark:border-slate-700/50 pb-4 gap-4"
+          class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-5 sm:mb-6 border-b border-slate-200 dark:border-slate-700/50 pb-4 gap-4"
         >
           <button
-            class="back-btn text-rose-500 font-bold hover:text-rose-600 flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors"
+            class="back-btn text-rose-500 font-bold hover:text-rose-600 flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors w-fit"
           >
             <i class="ph-bold ph-caret-left text-xl"></i> Hub
           </button>
@@ -877,7 +876,7 @@
             </button>
             <h2
               id="cal-month-year"
-              class="text-xl sm:text-2xl md:text-3xl font-extrabold tracking-tight min-w-[150px] sm:min-w-[200px] text-center truncate"
+              class="text-xl sm:text-2xl font-extrabold tracking-tight min-w-[150px] sm:min-w-[180px] text-center truncate"
             >
               Month Year
             </h2>
@@ -891,50 +890,49 @@
         </div>
 
         <div
-          class="w-full bg-slate-900/5 dark:bg-slate-900/40 p-2 sm:p-4 md:p-6 rounded-3xl border border-white/40 dark:border-slate-700/50 shadow-inner"
+          class="w-full bg-slate-900/5 dark:bg-slate-900/40 p-3 sm:p-5 rounded-3xl border border-white/40 dark:border-slate-700/50 shadow-inner"
         >
-          <div class="grid grid-cols-7 mb-2 sm:mb-4">
+          <div class="grid grid-cols-7 mb-2 sm:mb-3">
             <div
-              class="text-center text-[10px] sm:text-sm font-bold text-rose-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-xs font-bold text-rose-500 uppercase tracking-wider"
             >
               Sun
             </div>
             <div
-              class="text-center text-[10px] sm:text-sm font-bold text-slate-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider"
             >
               Mon
             </div>
             <div
-              class="text-center text-[10px] sm:text-sm font-bold text-slate-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider"
             >
               Tue
             </div>
             <div
-              class="text-center text-[10px] sm:text-sm font-bold text-slate-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider"
             >
               Wed
             </div>
             <div
-              class="text-center text-[10px] sm:text-sm font-bold text-slate-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider"
             >
               Thu
             </div>
             <div
-              class="text-center text-[10px] sm:text-sm font-bold text-slate-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider"
             >
               Fri
             </div>
             <div
-              class="text-center text-[10px] sm:text-sm font-bold text-slate-500 uppercase tracking-wider"
+              class="text-center text-[10px] sm:text-xs font-bold text-slate-500 uppercase tracking-wider"
             >
               Sat
             </div>
           </div>
           <div
             id="calendar-grid"
-            class="grid grid-cols-7 gap-1 sm:gap-3 md:gap-4 auto-rows-fr"
-          >
-          </div>
+            class="grid grid-cols-7 gap-1 sm:gap-2 auto-rows-fr"
+          ></div>
         </div>
       </section>
 
@@ -1051,7 +1049,5 @@
         <span></span>
       </div>
     </div>
-
-    <script src="app.js"></script>
   </body>
 </html>

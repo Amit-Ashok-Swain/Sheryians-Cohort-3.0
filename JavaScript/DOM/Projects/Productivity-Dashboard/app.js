@@ -74,36 +74,28 @@ const FocusAudio = (() => {
 
 const ThreeBG = (() => {
   let scene, camera, renderer;
-  let stars,
-    sun,
-    planets = [];
-  let mouseX = 0,
-    mouseY = 0;
+  let stars, sun, sunLight, planets = []; 
+  let mouseX = 0, mouseY = 0;
+  
   let currentColor = new THREE.Color(0x818cf8);
   let targetColor = new THREE.Color(0x818cf8);
+  
+  let currentFog = new THREE.Color(0x050505);
+  let targetFog = new THREE.Color(0x050505);
 
   const init = () => {
     const canvas = document.getElementById("bg-canvas");
     if (!canvas) return;
 
     scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x050505, 0.0015);
+    scene.fog = new THREE.FogExp2(currentFog.getHex(), 0.0015);
 
-    camera = new THREE.PerspectiveCamera(
-      60,
-      window.innerWidth / window.innerHeight,
-      1,
-      2000,
-    );
+    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 2000);
     camera.position.z = 300;
     camera.position.y = 100;
     camera.lookAt(0, 0, 0);
 
-    renderer = new THREE.WebGLRenderer({
-      canvas,
-      alpha: true,
-      antialias: true,
-    });
+    renderer = new THREE.WebGLRenderer({ canvas, alpha: false, antialias: true });
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
 
@@ -114,16 +106,12 @@ const ThreeBG = (() => {
     sun = new THREE.Mesh(sunGeo, sunMat);
     scene.add(sun);
 
-    const sunLight = new THREE.PointLight(0xffaa00, 2, 800);
+    sunLight = new THREE.PointLight(0xffaa00, 2, 800); 
     scene.add(sunLight);
 
     const createPlanet = (radius, dist, speed, color, hasRing) => {
       const geo = new THREE.SphereGeometry(radius, 32, 32);
-      const mat = new THREE.MeshStandardMaterial({
-        color: color,
-        roughness: 0.7,
-        metalness: 0.3,
-      });
+      const mat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.7, metalness: 0.3 });
       const mesh = new THREE.Mesh(geo, mat);
       scene.add(mesh);
       if (hasRing) {
@@ -141,10 +129,10 @@ const ThreeBG = (() => {
       planets.push({ mesh, dist, speed, angle: Math.random() * Math.PI * 2 });
     };
 
-    createPlanet(3, 40, 0.005, 0x4f46e5, false); // Inner
-    createPlanet(6, 80, 0.003, 0xf59e0b, true); // Ringed
-    createPlanet(4, 120, 0.002, 0xef4444, false); // Red
-    createPlanet(8, 180, 0.001, 0x06b6d4, false); // Outer Ice
+    createPlanet(3, 40, 0.005, 0x4f46e5, false);
+    createPlanet(6, 80, 0.003, 0xf59e0b, true);
+    createPlanet(4, 120, 0.002, 0xef4444, false);
+    createPlanet(8, 180, 0.001, 0x06b6d4, false);
 
     const bgGeo = new THREE.BufferGeometry();
     const bgVerts = [];
@@ -155,10 +143,7 @@ const ThreeBG = (() => {
         THREE.MathUtils.randFloatSpread(2000),
       );
     }
-    bgGeo.setAttribute(
-      "position",
-      new THREE.Float32BufferAttribute(bgVerts, 3),
-    );
+    bgGeo.setAttribute("position", new THREE.Float32BufferAttribute(bgVerts, 3));
     const bgMat = new THREE.PointsMaterial({
       color: 0xffffff,
       size: 1.5,
@@ -192,9 +177,16 @@ const ThreeBG = (() => {
       p.mesh.rotation.y += 0.01;
     });
     stars.rotation.y += 0.0002;
+    
     currentColor.lerp(targetColor, 0.02);
-    sun.material.color.copy(currentColor);
-    scene.children[1].color.copy(currentColor);
+    
+    if (sun && sun.material) sun.material.color.copy(currentColor);
+    if (sunLight) sunLight.color.copy(currentColor); 
+
+    currentFog.lerp(targetFog, 0.02);
+    scene.fog.color.copy(currentFog);
+    renderer.setClearColor(currentFog, 1); 
+
     camera.position.x += (mouseX - camera.position.x) * 0.05;
     camera.position.y += (100 - mouseY - camera.position.y) * 0.05;
     camera.lookAt(scene.position);
@@ -204,7 +196,12 @@ const ThreeBG = (() => {
   const updateColor = (hexColor) => {
     if (scene) targetColor.setHex(hexColor);
   };
-  return { init, updateColor };
+
+  const updateFog = (hexColor) => {
+    if (scene) targetFog.setHex(hexColor);
+  };
+
+  return { init, updateColor, updateFog };
 })();
 
 const Confetti = (() => {
@@ -267,24 +264,67 @@ const Confetti = (() => {
 const AppUI = (() => {
   const themeToggle = document.getElementById("theme-toggle");
   let isDark = Storage.load("isDark", true);
+  let lastHour = -1;
+  let weatherCode = 0; 
 
   const applyTheme = () => {
     document.documentElement.classList.toggle("dark", isDark);
     updateEnvironment();
   };
 
+  const setWeatherCondition = (code) => {
+    weatherCode = code;
+    updateEnvironment();
+  };
+
   const updateEnvironment = () => {
     const hr = new Date().getHours();
-    let sunColor = 0x818cf8;
-    if (hr >= 5 && hr < 12) sunColor = 0xfacc15;
-    else if (hr >= 12 && hr < 17) sunColor = 0xffffff;
-    else if (hr >= 17 && hr < 20) sunColor = 0xf43f5e;
-    else sunColor = 0x818cf8;
-    ThreeBG.updateColor(sunColor);
+    const overlay = document.getElementById("ambient-overlay");
+    const isDark = document.documentElement.classList.contains("dark");
+
+    let sunColor, fogColor, overlayColor;
+
+    if (hr >= 5 && hr < 12) {
+      sunColor = 0xfacc15; fogColor = 0x87ceeb; 
+      overlayColor = isDark ? "rgba(0, 0, 0, 0.4)" : "rgba(255, 255, 255, 0.1)"; 
+    } else if (hr >= 12 && hr < 17) {
+      sunColor = 0xffffff; fogColor = 0x38bdf8; 
+      overlayColor = isDark ? "rgba(0, 0, 0, 0.5)" : "rgba(255, 255, 255, 0.1)";
+    } else if (hr >= 17 && hr < 20) {
+      sunColor = 0xf43f5e; fogColor = 0xfb923c; 
+      overlayColor = isDark ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.1)";
+    } else {
+      sunColor = 0x818cf8; fogColor = 0x050510; 
+      overlayColor = isDark ? "rgba(0, 0, 0, 0.8)" : "rgba(49, 46, 129, 0.3)";
+    }
+
+    if (hr >= 5 && hr < 20) {
+      if (weatherCode >= 3 && weatherCode <= 45) { 
+        fogColor = 0x64748b; sunColor = 0xe2e8f0;
+      } else if (weatherCode >= 51 && weatherCode <= 61) { 
+        fogColor = 0x475569; sunColor = 0x94a3b8;
+      } else if (weatherCode >= 71) { 
+        fogColor = 0x334155; sunColor = 0x64748b;
+      }
+    }
+
+    if (overlay) {
+      overlay.className = "fixed inset-0 transition-all duration-[2000ms] -z-10 backdrop-blur-[2px]";
+      overlay.style.backgroundColor = overlayColor;
+    }
+    
+    if (ThreeBG.updateColor) ThreeBG.updateColor(sunColor);
+    if (ThreeBG.updateFog) ThreeBG.updateFog(fogColor);
   };
 
   const updateClock = () => {
     const now = new Date();
+    
+    if (now.getHours() !== lastHour) {
+      lastHour = now.getHours();
+      updateEnvironment();
+    }
+
     const timeStr = now.toLocaleTimeString("en-US", {
       hour: "numeric",
       minute: "2-digit",
@@ -310,6 +350,7 @@ const AppUI = (() => {
         });
       }
     },
+    setWeatherCondition 
   };
 })();
 
@@ -797,7 +838,7 @@ const Goals = (() => {
 
   const updateProgressAndPreview = () => {
     const comp = goals.filter((g) => g.completed).length;
-    const pct = goals.length ? Math.round((comp / goals.length) * 100) : 0;
+    const pct = goals.length ? Math.round((comp / goals.length) * 100) : 0; 
 
     if (barFull) barFull.style.width = `${pct}%`;
     if (textFull) textFull.textContent = `${pct}%`;
@@ -1069,27 +1110,19 @@ const Weather = (() => {
   const WMO = {
     0: { t: "Clear Sky", i: "ph-sun", c: "from-sky-400 to-blue-600" },
     1: { t: "Mostly Clear", i: "ph-sun-dim", c: "from-sky-400 to-blue-600" },
-    2: {
-      t: "Partly Cloudy",
-      i: "ph-cloud-sun",
-      c: "from-slate-400 to-slate-600",
-    },
+    2: { t: "Partly Cloudy", i: "ph-cloud-sun", c: "from-slate-400 to-slate-600" },
     3: { t: "Overcast", i: "ph-cloud", c: "from-slate-500 to-slate-700" },
     45: { t: "Foggy", i: "ph-cloud-fog", c: "from-slate-400 to-slate-500" },
     51: { t: "Drizzle", i: "ph-cloud-rain", c: "from-blue-400 to-slate-600" },
     61: { t: "Rain", i: "ph-cloud-rain", c: "from-blue-500 to-indigo-600" },
     71: { t: "Snow", i: "ph-snowflake", c: "from-cyan-300 to-blue-500" },
-    95: {
-      t: "Storm",
-      i: "ph-cloud-lightning",
-      c: "from-slate-800 to-indigo-950",
-    },
+    95: { t: "Storm", i: "ph-cloud-lightning", c: "from-slate-800 to-indigo-950" },
   };
 
   const render = async (lat, lon) => {
     try {
       const res = await fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`,
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`
       );
       if (!res.ok) throw new Error("API Offline");
       const data = await res.json();
@@ -1097,7 +1130,7 @@ const Weather = (() => {
       let city = "Location";
       try {
         const geoRes = await fetch(
-          `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`,
+          `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=en`
         );
         if (geoRes.ok) {
           const geoData = await geoRes.json();
@@ -1108,48 +1141,70 @@ const Weather = (() => {
       const c = data.current;
       const w = WMO[c.weather_code] || WMO[0];
 
+      if (window.AppUI && window.AppUI.setWeatherCondition) {
+        window.AppUI.setWeatherCondition(c.weather_code);
+      }
+
+      let alertBannerHTML = "";
+      if ([3, 51, 61, 95].includes(c.weather_code) || c.relative_humidity_2m > 85) {
+        alertBannerHTML = `
+          <div class="w-full bg-white/20 dark:bg-black/30 backdrop-blur-md px-4 py-2 rounded-2xl flex items-center justify-center gap-2 mb-3 text-xs sm:text-sm font-bold border border-white/20 shadow-sm animate-pulse text-white">
+            <i class="ph-fill ph-umbrella text-lg text-amber-300"></i> Precipitation Risk: Carry an umbrella with you!
+          </div>`;
+      } else {
+        alertBannerHTML = `
+          <div class="w-full bg-white/10 dark:bg-white/5 backdrop-blur-md px-4 py-2 rounded-2xl flex items-center justify-center gap-2 mb-3 text-xs font-semibold text-white/90">
+            <i class="ph-bold ph-sun text-base text-amber-200"></i> Atmospheric parameters stable. No umbrella needed.
+          </div>`;
+      }
+
       let forecastHTML = "";
       for (let i = 1; i <= 3; i++) {
-        const date = new Date(data.daily.time[i]).toLocaleDateString("en-US", {
-          weekday: "short",
-        });
+        const date = new Date(data.daily.time[i]).toLocaleDateString("en-US", { weekday: "short" });
         const fw = WMO[data.daily.weather_code[i]] || WMO[0];
         forecastHTML += `
-              <div class="flex flex-col items-center bg-black/20 rounded-2xl p-3 sm:p-4 backdrop-blur-md w-full border border-white/10 overflow-hidden min-w-0">
-                  <span class="text-[10px] sm:text-sm font-bold mb-1 sm:mb-2 uppercase tracking-widest text-slate-200 truncate w-full text-center">${date}</span>
-                  <i class="ph-fill ${fw.i} text-3xl sm:text-4xl mb-1 sm:mb-2 drop-shadow-md"></i>
-                  <div class="text-sm sm:text-base font-bold">${Math.round(data.daily.temperature_2m_max[i])}° <span class="opacity-50 text-xs">${Math.round(data.daily.temperature_2m_min[i])}°</span></div>
+              <div class="flex flex-col items-center bg-black/15 dark:bg-black/30 rounded-xl p-2 backdrop-blur-md w-full border border-white/5 min-w-0">
+                  <span class="text-[10px] font-bold mb-1 uppercase tracking-wider text-slate-100/90 truncate w-full text-center">${date}</span>
+                  <i class="ph-fill ${fw.i} text-2xl mb-1 drop-shadow-md"></i>
+                  <div class="text-xs font-bold">${Math.round(data.daily.temperature_2m_max[i])}° <span class="opacity-40 text-[10px]">${Math.round(data.daily.temperature_2m_min[i])}°</span></div>
               </div>
           `;
       }
 
       if (card) {
-        card.className = `flex flex-col items-center justify-between p-6 sm:p-10 bg-gradient-to-br ${w.c} rounded-[2.5rem] text-white shadow-3d min-h-[400px] sm:min-h-[450px] w-full relative overflow-hidden transition-all border border-white/20`;
+        card.className = `flex flex-col items-center justify-between p-4 sm:p-5 bg-gradient-to-br ${w.c} rounded-[2rem] text-white shadow-3d w-full relative overflow-hidden transition-all border border-white/20`;
         card.innerHTML = `
-            <div class="w-full flex justify-between items-center mb-6 sm:mb-8 z-10 relative">
-                <span class="text-xl sm:text-2xl font-extrabold flex items-center gap-2 drop-shadow-md min-w-0"><i class="ph-fill ph-map-pin text-white/80 shrink-0"></i> <span class="truncate">${city}</span></span>
+            <div class="w-full flex justify-between items-center mb-2 z-10 relative">
+                <span class="text-lg font-extrabold flex items-center gap-1.5 drop-shadow-md min-w-0"><i class="ph-fill ph-map-pin text-white/80 shrink-0"></i> <span class="truncate">${city}</span></span>
             </div>
-            <div class="flex flex-col items-center z-10 relative mb-8 sm:mb-10 w-full">
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-6 w-full">
-                   <i class="ph-fill ${w.i} text-7xl sm:text-[8rem] drop-shadow-2xl"></i>
+            <div class="flex flex-col items-center z-10 relative mb-3 w-full">
+                <div class="flex flex-row items-center justify-center gap-4 w-full">
+                   <i class="ph-fill ${w.i} text-6xl drop-shadow-2xl"></i>
                    <div class="flex items-start">
-                     <h3 class="text-6xl sm:text-[6rem] leading-none font-black tracking-tighter drop-shadow-lg">${Math.round(c.temperature_2m)}</h3><span class="text-4xl sm:text-5xl mt-1 sm:mt-2 font-bold opacity-80">°</span>
+                     <h3 class="text-5xl leading-none font-black tracking-tighter drop-shadow-lg">${Math.round(c.temperature_2m)}</h3><span class="text-2xl font-bold opacity-80">°</span>
                    </div>
                 </div>
-                <p class="text-2xl sm:text-3xl font-bold opacity-90 capitalize tracking-wide mt-2 drop-shadow-md text-center">${w.t}</p>
+                <p class="text-lg font-bold opacity-90 capitalize tracking-wide mt-1 drop-shadow-md text-center">${w.t}</p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 w-full mb-8 sm:mb-10 z-10 relative text-center">
-                <div class="bg-black/20 p-3 sm:p-4 rounded-2xl backdrop-blur-md border border-white/10">
-                    <i class="ph-fill ph-thermometer text-2xl sm:text-3xl mb-1 text-amber-300"></i><div class="text-[10px] sm:text-[11px] opacity-70 uppercase tracking-widest font-bold mb-1">Feels</div><div class="font-black text-lg sm:text-xl">${Math.round(c.apparent_temperature)}°</div>
+
+            ${alertBannerHTML}
+
+            <div class="grid grid-cols-3 gap-2 w-full mb-3 z-10 relative text-center">
+                <div class="bg-black/15 dark:bg-black/20 p-2 rounded-xl backdrop-blur-md border border-white/5">
+                    <i class="ph-fill ph-thermometer text-xl mb-0.5 text-amber-300"></i><div class="text-[9px] opacity-60 uppercase tracking-wider font-bold">Feels</div><div class="font-black text-sm">${Math.round(c.apparent_temperature)}°</div>
                 </div>
-                <div class="bg-black/20 p-3 sm:p-4 rounded-2xl backdrop-blur-md border border-white/10">
-                    <i class="ph-fill ph-drop text-2xl sm:text-3xl mb-1 text-blue-300"></i><div class="text-[10px] sm:text-[11px] opacity-70 uppercase tracking-widest font-bold mb-1">Humidity</div><div class="font-black text-lg sm:text-xl">${c.relative_humidity_2m}%</div>
+                <div class="bg-black/15 dark:bg-black/20 p-2 rounded-xl backdrop-blur-md border border-white/5">
+                    <i class="ph-fill ph-drop text-xl mb-0.5 text-blue-300"></i><div class="text-[9px] opacity-60 uppercase tracking-wider font-bold">Humidity</div><div class="font-black text-sm">${c.relative_humidity_2m}%</div>
                 </div>
-                <div class="bg-black/20 p-3 sm:p-4 rounded-2xl backdrop-blur-md border border-white/10">
-                    <i class="ph-fill ph-wind text-2xl sm:text-3xl mb-1 text-teal-300"></i><div class="text-[10px] sm:text-[11px] opacity-70 uppercase tracking-widest font-bold mb-1">Wind</div><div class="font-black text-lg sm:text-xl">${Math.round(c.wind_speed_10m)} <span class="text-[10px] sm:text-xs opacity-70">km/h</span></div>
+                <div class="bg-black/15 dark:bg-black/20 p-2 rounded-xl backdrop-blur-md border border-white/5">
+                    <i class="ph-fill ph-wind text-xl mb-0.5 text-teal-300"></i><div class="text-[9px] opacity-60 uppercase tracking-wider font-bold">Wind</div><div class="font-black text-sm">${Math.round(c.wind_speed_10m)} <span class="text-[9px] font-normal opacity-60">km/h</span></div>
                 </div>
             </div>
-            <div class="flex flex-row justify-between gap-2 sm:gap-4 w-full z-10 relative">${forecastHTML}</div>
+            <div class="flex flex-row justify-between gap-2 w-full z-10 relative mb-1">${forecastHTML}</div>
+            
+            <div class="text-[9px] opacity-40 font-mono tracking-tight text-center z-10 w-full select-none border-t border-white/10 pt-1.5 mt-1">
+              Live ECMWF/GFS High-Res Dynamic Model Integration
+            </div>
           `;
       }
 
@@ -1157,27 +1212,35 @@ const Weather = (() => {
         mini.innerHTML = `<i class="ph-fill ${w.i} text-xl text-sky-500 drop-shadow-sm"></i> ${Math.round(c.temperature_2m)}°`;
 
       if (previewText && previewIcon) {
-        const todayMax =
-          data.daily && data.daily.temperature_2m_max
-            ? Math.round(data.daily.temperature_2m_max[0])
-            : "--";
-        const todayMin =
-          data.daily && data.daily.temperature_2m_min
-            ? Math.round(data.daily.temperature_2m_min[0])
-            : "--";
+        const todayMax = data.daily && data.daily.temperature_2m_max ? Math.round(data.daily.temperature_2m_max[0]) : "--";
+        const todayMin = data.daily && data.daily.temperature_2m_min ? Math.round(data.daily.temperature_2m_min[0]) : "--";
+
+        let miniAlert = "";
+        if ([3, 51, 61, 95].includes(c.weather_code) || c.relative_humidity_2m > 85) {
+          miniAlert = `<span class="text-amber-600 dark:text-amber-400 animate-pulse"><i class="ph-fill ph-umbrella"></i> Pack an umbrella</span>`;
+        } else {
+          miniAlert = `<span class="text-emerald-600 dark:text-emerald-400"><i class="ph-bold ph-sun"></i> No umbrella needed</span>`;
+        }
 
         previewText.innerHTML = `
-           <div class="text-4xl font-black mb-1">${Math.round(c.temperature_2m)}°</div>
-           <div class="text-sm font-bold text-sky-400 mb-1 tracking-wide">${w.t}</div>
-           <div class="text-xs font-bold text-slate-500 uppercase tracking-widest truncate w-full mb-3 min-w-0"><i class="ph-fill ph-map-pin"></i> ${city}</div>
-           <div class="text-[10px] font-bold text-slate-400 bg-slate-200/50 dark:bg-slate-700/50 px-2.5 py-1 rounded-md inline-block shadow-inner shrink-0">
-             H: ${todayMax}° &bull; L: ${todayMin}°
+           <div class="flex items-end gap-2 mb-1">
+             <div class="text-3xl font-black leading-none">${Math.round(c.temperature_2m)}°</div>
+             <div class="text-[9px] font-bold text-slate-500 bg-slate-200/50 dark:bg-slate-700/50 px-1.5 py-0.5 rounded shadow-inner">
+               H: ${todayMax}° &bull; L: ${todayMin}°
+             </div>
            </div>
+           <div class="text-xs font-bold text-sky-500 dark:text-sky-400 mb-0.5 tracking-wide">${w.t}</div>
+           <div class="text-[10px] font-bold text-slate-500 uppercase tracking-widest truncate w-full mb-1.5 min-w-0"><i class="ph-fill ph-map-pin"></i> ${city}</div>
+           
+           <div class="text-[9px] font-bold bg-white/50 dark:bg-slate-800/80 px-2 py-1 rounded-md border border-slate-200 dark:border-slate-700 shadow-sm mb-1 inline-block w-fit">
+             ${miniAlert}
+           </div>
+           <div class="text-[8px] font-mono text-slate-400/70 dark:text-slate-500/70 tracking-tight">LIVE ECMWF/GFS MODEL</div>
          `;
-        previewIcon.innerHTML = `<i class="ph-fill ${w.i} text-5xl md:text-[4rem]"></i>`;
+        previewIcon.innerHTML = `<i class="ph-fill ${w.i} text-5xl md:text-6xl"></i>`;
 
         previewText.classList.remove("mt-auto");
-        previewText.classList.add("mt-4");
+        previewText.classList.add("mt-1");
       }
     } catch (err) {
       if (card) {
@@ -1191,7 +1254,7 @@ const Weather = (() => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
           (pos) => render(pos.coords.latitude, pos.coords.longitude),
-          () => render(51.5074, -0.1278),
+          () => render(51.5074, -0.1278)
         );
       } else {
         render(51.5074, -0.1278);

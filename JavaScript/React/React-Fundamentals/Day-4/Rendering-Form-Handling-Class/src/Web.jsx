@@ -1,7 +1,7 @@
 import React from 'react'
-import Card from './Card'
-import Contact from './Contact'
-import About from './About'
+import Card from './components/Card'
+import Contact from './components/Contact'
+import About from './components/About'
 
 const Web = () => {
   return (
