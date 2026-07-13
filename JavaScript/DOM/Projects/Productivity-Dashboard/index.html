@@ -10,10 +10,8 @@
       rel="stylesheet"
     />
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -128,7 +126,6 @@
           "bg-gradient-to-br",
           "toast-enter",
           "toast-exit",
-          /* Responsive Overrides */
           "min-w-0",
           "break-words",
           "whitespace-normal",
@@ -183,9 +180,7 @@
         },
       };
     </script>
-
     <link rel="stylesheet" href="style.css" />
-
     <script src="app.js" defer></script>
   </head>
   <body
@@ -221,8 +216,13 @@
           </h1>
         </div>
       </div>
-
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3">
+        <button
+          id="today-nav-btn"
+          class="hidden md:flex font-mono text-sm font-semibold text-brand-600 dark:text-brand-400 bg-brand-500/10 dark:bg-brand-500/20 hover:bg-brand-500 hover:text-white px-4 py-2 rounded-xl transition-all shadow-sm border border-brand-500/30 items-center gap-2"
+        >
+          <i class="ph-bold ph-calendar-star"></i> Today
+        </button>
         <div
           id="clock-widget-header"
           class="hidden md:flex font-mono text-sm font-semibold bg-white/50 dark:bg-slate-800/50 px-4 py-2 rounded-xl shadow-sm border border-white/40 dark:border-slate-700"
@@ -537,7 +537,6 @@
             Clear Done
           </button>
         </div>
-
         <div
           class="flex flex-col lg:flex-row gap-6 lg:gap-8 flex-grow overflow-hidden"
         >
@@ -562,7 +561,6 @@
                 >0%</span
               >
             </div>
-
             <div
               class="flex flex-col gap-3 shadow-sm p-4 rounded-2xl bg-white/40 dark:bg-slate-800/40 border border-white/50 dark:border-slate-700/50"
             >
@@ -580,7 +578,6 @@
               </button>
             </div>
           </div>
-
           <div class="w-full lg:w-2/3 flex-grow overflow-hidden flex flex-col">
             <ul
               id="todo-list"
@@ -599,7 +596,6 @@
         >
           <i class="ph-bold ph-caret-left text-xl"></i>
         </button>
-
         <div
           id="pomodoro-settings"
           class="absolute inset-0 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xl z-30 rounded-3xl flex flex-col items-center justify-center hidden opacity-0 transition-opacity duration-300 overflow-y-auto p-6"
@@ -642,14 +638,12 @@
             Save Settings
           </button>
         </div>
-
         <button
           id="open-settings-btn"
           class="absolute top-4 sm:top-6 right-4 sm:right-6 text-slate-400 hover:text-brand-500 transition-colors p-2 z-20 bg-white/50 dark:bg-slate-800/50 rounded-xl"
         >
           <i class="ph-fill ph-sliders text-2xl"></i>
         </button>
-
         <div
           class="relative w-full max-w-[18rem] aspect-square mx-auto mb-8 sm:mb-10 mt-12 sm:mt-6 flex justify-center items-center perspective-[1000px]"
         >
@@ -708,7 +702,6 @@
             </div>
           </div>
         </div>
-
         <div
           class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mb-6 w-full"
         >
@@ -731,7 +724,6 @@
             Reset
           </button>
         </div>
-
         <button
           id="audio-toggle-btn"
           class="flex items-center justify-center w-full sm:w-auto gap-2 mx-auto px-4 py-3 sm:py-2 rounded-full bg-slate-100 dark:bg-slate-800/80 text-sm font-semibold text-slate-500 hover:text-brand-500 border border-slate-200 dark:border-slate-700 transition-colors"
@@ -739,7 +731,6 @@
           <i class="ph-fill ph-speaker-high text-lg audio-icon"></i> Ambient
           Audio: <span class="audio-status">Off</span>
         </button>
-
         <div
           class="mt-6 flex justify-center gap-2 sm:gap-3 text-sm bg-white/40 dark:bg-slate-800/40 p-2 rounded-full inline-flex border border-white/50 dark:border-slate-700 shadow-inner w-full sm:w-auto overflow-hidden"
         >
@@ -792,14 +783,19 @@
         id="goals-view"
         class="feature-view hidden w-full max-w-2xl glass p-4 sm:p-6 md:p-10 rounded-3xl shadow-3d transition-all duration-300 transform scale-95 opacity-0 max-h-[85vh] flex flex-col"
       >
-        <div class="shrink-0 mb-4 sm:mb-6">
+        <div class="flex justify-between items-center shrink-0 mb-4 sm:mb-6">
           <button
             class="back-btn text-emerald-500 font-bold flex items-center gap-2 px-3 sm:px-4 py-2 bg-white/50 dark:bg-slate-800/50 rounded-xl shadow-sm transition-colors w-fit"
           >
             <i class="ph-bold ph-caret-left text-xl"></i> Hub
           </button>
+          <button
+            id="goal-clear-btn"
+            class="text-sm font-semibold text-red-500 hover:text-white hover:bg-red-500 px-3 sm:px-4 py-2 rounded-xl transition-all border border-red-200 dark:border-red-900/50"
+          >
+            Clear Done
+          </button>
         </div>
-
         <div
           class="mb-6 sm:mb-8 p-6 sm:p-8 bg-slate-900 text-white rounded-3xl relative overflow-hidden shadow-2xl border border-slate-700 shrink-0"
         >
@@ -828,7 +824,6 @@
             </div>
           </div>
         </div>
-
         <div
           class="flex flex-col sm:flex-row gap-3 mb-6 sm:mb-8 shadow-sm shrink-0"
         >
@@ -888,7 +883,6 @@
             </button>
           </div>
         </div>
-
         <div
           class="w-full bg-slate-900/5 dark:bg-slate-900/40 p-3 sm:p-5 rounded-3xl border border-white/40 dark:border-slate-700/50 shadow-inner"
         >
@@ -945,10 +939,9 @@
         >
           <i class="ph-bold ph-caret-left text-xl"></i> Hub
         </button>
-
         <div
           id="weather-card"
-          class="flex flex-col items-center justify-center p-6 sm:p-8 bg-slate-800 rounded-[2rem] text-white shadow-2xl min-h-[450px] w-full transition-all border border-slate-700 overflow-hidden"
+          class="flex flex-col items-center justify-center p-6 sm:p-8 bg-slate-800 rounded-[2rem] text-white shadow-2xl min-h-[450px] w-full transition-all border border-slate-700 overflow-y-auto no-scrollbar"
         >
           <i
             class="ph-bold ph-spinner-gap animate-spin text-5xl mb-4 text-sky-400"
@@ -981,7 +974,6 @@
             <i class="ph-bold ph-copy text-xl"></i>
           </button>
         </div>
-
         <div
           id="quote-flip-card"
           class="flip-card w-full min-h-[300px] h-[50vh] max-h-[500px]"
@@ -1027,7 +1019,6 @@
             </div>
           </div>
         </div>
-
         <div class="mt-8 sm:mt-10 flex justify-center">
           <button
             id="new-quote-btn"
@@ -1039,6 +1030,51 @@
         </div>
       </section>
     </main>
+
+    <div
+      id="calendar-modal"
+      class="fixed inset-0 z-[100] flex items-center justify-center hidden opacity-0 transition-opacity duration-300 bg-black/60 backdrop-blur-sm p-4"
+    >
+      <div
+        class="glass p-6 sm:p-8 rounded-3xl w-full max-w-sm shadow-2xl transform scale-95 transition-transform duration-300"
+        id="calendar-modal-content"
+      >
+        <div class="flex justify-between items-center mb-6">
+          <h3
+            class="text-xl font-bold tracking-tight"
+            id="calendar-modal-title"
+          >
+            Select Action
+          </h3>
+          <button
+            id="calendar-modal-close"
+            class="text-slate-400 hover:text-rose-500 bg-white/10 p-2 rounded-xl transition-colors"
+          >
+            <i class="ph-bold ph-x text-lg"></i>
+          </button>
+        </div>
+        <div class="flex flex-col gap-3">
+          <button
+            id="btn-nav-schedule"
+            class="w-full bg-amber-500/10 text-amber-600 dark:text-amber-400 hover:bg-amber-500 hover:text-white border border-amber-500/30 font-bold py-4 px-4 rounded-xl transition-all flex items-center gap-3"
+          >
+            <i class="ph-fill ph-clock-countdown text-2xl"></i> Edit Schedule
+          </button>
+          <button
+            id="btn-nav-todo"
+            class="w-full bg-brand-500/10 text-brand-600 dark:text-brand-400 hover:bg-brand-500 hover:text-white border border-brand-500/30 font-bold py-4 px-4 rounded-xl transition-all flex items-center gap-3"
+          >
+            <i class="ph-fill ph-list-checks text-2xl"></i> Edit Action Items
+          </button>
+          <button
+            id="btn-nav-goals"
+            class="w-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 hover:bg-emerald-500 hover:text-white border border-emerald-500/30 font-bold py-4 px-4 rounded-xl transition-all flex items-center gap-3"
+          >
+            <i class="ph-fill ph-target text-2xl"></i> Edit Goals
+          </button>
+        </div>
+      </div>
+    </div>
 
     <div
       id="toast-container"
