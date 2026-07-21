@@ -11,7 +11,7 @@ return (<div>
           <About width = "300" name = "Amit"/>
           {About()}
           {About(500)} */}
-          <About name = "Amit" width = "500" age = {28} element = <h1>Hello</h1> >
+          <About name = "Amit" color = {"orange"} width = {500} age = {28} element = <h1>Hello</h1> >
             <h2>I'm Children of About</h2>
           </About>
         </div>)

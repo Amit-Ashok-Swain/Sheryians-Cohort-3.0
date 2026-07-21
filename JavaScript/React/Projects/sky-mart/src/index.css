@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Syne:wght@400..700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-volt: #c8f400;
+  --color-volt-light: #d4f73a;
+  --color-ink: #0d0d0d;
+  --color-txt: #f7f7f7;
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Syne", sans-serif;
+  --font-body: "DM Sans", sans-serif;
+  --font-heading: "Syne", sans-serif;
+
+  --background-image-grid:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    font-family: var(--font-sans);
+    background: #0d0d0d;
+    color: #f7f7f7;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-family: var(--font-display);
+  }
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+    border-radius: 4px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-volt);
+  }
+}
