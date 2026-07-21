@@ -89,7 +89,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="mb-12 grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <div className="mb-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
         {[
           {
             icon: Package,
@@ -126,21 +126,24 @@ const Home = () => {
         ].map((stat, i) => (
           <div
             key={i}
-            className="flex items-start gap-4 rounded-3xl border border-white/10 bg-[#111] p-6 transition-colors hover:border-white/20"
+            className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4 rounded-3xl border border-white/10 bg-[#111] p-4 sm:p-6 transition-colors hover:border-white/20"
           >
             <div
-              className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl ${stat.bg} ${stat.color}`}
+              className={`flex h-10 w-10 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-2xl ${stat.bg} ${stat.color}`}
             >
               <stat.icon className="h-5 w-5" />
             </div>
-            <div>
-              <p className="font-heading text-2xl font-bold text-white">
+            <div className="min-w-0 w-full">
+              <p
+                className="truncate font-heading text-xl sm:text-2xl font-bold text-white"
+                title={stat.value}
+              >
                 {stat.value}
               </p>
-              <p className="font-body text-sm font-medium text-white/70">
+              <p className="truncate font-body text-xs sm:text-sm font-medium text-white/70">
                 {stat.label}
               </p>
-              <p className="mt-0.5 font-body text-xs text-white/40">
+              <p className="mt-0.5 truncate font-body text-[10px] sm:text-xs text-white/40">
                 {stat.sub}
               </p>
             </div>

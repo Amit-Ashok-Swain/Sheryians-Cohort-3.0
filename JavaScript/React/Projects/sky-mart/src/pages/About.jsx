@@ -63,8 +63,8 @@ const team = [
     text: "text-white",
   },
   {
-    name: "Harshada Goud",
-    role: "Design Director",
+    name: "Asmita Swain",
+    role: "Head of Design",
     color: "bg-rose-500",
     letter: "S",
     text: "text-white",
@@ -169,7 +169,7 @@ const AboutPage = () => {
               >
                 {member.letter}
               </div>
-              <p className="font-body text-base font-bold text-white">
+              <p className=" text-sm font-body text-base font-bold text-white">
                 {member.name}
               </p>
               <p className="mt-1 text-xs font-medium text-white/40">
